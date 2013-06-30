@@ -1,4 +1,12 @@
-railskurs
-=========
+# Die Konsole
 
-Anleitungen und Übungen
+Mac und Linux Terminal:
+```bash
+$ <Anweisung>
+```
+
+Windows:
+
+```bash
+C:\ <Anweisung>
+```
