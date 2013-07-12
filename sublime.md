@@ -19,3 +19,10 @@ Im Text ändern auf:
 | **Ctrl+R** | Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **@** tippen|
 | **Ctrl+;** | Gehe zu Wort in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **#** tippen|
 | **Ctrl+G** | Gehe zu Zeile in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **:** tippen|
+
+### Autovervollständigen
+
+| Shortcut        | Bedeutung          | 
+| ------------- |:-------------|
+| **Tab** | Autovervollständigen |
+| *Ctrl+Space* | Öffne Autovervollständigen / Selektiere nächsten Vorschlag |
