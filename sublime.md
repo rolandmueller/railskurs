@@ -1,6 +1,6 @@
-# Einrichten
+## Einrichten
 
-## Tab Abtand auf 2 Leerzeichen setzten:
+### Tab Abtand auf 2 Leerzeichen setzten:
 Menu:
 Sublime Text 2 | Preferences | Settings Default
 
