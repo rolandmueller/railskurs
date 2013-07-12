@@ -25,4 +25,4 @@ Im Text ändern auf:
 | Shortcut        | Bedeutung          | 
 | ------------- |:-------------|
 | **Tab** | Autovervollständigen |
-| *Ctrl+Space* | Öffne Autovervollständigen / Selektiere nächsten Vorschlag |
+| **Ctrl+Space** | Öffne Autovervollständigen / Selektiere nächsten Vorschlag |
