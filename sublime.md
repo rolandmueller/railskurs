@@ -13,6 +13,8 @@ Im Text ändern auf:
 
 ### Navigieren
 
+| Shortcut        | Bedeutung          | 
+| ------------- |:-------------|
 | *Ctrl+P* | Schnelles Öffnen von Dateien |
 | *Ctrl+R* | Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit *Ctrl+P*, und dann *@* tippen|
 | *Ctrl+;* | Gehe zu Wort in der aktuellen Datei. Identisch mit *Ctrl+P*, und dann *#* tippen|
