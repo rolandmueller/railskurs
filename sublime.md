@@ -13,12 +13,12 @@ Im Text ändern auf:
 
 ### Navigieren
 
-| Shortcut        | Bedeutung          | 
-| ------------- |:-------------|
-| **Ctrl+P** | Schnelles Öffnen von Dateien |
-| **Ctrl+R** | Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **@** tippen|
-| **Ctrl+;** | Gehe zu Wort in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **#** tippen|
-| **Ctrl+G** | Gehe zu Zeile in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **:** tippen|
+| Windows      | Mac |  Bedeutung          | 
+| ------------- | ------------- |:-------------|
+| **Ctrl+P** | **⌘+P**| Schnelles Öffnen von Dateien |
+| **Ctrl+R** | **⌘+R**|  Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **@** tippen|
+| **Ctrl+;** | **⌘+;**|  Gehe zu Wort in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **#** tippen|
+| **Ctrl+G** | **⌘+G** |  Gehe zu Zeile in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **:** tippen|
 
 ### Autovervollständigen
 
