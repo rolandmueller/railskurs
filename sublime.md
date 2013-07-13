@@ -41,7 +41,7 @@ Im Text ändern auf:
 
 **↩** auch Return Taste.
 
-Bestimmte Zeichen beim Mac: 
+##### Bestimmte Zeichen beim Mac: 
 
 | Symbol      | Mac |  
 | ------------- | ------------- |
