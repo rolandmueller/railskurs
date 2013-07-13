@@ -37,7 +37,7 @@ Im Text ändern auf:
 
 **⇧** Umschalttaste auch **Shift** Taste. Ganz links und rechts
 
-**⇥** auch **Tab** Taste. Links oben.
+**Tab** Taste (⇥) Links oben.
 
 **↩** auch Return Taste.
 
