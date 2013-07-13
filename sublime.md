@@ -57,10 +57,10 @@ Im Text ändern auf:
 
 | Windows      | Mac |  Bedeutung          | 
 | ------------- | ------------- |:-------------|
-| **Ctrl+P** | **⌘+P**| Schnelles Öffnen von Dateien |
-| **Ctrl+R** | **⌘+R**|  Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **@** tippen|
-| **Ctrl+;** | **⌘+;**|  Gehe zu Wort in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **#** tippen|
-| **Ctrl+G** | **⌘+G** |  Gehe zu Zeile in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **:** tippen|
+| **Strg+P** | **⌘+P**| Schnelles Öffnen von Dateien |
+| **Strg+R** | **⌘+R**|  Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **@** tippen|
+| **Strg+;** | **⌘+;**|  Gehe zu Wort in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **#** tippen|
+| **Strg+G** | **⌘+G** |  Gehe zu Zeile in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **:** tippen|
 
 ### Autovervollständigen
 
