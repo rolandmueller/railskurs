@@ -29,7 +29,7 @@ Im Text ändern auf:
 
 #### Mac
 
-**⌘** auch **cmd** Taste. Links und recht neben der Leertaste
+**⌘** auch **cmd** Taste. (Befehlstaste/Apfeltaste)  Links und recht neben der Leertaste
 
 **⌥** auch **alt** Taste. Links  neben der linken **⌘**  Taste  und rechts neben der rechten  **⌘**   Taste
 
