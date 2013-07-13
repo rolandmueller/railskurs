@@ -58,13 +58,14 @@ Im Text ändern auf:
 | Windows      | Mac |  Bedeutung          | 
 | ------------- | ------------- |:-------------|
 | **Strg+P** | **⌘+P**| Schnelles Öffnen von Dateien |
-| **Strg+R** | **⌘+R**|  Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **@** tippen|
-| **Strg+;** | **⌘+;**|  Gehe zu Wort in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **#** tippen|
-| **Strg+G** | **⌘+G** |  Gehe zu Zeile in der aktuellen Datei. Identisch mit **Ctrl+P**, und dann **:** tippen|
+| **Strg+R** | **⌘+R**|  Gehe zu Funktion bzw. Klasse in der aktuellen Datei. Identisch mit **Strg+P**, und dann **@** tippen|
+| **Strg+;** | **⌘+;**|  Gehe zu Wort in der aktuellen Datei. Identisch mit **Strg+P**, und dann **#** tippen|
+| **Strg+G** | **⌘+G** |  Gehe zu Zeile in der aktuellen Datei. Identisch mit **Strg+P**, und dann **:** tippen|
 
 ### Autovervollständigen
 
 | Windows      | Mac |  Bedeutung          | 
 | ------------- | ------------- |:-------------|
-| **Strg+Space** | **crtl+Space**| Öffne Autovervollständigen / Selektiere nächsten Vorschlag |
+| **Strg+Space** | **crtl+Space**| Öffne Autovervollständigen-Menü / Selektiere nächsten Vorschlag |
+| **Tab** | **Tab**| Autovervollständigen  |
 
