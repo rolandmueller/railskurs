@@ -14,7 +14,7 @@ C:\ Anweisung
 
 |  Was      | Befehlt | Beispiel           | 
 | ------------- | ------------- |:-------------|
-| Verzeichniss ändern | **cd** *verzeichnis* |  **cd** beispiel_app  |
+| Verzeichniss ändern (change directory) | **cd** *verzeichnis* |  **cd** beispiel_app  |
 | eine Verzeichnissebene höher gehen | **cd** .. |  |
 | aktuelles Verzeichnis (print working directory) | **cd** (ohne Argumente bei Windows)<br/> **pwd** (Mac/Linux) |  |
 | Inhalt anzeigen (list)  | **dir** (Windows)<br/> **ls** (Mac/Linux) |   |
