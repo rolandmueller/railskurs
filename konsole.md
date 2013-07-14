@@ -2,13 +2,13 @@
 
 Mac und Linux Terminal:
 ```bash
-$ <Anweisung>
+$ Anweisung
 ```
 
 Windows:
 
 ```bash
-C:\ <Anweisung>
+C:\ Anweisung
 ```
 
 
