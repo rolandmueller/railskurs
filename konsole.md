@@ -19,3 +19,5 @@ C:\ <Anweisung>
 | aktuelles Verzeichnis (print working directory) | **cd** (ohne Argumente bei Windows)<br/> **pwd** (Mac/Linux) |  |
 | Inhalt anzeigen (list)  | **dir** (Windows)<br/> **ls** (Mac/Linux) |   |
 | Verzeichnis erstellen (make dir)  | **mkdir** *verzeichnis* | **mkdir** rails_apps |
+| Verzeichnis löschen (remove dir)  | **rmdir** *verzeichnis* | **rmdir** rails_apps |
+| Datei löschen (remove)  | **rm** *datei* | **rm** index.html |
