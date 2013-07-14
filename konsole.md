@@ -16,6 +16,6 @@ C:\ <Anweisung>
 | ------------- | ------------- |:-------------|
 | Verzeichniss ändern | **cd** *verzeichnis* |  **cd** beispiel_app  |
 | eine Verzeichnissebene höher gehen | **cd** .. |  |
-| Inhalt anzeigen (list)  | **dir** (Windows) **ls** (Mac/Linux) |   |
-| Verzeichnis erstellen (Make Dir)  | **mkdir** *verzeichnis* | **mkdir** rails_apps |
-|  aktuelles Verzeichnis (print working directory) | **pwd** |  |
+| aktuelles Verzeichnis (print working directory) | **cd** (ohne Argumente bei Windows)<br/> **pwd** (Mac/Linux) |  |
+| Inhalt anzeigen (list)  | **dir** (Windows)<br/> **ls** (Mac/Linux) |   |
+| Verzeichnis erstellen (make dir)  | **mkdir** *verzeichnis* | **mkdir** rails_apps |
