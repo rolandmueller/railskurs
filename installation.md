@@ -5,6 +5,9 @@
 
 1. Sublime Text 2	http://www.sublimetext.com/2	
 2. Railsinstaller	http://railsinstaller.org/en	
+
+Wenn nach Email gefragt wird, die selbe Email angeben, wie bei Github
+
 3. Github for Windows		http://windows.github.com/
 4. Heroku Toolbelt	https://toolbelt.heroku.com/
 
