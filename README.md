@@ -3,8 +3,7 @@ railskurs
 
 ## Installation
 
-- [Installation Windows](https://github.com/rolandmueller/railskurs/blob/master/install_windows.md)
-- [Installation Mac](https://github.com/rolandmueller/railskurs/blob/master/install_mac.md)
+- [Installation für Windows und Mac](https://github.com/rolandmueller/railskurs/blob/master/installation.md)
 
 ## Anleitungen und Übungen
 
