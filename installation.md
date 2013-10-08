@@ -4,7 +4,7 @@
 
 
 1. Sublime Text 2	http://www.sublimetext.com/2	
-2. Railsinstaller	http://railsinstaller.org/en	
+2. Railsinstaller	http://railsinstaller.org/en	Download railsinstaller-windows 3.0.0-alpha2 with Ruby 2.0.0! 
 
 Wenn nach Email gefragt wird, die selbe Email angeben, wie bei Github
 
