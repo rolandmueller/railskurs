@@ -17,7 +17,7 @@ Wenn nach Email gefragt wird, die selbe Email angeben, wie bei Github
 
 2. Im Terminal:
 
-    \curl -L https://get.rvm.io | bash -s stable --rails
+        \curl -L https://get.rvm.io | bash -s stable --rails
 
 Falls curl nicht installiert ist, installieren.
 
