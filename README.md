@@ -6,7 +6,7 @@ railskurs
 1. http://www.github.com
 2. http://www.codecademy.com
 3. http://www.codeschool.com
-4. http://www.heroko.com (selbe Email benutzen wie bei Github)
+4. http://www.heroku.com (selbe Email benutzen wie bei Github)
 5. http://www.nitrous.IO (optional)
 
 
