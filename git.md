@@ -40,6 +40,16 @@ Alle Dateien hinzufügen
     
 -a Parameter (Add) fügt Änderungen gleich hinzu und danach werden diese sofort commited
 
+## Branching (Versionierung)
+
+### Branch erstellen
+
+    git branch branch-name
+    
+### Zu einem Branch wechseln
+
+    git checkout branch-name 
+    
 ## Änderungen mit dem Remote Repository synchronisieren
 
 ### Pull: Lokale  Dateien Updaten 
@@ -48,11 +58,9 @@ Alle Dateien hinzufügen
 
 ### Push: Remote Repository Update
 
-    git push [remote-name] [branch-name]
+Pushe den Master-Branch zum Remote Repositorium mit dem Namen "origin" 
 
     git push origin master
-    
-    
 
 ## Remote Repositorys
   
