@@ -54,7 +54,7 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git checkout -b branch-name
     
-### Merge: Änderungen von einem Branch in den aktuellen Branch verschmelzen
+### Merge: Änderungen aus dem Branch "branch-name" in den aktuellen Branch verschmelzen
 
     git merge branch-name
     
