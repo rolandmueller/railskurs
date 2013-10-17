@@ -1,7 +1,6 @@
 # Git und Github
 
-
-## Wichtige Befehle
+Wichtige Befehle
 
 ## Git Repositorium anlegen
 
@@ -18,3 +17,19 @@ oder
     git clone git@github.com:rolandmueller/railskurs.git
     
 Im bestehenden Verzeichnis wird ein Verzeichnis railskurs mit den Dateien des Repositorium geklont.
+
+## Neue Dateien zur Versionskontrolle hinzufügen
+
+Eine Datei hinzufügen
+
+    git add dateiname.txt
+    
+Alle Dateien mit bestimmter Endung hinzufügen
+
+        
+    git add *.txt
+    
+Alle Dateien hinzufügen
+
+    git add .
+    
