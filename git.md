@@ -33,3 +33,8 @@ Alle Dateien hinzufügen
 
     git add .
     
+## Ein Commit erzeugen (Änderungen in das Repositorium einchecken)
+
+    git commit -m "Eine Beschreibung des Commits"
+    
+
