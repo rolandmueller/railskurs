@@ -42,11 +42,11 @@ Alle Dateien hinzufügen
 
 ## Remote Repositorys
   
-1. Anzeigen
+1.Anzeigen
 
     git remote -v
     
-2. Hinzufügen
+2.Hinzufügen
 
     git remote add einname git://github.com/paulboone/ticgit.git
 
