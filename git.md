@@ -50,6 +50,10 @@ Alle Dateien hinzufügen
 
     git checkout branch-name 
     
+Kurzform für Branch erstellen und dann zu diesem wechseln:
+
+    git checkout -b branch-name
+    
 ## Änderungen mit dem Remote Repository synchronisieren
 
 ### Pull: Lokale  Dateien Updaten 
