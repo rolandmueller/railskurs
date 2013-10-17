@@ -45,6 +45,10 @@ Alle Dateien hinzufügen
 ### Branch erstellen
 
     git branch branch-name
+
+### Branch löschen (-d Delete)
+
+    git branch -d branch-name
     
 ### Zu einem Branch wechseln
 
