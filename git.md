@@ -40,6 +40,20 @@ Alle Dateien hinzufügen
     
 -a Parameter (Add) fügt Änderungen gleich hinzu und danach werden diese sofort commited
 
+## Änderungen mit dem Remote Repository synchronisieren
+
+### Pull: Lokale  Dateien Updaten 
+
+    git pull
+
+### Push: Remote Repository Update
+
+    git push [remote-name] [branch-name]
+
+    git push origin master
+    
+    
+
 ## Remote Repositorys
   
 1.Anzeigen
