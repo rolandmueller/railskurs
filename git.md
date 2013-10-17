@@ -54,6 +54,10 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git checkout -b branch-name
     
+### Merge: Änderungen von einem Branch in den aktuellen Branch verschmelzen
+
+    git merge branch-name
+    
 ## Änderungen mit dem Remote Repository synchronisieren
 
 ### Pull: Lokale  Dateien Updaten 
