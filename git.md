@@ -12,20 +12,21 @@ Zwei Möglichkeiten (nur einmal am Anfang notwendig). Nur eins von beiden anwend
    
 oder
     
-### Existierendes Repository klonen 
+### Existierendes Repository klonen (aus Remote Repositorium)
 
     git clone git@github.com:rolandmueller/railskurs.git
     
 Im bestehenden Verzeichnis wird ein Verzeichnis railskurs mit den Dateien des Repositorium geklont.
 
-## Neue Dateien zur Versionskontrolle hinzufügen
+## Änderungen zur Versionskontrolle hinzufügen
+
+Änderungen werden überwacht (Datei ist in der Staging Area)
 
 Eine Datei hinzufügen
 
     git add dateiname.txt
     
 Alle Dateien mit bestimmter Endung hinzufügen
-
         
     git add *.txt
     
@@ -35,6 +36,17 @@ Alle Dateien hinzufügen
     
 ## Ein Commit erzeugen (Änderungen in das Repositorium einchecken)
 
-    git commit -m "Eine Beschreibung des Commits"
+    git commit -a -m "Eine Beschreibung des Commits"
     
+-a Parameter (Add) fügt Änderungen gleich hinzu und danach werden diese sofort commited
+
+## Remote Repositorys
+  
+1. Anzeigen
+
+    git remote -v
+    
+2. Hinzufügen
+
+    git remote add einname git://github.com/paulboone/ticgit.git
 
