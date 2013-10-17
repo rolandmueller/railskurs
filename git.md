@@ -3,7 +3,7 @@
 
 ## Wichtige Befehle
 
-## Ein Git Repositorium anlegen
+## Git Repositorium anlegen
 
 Zwei Möglichkeiten (nur einmal am Anfang notwendig). Nur eins von beiden anwenden. Entweder
 
