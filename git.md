@@ -42,6 +42,8 @@ Alle Dateien hinzufügen
 
 ## Branching (Versionierung)
 
+Der Branchname *master* ist der Hauptentwicklungszeig.
+
 ### Branch erstellen
 
     git branch branch-name
