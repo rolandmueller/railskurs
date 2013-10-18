@@ -2,9 +2,24 @@
 
 Wichtige Befehle
 
+## Git am Anfang einrichten (nur einmal notwendig, gilt für alle Projekte)
+
+Email und Name festelegen. Sollte gleiche email wie bei Github und Herouku sein. Wird auch bei Railsinstaller am Anfang abgefragt, aber kann man so ändern-
+
+    git config --global user.name "Your Name"
+    git config --global user.email your.email@example.com
+
+Bei Mac:
+
+    git config --global core.editor "subl -w"
+
+Bei Windows
+
+    git config --global core.editor "sublime_text -w"
+    
 ## Git Repositorium anlegen
 
-Zwei Möglichkeiten (nur einmal am Anfang notwendig). Nur eins von beiden anwenden. Entweder
+Zwei Möglichkeiten (nur einmal am Anfang eines Projektes notwendig). Nur eins von beiden anwenden. Entweder
 
 ### Lokal Verzeichnis als Git Repositorium initialisieren
 
