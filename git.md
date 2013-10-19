@@ -49,7 +49,13 @@ Alle Dateien hinzufügen
 
     git add .
     
-## Ein Commit erzeugen (Änderungen in das Repositorium einchecken)
+## Commit 
+
+Alle Dateiänderungen, die mit git add vorher hinzugefügt wurden commiten 
+
+    git commit -m "Eine Beschreibung des Commits"
+
+Änderungen hinzufügen und Commit erzeugen 
 
     git commit -a -m "Eine Beschreibung des Commits"
     
