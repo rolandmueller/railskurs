@@ -159,8 +159,12 @@ History aller Commits
 
 Löschen (rm remove):
 
+    git rm dateiname
+
 Umbennen (mv move):
 
+   git mv dateiname
+   
 ### 11. .gitignore
 
 in der Datei .gitignore können Dateien und Dateitypen ausgeschlossen werden. Wenn man dann git add . ausführt werden diese nicht hinzugefügt
