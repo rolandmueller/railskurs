@@ -163,7 +163,7 @@ Löschen (rm remove):
 
 Umbennen (mv move):
 
-   git mv dateiname
+    git mv dateiname
    
 ### 11. .gitignore
 
