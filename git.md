@@ -91,6 +91,11 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git checkout -b branch-name
     
+Falls man lokal irgendetwas kaput gemacht hat. Überschreiben des lokalen Inhalts mit dem 
+lezten Commit des aktuellen Branch (-f force (Erzwingen)). Daten gehen verloren
+
+    git checkout -f
+    
 #### Merge: Änderungen aus dem Branch "branch-name" in den aktuellen Branch verschmelzen
 
     git merge branch-name
