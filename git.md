@@ -112,16 +112,22 @@ lezten Commit des aktuellen Branch (-f force (Erzwingen)). Daten gehen verloren
     
 ### 7. Remote Repositorys hinzufügen
   
-Hinzufügen
+#### Hinzufügen
 
     git remote add origin git@github.com:rolandmueller/railskurs.git
     
 Statt origin kann auch ein anderer Name genommen werden.
 
-Anzeigen
+#### Anzeigen
 
     git remote -v
-    
+
+#### Passwort merken
+
+Damit man nicht immer wieder das Passwort eingeben muss, sollte man ein ssh key generieren und Github dies mitteilen:
+
+https://help.github.com/articles/generating-ssh-keys
+
 ### 8. Änderungen mit dem Remote Repository synchronisieren
 
 
