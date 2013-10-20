@@ -83,6 +83,10 @@ Branch löschen der noch nicht gemergt ist (vorsicht, Daten gehen verloren) (-D 
 
     git branch -D branch-name
     
+### Liste alle Branches anzeigen (mit aktuellen Branch)
+
+    git branch
+    
 #### Zu einem Branch wechseln
 
     git checkout branch-name 
