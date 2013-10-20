@@ -97,6 +97,14 @@ Pushe den Master-Branch zum Remote Repositorium mit dem Namen "origin"
 
     git push origin master
 
+    git push -u origin master
+
+Parameter -u (Upstream) spezifiziert das Hauptrepositorium zum puschen. Danach braucht man nur noch
+
+    git push 
+
+schreiben.
+
 ### 7. Remote Repositorys
   
 1.Anzeigen
