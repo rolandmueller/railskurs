@@ -79,7 +79,7 @@ Der Branchname *master* ist der Hauptentwicklungszeig.
 
     git branch -d branch-name
     
-Branch löschen der noch nicht gemergt ist (vorsicht, Daten gehen verloren)
+Branch löschen der noch nicht gemergt ist (vorsicht, Daten gehen verloren) (-D Delete):
 
     git branch -D branch-name
     
