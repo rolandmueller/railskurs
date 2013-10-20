@@ -2,7 +2,7 @@
 
 Wichtige Befehle
 
-## Git am Anfang einrichten (nur einmal notwendig, gilt für alle Projekte)
+### 1. Git am Anfang einrichten (nur einmal notwendig, gilt für alle Projekte)
 
 Email und Name festelegen. Sollte gleiche email wie bei Github und Herouku sein. Wird auch bei Railsinstaller am Anfang abgefragt, aber kann man so ändern-
 
@@ -17,23 +17,23 @@ Bei Windows
 
     git config --global core.editor "sublime_text -w"
     
-## Git Repositorium anlegen
+### 2. Git Repositorium anlegen
 
 Zwei Möglichkeiten (nur einmal am Anfang eines Projektes notwendig). Nur eins von beiden anwenden. Entweder
 
-### Lokal Verzeichnis als Git Repositorium initialisieren
+#### Lokal Verzeichnis als Git Repositorium initialisieren
 
     git init
    
 oder
     
-### Existierendes Repository klonen (aus Remote Repositorium)
+#### Existierendes Repository klonen (aus Remote Repositorium)
 
     git clone git@github.com:rolandmueller/railskurs.git
     
 Im bestehenden Verzeichnis wird ein Verzeichnis railskurs mit den Dateien des Repositorium geklont.
 
-## Änderungen zur Versionskontrolle hinzufügen
+### 3. Änderungen zur Versionskontrolle hinzufügen
 
 Änderungen werden überwacht (Datei ist in der Staging Area)
 
@@ -49,7 +49,7 @@ Alle Dateien hinzufügen
 
     git add .
     
-## Commit 
+### 4. Commit 
 
 Alle Dateiänderungen, die mit git add vorher hinzugefügt wurden commiten 
 
@@ -61,19 +61,19 @@ Alle Dateiänderungen, die mit git add vorher hinzugefügt wurden commiten
     
 -a Parameter (Add) fügt Änderungen gleich hinzu und danach werden diese sofort commited
 
-## Branching (Versionierung)
+### 5. Branching (Versionierung)
 
 Der Branchname *master* ist der Hauptentwicklungszeig.
 
-### Branch erstellen
+#### Branch erstellen
 
     git branch branch-name
 
-### Branch löschen (-d Delete)
+#### Branch löschen (-d Delete)
 
     git branch -d branch-name
     
-### Zu einem Branch wechseln
+#### Zu einem Branch wechseln
 
     git checkout branch-name 
     
@@ -81,23 +81,23 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git checkout -b branch-name
     
-### Merge: Änderungen aus dem Branch "branch-name" in den aktuellen Branch verschmelzen
+#### Merge: Änderungen aus dem Branch "branch-name" in den aktuellen Branch verschmelzen
 
     git merge branch-name
     
-## Änderungen mit dem Remote Repository synchronisieren
+### 6. Änderungen mit dem Remote Repository synchronisieren
 
-### Pull: Lokale  Dateien Updaten 
+#### Pull: Lokale  Dateien Updaten 
 
     git pull
 
-### Push: Remote Repository Update
+#### Push: Remote Repository Update
 
 Pushe den Master-Branch zum Remote Repositorium mit dem Namen "origin" 
 
     git push origin master
 
-## Remote Repositorys
+### 7. Remote Repositorys
   
 1.Anzeigen
 
