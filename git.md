@@ -79,6 +79,10 @@ Der Branchname *master* ist der Hauptentwicklungszeig.
 
     git branch -d branch-name
     
+Branch löschen der noch nicht gemergt ist (vorsischt, Daten gehen verloren)
+
+    git branch -D branch-name
+    
 #### Zu einem Branch wechseln
 
     git checkout branch-name 
