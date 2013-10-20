@@ -174,5 +174,3 @@ Umbennen (mv move):
 ### 11. .gitignore
 
 in der Datei .gitignore können Dateien und Dateitypen ausgeschlossen werden. Wenn man dann git add . ausführt werden diese nicht hinzugefügt
-
-    git mv README.rdoc README.md
