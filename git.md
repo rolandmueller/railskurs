@@ -91,7 +91,17 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git merge branch-name
     
-### 7. Änderungen mit dem Remote Repository synchronisieren
+### 7. Remote Repositorys hinzufügen
+  
+Hinzufügen
+
+    git remote add einname git://github.com/paulboone/ticgit.git
+
+Anzeigen
+
+    git remote -v
+    
+### 8. Änderungen mit dem Remote Repository synchronisieren
 
 #### Pull: Lokale  Dateien Updaten 
 
@@ -110,16 +120,6 @@ Parameter -u (Upstream) spezifiziert das Hauptrepositorium zum puschen. Danach b
     git push 
 
 schreiben.
-
-### 8. Remote Repositorys
-  
-1.Anzeigen
-
-    git remote -v
-    
-2.Hinzufügen
-
-    git remote add einname git://github.com/paulboone/ticgit.git
 
 ### 9. Log
 
