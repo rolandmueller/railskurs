@@ -132,3 +132,15 @@ schreiben.
     git log
     
 History aller Commits
+
+### 10. Dateien löschen und umbennen
+
+Löschen (rm remove):
+
+Umbennen (mv move):
+
+### 11. .gitignore
+
+in der Detei .gitignore können Dateien und Dateitypen ausgeschlossen werden. Wenn man dann git add . ausführt werden diese nicht hinzugefügt
+
+    git mv README.rdoc README.md
