@@ -83,7 +83,7 @@ Branch löschen der noch nicht gemergt ist (vorsicht, Daten gehen verloren) (-D 
 
     git branch -D branch-name
     
-### Liste alle Branches anzeigen (mit aktuellen Branch)
+#### Liste alle Branches anzeigen (mit aktuellen Branch)
 
     git branch
     
@@ -94,8 +94,14 @@ Branch löschen der noch nicht gemergt ist (vorsicht, Daten gehen verloren) (-D 
 Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git checkout -b branch-name
+
+#### Undo
+
+Überschreibt Datei dateiname mit dem Inhalt des aktuellen Branch vom letzten Commit
     
-Falls man lokal irgendetwas kaput gemacht hat. Überschreiben des lokalen Inhalts mit dem 
+    git checkout -- dateiname
+    
+Falls man lokal irgendetwas total kaput gemacht hat. Überschreiben des lokalen Inhalts mit dem 
 lezten Commit des aktuellen Branch (-f force (Erzwingen)). Daten gehen verloren
 
     git checkout -f
