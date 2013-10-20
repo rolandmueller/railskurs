@@ -109,9 +109,6 @@ Anzeigen
     
 ### 8. Änderungen mit dem Remote Repository synchronisieren
 
-#### Pull: Lokale  Dateien Updaten 
-
-    git pull
 
 #### Push: Remote Repository Update
 
@@ -119,14 +116,24 @@ Pushe den Master-Branch zum Remote Repositorium mit dem Namen "origin"
 
     git push origin master
 
+Parameter -u (Upstream) spezifiziert das Hauptrepositorium zum puschen:
+
     git push -u origin master
 
-Parameter -u (Upstream) spezifiziert das Hauptrepositorium zum puschen. Danach braucht man nur noch
+Danach braucht man nur noch
 
     git push 
 
 schreiben.
 
+#### Pull: Lokale  Dateien Updaten 
+
+    git pull origin master
+
+bzw. wenn Hauptrepositorium festegelt wurden ist, einfach nur:
+
+    git push
+    
 ### 9. Log
 
     git log
