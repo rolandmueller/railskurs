@@ -61,13 +61,13 @@ Alle Dateiänderungen, die mit git add vorher hinzugefügt wurden commiten
     
 -a Parameter (Add) fügt Änderungen gleich hinzu und danach werden diese sofort commited
 
-### 4. Status
+### 5. Status
 
     git status
     
 Gibt an, was ist hinzugefügt (in Stage) aber noch nicht commited.
 
-### 5. Branching (Versionierung)
+### 6. Branching (Versionierung)
 
 Der Branchname *master* ist der Hauptentwicklungszeig.
 
@@ -91,7 +91,7 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
     git merge branch-name
     
-### 6. Änderungen mit dem Remote Repository synchronisieren
+### 7. Änderungen mit dem Remote Repository synchronisieren
 
 #### Pull: Lokale  Dateien Updaten 
 
@@ -111,7 +111,7 @@ Parameter -u (Upstream) spezifiziert das Hauptrepositorium zum puschen. Danach b
 
 schreiben.
 
-### 7. Remote Repositorys
+### 8. Remote Repositorys
   
 1.Anzeigen
 
@@ -121,3 +121,8 @@ schreiben.
 
     git remote add einname git://github.com/paulboone/ticgit.git
 
+### 9. Log
+
+    git log
+    
+History aller Commits
