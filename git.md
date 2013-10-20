@@ -99,7 +99,9 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
   
 Hinzufügen
 
-    git remote add einname git://github.com/paulboone/ticgit.git
+    git remote add origin git@github.com:rolandmueller/railskurs.git
+    
+Statt origin kann auch ein anderer Name genommen werden.
 
 Anzeigen
 
