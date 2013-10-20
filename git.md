@@ -61,6 +61,12 @@ Alle Dateiänderungen, die mit git add vorher hinzugefügt wurden commiten
     
 -a Parameter (Add) fügt Änderungen gleich hinzu und danach werden diese sofort commited
 
+### 4. Status
+
+    git status
+    
+Gibt an, was ist hinzugefügt (in Stage) aber noch nicht commited.
+
 ### 5. Branching (Versionierung)
 
 Der Branchname *master* ist der Hauptentwicklungszeig.
