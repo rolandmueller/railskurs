@@ -97,7 +97,7 @@ Kurzform für Branch erstellen und dann zu diesem wechseln:
 
 #### Undo
 
-Überschreibt Datei dateiname mit dem Inhalt des aktuellen Branch vom letzten Commit
+Überschreibt Datei dateiname mit dem Inhalt des aktuellen Branch vom letzten Commit:
     
     git checkout -- dateiname
     
