@@ -12,6 +12,7 @@ Im Text ändern auf:
 ### Sublime von Terminal / Console aus aufrufen
 
 Windows: http://stackoverflow.com/questions/9440639/sublime-text-from-command-line-win7
+
 Mac: http://www.sublimetext.com/docs/2/osx_command_line.html
 
 ## Shortcuts
