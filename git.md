@@ -10,14 +10,6 @@ Nur einmal notwendig, gilt für alle Projekte. Email und Name festelegen. Sollte
 
     git config --global user.name "Your Name"
     git config --global user.email your.email@example.com
-
-Bei Mac:
-
-    git config --global core.editor "subl -w"
-
-Bei Windows
-
-    git config --global core.editor "sublime_text -w"
     
 ### 2. Git Repositorium anlegen
 
