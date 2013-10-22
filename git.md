@@ -6,7 +6,7 @@ Wichtige Befehle
 
 Wenn man Github für Windows bzw. Github für Mac nutzt, braucht man das nicht zu machen.
 
-Nur einmal notwendig, gilt für alle Projekte. Email und Name festelegen. Sollte gleiche email wie bei Github und Herouku sein. Wird auch bei Railsinstaller am Anfang abgefragt, aber kann man so ändern-
+Nur einmal notwendig, gilt für alle Projekte. Email und Name festelegen. Sollte gleiche email wie bei Github und Herouku sein. Wird auch bei Railsinstaller am Anfang abgefragt, aber kann man so ändern:
 
     git config --global user.name "Your Name"
     git config --global user.email your.email@example.com
