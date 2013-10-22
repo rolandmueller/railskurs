@@ -13,7 +13,7 @@ Im Text ändern auf:
 
 Windows: http://stackoverflow.com/questions/9440639/sublime-text-from-command-line-win7
 
-Mac: http://www.sublimetext.com/docs/2/osx_command_line.html
+Mac: https://coderwall.com/p/b__8xq
 
 ## Shortcuts
 
