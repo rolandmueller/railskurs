@@ -118,9 +118,10 @@ Statt origin kann auch ein anderer Name genommen werden.
 
 #### Passwort merken
 
-Damit man nicht immer wieder das Passwort eingeben muss, sollte man ein ssh key generieren und Github dies mitteilen:
-
-https://help.github.com/articles/generating-ssh-keys
+Damit man nicht immer wieder das Passwort eingeben muss, sollte man ein ssh key generieren und Github dies mitteilen. 
+Am einfachsten mit Github für Windows bzw. Github für Mac sich einloggen. ssh keys werden dann angelegt. 
+Manuell geht es auch (https://help.github.com/articles/generating-ssh-keys ), aber
+dann nicht notwendig wenn man das mit Github für Windows bzw. Github für Mac gemacht hat: 
 
 ### 8. Änderungen mit dem Remote Repository synchronisieren
 
