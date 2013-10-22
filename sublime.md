@@ -9,6 +9,11 @@ Im Text ändern auf:
     // The number of spaces a tab is considered equal to
     "tab_size": 2,
 
+### Sublime von Terminal / Console aus aufrufen
+
+Windows: http://stackoverflow.com/questions/9440639/sublime-text-from-command-line-win7
+Mac: http://www.sublimetext.com/docs/2/osx_command_line.html
+
 ## Shortcuts
 
 ### Tasten
