@@ -104,6 +104,12 @@ lezten Commit des aktuellen Branch (-f force (Erzwingen)). Daten gehen verloren
 
     git merge branch-name
     
+Typischer verschmelzt man die Änderungen in den Master-Branch. Also wenn man in einem Branch gearbeitet hat, 
+muss man dann dann erst in den Master-Branch wechseln und dann die Änderungen des anderen Branch in Master verschmelzen:
+
+    git checkout master
+    git merge branch-name
+    
 ### 7. Remote Repositorys hinzufügen
   
 #### Hinzufügen
