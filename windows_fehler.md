@@ -1,4 +1,4 @@
-## Falls bei Windows Rails wegen JavaRuntime Rails nicht läuft:
+## Falls bei Windows Rails wegen JavaScript Runtime Rails nicht läuft:
 
 1.NodeJS installieren (64bit oder 32bit je nach Betriebssystem):
 
