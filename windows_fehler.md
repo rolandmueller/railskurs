@@ -9,7 +9,7 @@
 * Windows 8: http://techfrage.de/question/1119/windows-8-umgebungsvariablen-anzeigen-und-andern/
 * Windows 7: http://www.java.com/de/download/help/path.xml
 
-3. Rechner neu starten
+3.Rechner neu starten
 
 Wenn das nichts hilft, dann in jedem Rails Programm im Gemfile folgende hinzufügen:
 
