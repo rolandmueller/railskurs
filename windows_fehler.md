@@ -12,6 +12,7 @@
 3.	Rechner neu starten
 
 Wenn das nichts hilft, dann in jedem Rails Programm im Gemfile folgende hinzufügen:
+
     gem 'therubyracer' 
     gem 'extjs'
 
