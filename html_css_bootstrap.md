@@ -191,3 +191,13 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 		<h3 class="text-muted">Beispiel-App</h3>
 	</div>
 	```
+
+	Browser reload (F5)
+
+17. Alles zu git hinzufügen, commiten und pushen:
+
+    ````bash
+    git add .
+    git commit -m "Meine Landingpage ist fertig! :-)"
+    git push origin master
+    ```
