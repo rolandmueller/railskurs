@@ -9,7 +9,13 @@
 7.  Erstetzen Sie in app/views/home/index.html.rb den Text mit
 
     ```html
-    <h1>Name des Startups/Projekts</h1>
-    <p>Kurze Beschreibung des Startups/Projekts</p>
+    <div class="center hero-unit">
+    <h1>Willkommen zur Beispiel-App</h1>
+    <h2>
+        Dies ist die Homepage für meine Beispiel-App.
+    </h2>
+    <%= link_to "Jetzt Anmelden", '#', class: "btn btn-large btn-primary" %>
+    </div>
+    <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
     ```
 8.  Starten Sie den Rails Server (rails server) und schauen Sie sich das Ergebnis im Browser an.
