@@ -10,11 +10,11 @@
 
     ```html
     <div class="center hero-unit">
-    <h1>Willkommen zur Beispiel-App</h1>
-    <h2>
-        Dies ist die Homepage für meine Beispiel-App.
-    </h2>
-    <%= link_to "Jetzt Anmelden", '#', class: "btn btn-large btn-primary" %>
+        <h1>Willkommen zur Beispiel-App</h1>
+        <h2>
+            Dies ist die Homepage für meine Beispiel-App.
+        </h2>
+        <%= link_to "Jetzt Anmelden", '#', class: "btn btn-large btn-primary" %>
     </div>
     <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
     ```
