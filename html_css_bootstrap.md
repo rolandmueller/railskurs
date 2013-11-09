@@ -206,7 +206,7 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 
 	Browser reload (F5)
 
-17. Fügen Sie eine kurze Beschreibung zu sich in der *About* Seite ein. In *app/views/home/index.html.rb*
+17. Fügen Sie eine kurze Beschreibung zu sich in der *About* Seite ein. In *app/views/home/about.html.rb*
 
 	Browser reload (F5) und klicken Sie im Menü auf About und wieder auf Home
 18. Alles zu git hinzufügen, commiten und pushen:
