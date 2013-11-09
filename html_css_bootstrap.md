@@ -6,6 +6,10 @@
 4.	Fügen Sie das Github als Remote-Repositorium hinzu (git remote add origin ...)
 5.  Pushen Sie das Projekt zu Github. Kontrollieren Sie bei Github ob es da ist.
 6.  Generieren Sie einen Controller *Home* mit einer Methode *index*
+    
+    ````bash
+    rails generate controller Home index
+    ```
 7.  Öffnen Sie den Ordner uebung5 in Sublime Text 2 (z.B. durch Drag-and-Drop des Ordners)
 8.  Erstetzen Sie in app/views/home/index.html.rb den Text mit
 
