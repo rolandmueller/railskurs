@@ -83,7 +83,7 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	```
 	speichern und Browser reload (F5)	
-13. Folgendes CSS ans Ende der Datei in *app/assets/stylesheets/application.css* hinzufügen
+13. Folgendes CSS ans Ende der Datei in *app/assets/stylesheets/home.css.scss* hinzufügen
 
 	```css
 	/* Space out content a bit */
