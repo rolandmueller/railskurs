@@ -213,3 +213,4 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
     git commit -m "Meine Landing Page ist fertig! :-)"
     git push origin master
     ```
+    Kontrollieren Sie bei Github ob es da ist.
