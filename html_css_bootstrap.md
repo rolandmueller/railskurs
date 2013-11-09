@@ -62,11 +62,15 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+	```
+	
+
+	Twitter Bootstrap JavaScript in *app/views/layouts/application.html.erb* kurz vor ``` </body> ``` einfügen:
+	```html
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	```
-	speichern und Browser reload (F5)
-	
+	speichern und Browser reload (F5)	
 11. Folgendes CSS ans Ende der Datei in *app/assets/stylesheets/application.css* hinzufügen
 
 	```css
