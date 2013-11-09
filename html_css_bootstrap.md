@@ -51,8 +51,10 @@
     
     und schauen Sie sich das Ergebnis im Browser an: [http://localhost:3000/home/index](http://localhost:3000/home/index) 
 10. Rails Logo http://rubyonrails.org/images/rails.png runterladen und im Verzeichnis *app/assets/images/* als *rails.png* speichern.
-11. HWR Logo http://www.berlin-sciences.com/fileadmin/user_upload/K%C3%B6pfe_der_Wissenschaft/HWR_Berlin_Logo_220x100.jpg runterladen und 
+11. HWR Logo http://people.f3.htw-berlin.de/Professoren/Brueggemeier/images/hwr_logo.jpg runterladen und 
 im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
+
+	Browser reload (F5)
 11. Links zu Twitter Bootstrap Stylesheets hinzufügen. In *app/views/layouts/application.html.erb* nach dem title tag einfügen:
 
 	```html
@@ -63,7 +65,7 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	```
-	speichern und Browser refrechen
+	speichern und Browser reload (F5)
 	
 11. Folgendes CSS ans Ende der Datei in *app/assets/stylesheets/application.css* hinzufügen
 
@@ -148,3 +150,5 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	  }
 	}
 	```
+
+	Browser reload (F5)
