@@ -1,4 +1,4 @@
-# 5. Übung: HTML / CSS / Bootstrap 
+# 5. Übung: Langing Page mit HTML / CSS / Bootstrap 
 
 1.	Generieren Sie ein neues Rails Projekt uebung5
 	
@@ -198,6 +198,6 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 
     ````bash
     git add .
-    git commit -m "Meine Landingpage ist fertig! :-)"
+    git commit -m "Meine Landing Page ist fertig! :-)"
     git push origin master
     ```
