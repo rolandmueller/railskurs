@@ -31,7 +31,7 @@
     rails generate controller home index about
     ```
 7.  Öffnen Sie den Ordner uebung5 in Sublime Text 2 (z.B. durch Drag-and-Drop des Ordners)
-8.  Erstetzen Sie in app/views/home/index.html.rb den Text mit
+8.  Erstetzen Sie in *app/views/home/index.html.rb* den Text mit
 
     ```html
 	<div class="jumbotron">
@@ -206,7 +206,10 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 
 	Browser reload (F5)
 
-17. Alles zu git hinzufügen, commiten und pushen:
+17. Fügen Sie eine kurze Beschreibung zu sich in der *About* Seite ein. In *app/views/home/index.html.rb*
+
+	Browser reload (F5) und klicken Sie im Menü auf About und wieder auf Home
+18. Alles zu git hinzufügen, commiten und pushen:
 
     ````bash
     git add .
