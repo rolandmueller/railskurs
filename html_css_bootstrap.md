@@ -176,7 +176,7 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 
 	Browser reload (F5)
 
-16. 
+16. In *app/views/layouts/application.html.erb* nach dem ```<div class="container">``` tag (vor dem ```<%= yield %>``` tag) Header mit Navigation einfügen:
 
 	```html
 	<div class="header">
