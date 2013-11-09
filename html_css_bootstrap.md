@@ -34,14 +34,28 @@
 8.  Erstetzen Sie in app/views/home/index.html.rb den Text mit
 
     ```html
-    <div class="center hero-unit">
-        <h1>Willkommen zur Beispiel-App</h1>
-        <h2>
-            Dies ist die Homepage für meine Beispiel-App.
-        </h2>
-        <%= link_to "Jetzt Anmelden", '#', class: "btn btn-large btn-primary" %>
-    </div>
-    <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+	<div class="jumbotron">
+	<h1>Willkommen zur Beispiel-App</h1>
+	<p class="lead">
+		Dies ist die Homepage für meine Beispiel-App.
+	</p>
+	<%= link_to "Jetzt Anmelden", '#', class: "btn btn-lg btn-success" %>
+	</div>
+	
+	<div class="row marketing">
+	<div class="col-lg-6">
+		<h4>Made with Rails</h4>
+		<p>Diese App ist mit Ruby on Rails entwickelt</p>
+		<p><%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+		</p>
+	</div>
+	<div class="col-lg-6">
+		<h4>Made in Berlin</h4>
+		<p>Entstandend an der HWR Berlin</p>
+		<p><%= link_to image_tag("hwr_logo.jpg", alt: "HWR"), 'http://www.hwr-berlin.de/' %>
+		</p>
+	</div>
+	</div>
     ```
 9.  Starten Sie den Rails Server (rails server) 
 
