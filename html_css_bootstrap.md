@@ -166,10 +166,28 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	```
 	
 	Browser reload (F5)
-15. In *app/views/layouts/application.html.erb* nach dem ```<%= yield %>``` tag (vor dem ```</div>```) Footer einfügen:
+15. In *app/views/layouts/application.html.erb* nach dem ```<%= yield %>``` tag (vor dem ```</div>``` tag) Footer einfügen:
 
 	```html
 	<div class="footer">
-    		<p>&copy; Ihre Name 2013</p>
+    	<p>&copy; Ihre Name 2013</p>
   	</div>
+	```
+
+	Browser reload (F5)
+
+16. 
+
+	```html
+	<div class="header">
+		<ul class="nav nav-pills pull-right">
+		<li class="active">
+			<%= link_to "Home", :controller => "home", :action => "index" %>
+		</li>
+		<li>
+			<%= link_to "About", :controller => "home", :action => "about" %>
+		</li>
+		</ul>
+		<h3 class="text-muted">Beispiel-App</h3>
+	</div>
 	```
