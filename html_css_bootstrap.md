@@ -46,14 +46,12 @@
 	<div class="col-lg-6">
 		<h4>Made with Rails</h4>
 		<p>Diese App ist mit Ruby on Rails entwickelt</p>
-		<p><%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
-		</p>
+		<p><%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %></p>
 	</div>
 	<div class="col-lg-6">
 		<h4>Made in Berlin</h4>
 		<p>Entstandend an der HWR Berlin</p>
-		<p><%= link_to image_tag("hwr_logo.jpg", alt: "HWR"), 'http://www.hwr-berlin.de/' %>
-		</p>
+		<p><%= link_to image_tag("hwr_logo.jpg", alt: "HWR"), 'http://www.hwr-berlin.de/' %></p>
 	</div>
 	</div>
     ```
