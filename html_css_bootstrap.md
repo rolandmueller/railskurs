@@ -12,5 +12,4 @@
 <h1>Name des Startups/Projekts</h1>
 <p>Kurze Beschreibung des Startups/Projekts</p>
 ```
-
 8.  Starten Sie den Rails Server (rails server) und schauen Sie sich das Ergebnis im Browser an.
