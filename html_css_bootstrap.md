@@ -55,7 +55,7 @@
 im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 
 	Browser reload (F5)
-11. Links zu Twitter Bootstrap Stylesheets hinzufügen. In *app/views/layouts/application.html.erb* nach dem title tag einfügen:
+12. Links zu Twitter Bootstrap Stylesheets hinzufügen. In *app/views/layouts/application.html.erb* nach dem title tag einfügen:
 
 	```html
 	<!-- Latest compiled and minified CSS -->
@@ -71,7 +71,7 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	```
 	speichern und Browser reload (F5)	
-11. Folgendes CSS ans Ende der Datei in *app/assets/stylesheets/application.css* hinzufügen
+13. Folgendes CSS ans Ende der Datei in *app/assets/stylesheets/application.css* hinzufügen
 
 	```css
 	/* Space out content a bit */
@@ -156,3 +156,20 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 	```
 
 	Browser reload (F5)
+
+14. In *app/views/layouts/application.html.erb* ```<%= yield %>``` tag mit Bootstrap container umschließen:
+
+	```html
+	<div class="container">
+		<%= yield %>
+	</div> <!-- /container -->
+	```
+	
+	Browser reload (F5)
+15. In *app/views/layouts/application.html.erb* nach dem ```<%= yield %>``` tag (vor dem ```</div>```) Footer einfügen:
+
+	```html
+	<div class="footer">
+    		<p>&copy; Ihre Name 2013</p>
+  	</div>
+	```
