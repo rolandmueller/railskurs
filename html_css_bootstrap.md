@@ -50,7 +50,7 @@
 	</div>
 	<div class="col-lg-6">
 		<h4>Made in Berlin</h4>
-		<p>Entstandend an der HWR Berlin</p>
+		<p>Entstanden an der HWR Berlin</p>
 		<p><%= link_to image_tag("hwr_logo.jpg", alt: "HWR"), 'http://www.hwr-berlin.de/' %></p>
 	</div>
 	</div>
