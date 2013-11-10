@@ -209,7 +209,8 @@ im Verzeichnis *app/assets/images/* als *hwr.jpg* speichern.
 17. Fügen Sie eine kurze Beschreibung zu sich in der *About* Seite ein. In *app/views/home/about.html.rb*
 
 	Browser reload (F5) und klicken Sie im Menü auf About und wieder auf Home
-18. Alles zu git hinzufügen, commiten und pushen:
+18. Ändern Sie die *README.rdoc* Datei. Fügen Sie Ihren Namen und eine kurze Beschreibung des Projekts ein
+19. Alles zu git hinzufügen, commiten und pushen:
 
     ````bash
     git add .
