@@ -24,7 +24,7 @@
     ````bash
     git push origin master
     ```
-    Falls nach dem User und dem Passwort gefragt wurden, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
+    Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
 6.  Generieren Sie einen Controller *Home* mit den Methoden *index* und *about*
 
     ````bash
