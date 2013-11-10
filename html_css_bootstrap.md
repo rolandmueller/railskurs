@@ -30,7 +30,8 @@
     ````bash
     rails generate controller home index about
     ```
-7.  Öffnen Sie den Ordner uebung5 in Sublime Text 2 (z.B. durch Drag-and-Drop des Ordners in Sublime Text)
+7.  Öffnen Sie den Ordner uebung5 in Sublime Text 2 (z.B. durch Drag-and-Drop des Ordners in Sublime Text. 
+    Alternativ kann man auch Sublime von der Konsole öffnen: https://github.com/rolandmueller/railskurs/blob/master/sublime_konsole.md )
 8.  Erstetzen Sie in *app/views/home/index.html.rb* den Text mit
 
     ```html
