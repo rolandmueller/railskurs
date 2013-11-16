@@ -3,8 +3,8 @@
 1.	Generieren Sie ein neues Rails Projekt uebung6
 	
     ````bash
-    rails new uebung5
-    cd uebung5
+    rails new uebung6
+    cd uebung6
     ```
 2.	Initialisieren Sie ein Git-Repositorium, fügen Sie alles hinzu und commiten Sie
 
