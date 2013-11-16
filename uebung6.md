@@ -25,3 +25,7 @@
     git push origin master
     ```
     Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
+6.  Generieren Sie drei Modelle '''account''', '''customer''' und '''transaction'''
+
+
+![](https://dl.dropboxusercontent.com/u/10978171/er-diagramm.jpg)
