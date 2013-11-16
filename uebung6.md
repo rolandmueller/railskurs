@@ -49,7 +49,6 @@
 	* balance_after_transaction
 
 	Generieren Sie die Modelle mit
-	
 	````bash
 	rails generate model ...
 	```	
@@ -67,7 +66,6 @@
 ````bash
 rails console
 ```
-
 	* Kreieren Sie mehrere Customer die ein oder mehrere Konten haben. Füge für zwei Konten mehrere Transactionen durch
 	* Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
 10. Erzeugen Sie eine Methode '''withdraw'' und '''deposit'' in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
