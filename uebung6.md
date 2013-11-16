@@ -73,6 +73,8 @@ rails console
 rake db:setup
 ```
 
+11. Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
+
 12. Erzeugen Sie eine Methode '''withdraw'' und '''deposit'' in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
     Transaction für dieses Konto hinzufügen mit abgehoben bzw. eingezahlten Betrag (Amount) (soll negative bei withdral sein), Beschreibung ("Withdrawal" bzw. "Deposit"), und balance_after_transaction	
 
