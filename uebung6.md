@@ -73,14 +73,15 @@ rails console
 rake db:setup
 ```
 
-11. Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
+11. Wiederholen Sie die suchen nach einem Kunden in der Rails Konsole. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
 
 12. Erzeugen Sie eine Methode '''withdraw'' und '''deposit'' in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
-    Transaction für dieses Konto hinzufügen mit abgehoben bzw. eingezahlten Betrag (Amount) (soll negative bei withdral sein), Beschreibung ("Withdrawal" bzw. "Deposit"), und balance_after_transaction	
-
+    Transaction für dieses Konto hinzufügen mit abgehoben bzw. eingezahlten Betrag (Amount) (soll negative bei withdral sein), Beschreibung ("Withdrawal" bzw. "Deposit"), und balance_after_transaction.
+    Testen Sie die Methode in der Rails console.
 
 12. Erzeugen Sie eine Methode '''transfer'' in der Klasse Account, die einen Betrag auf ein anderes Konto überweist. Parameter sollen der Betrag und die Kontonummer (number) des anderen Kontos sein.
     Es sollen bei beiden Konten der Kontostand (Balance) angepasst werden. Für beide Konten soll jeweils eine
     Transaction hinzugefügt werden mit dem Betrag amount (positiv bzw. negative), description ("Transfer to " Kontonummer, bzw. "Transfer from " Kontonummer), und jeweilige balance_after_transaction.
+    Testen Sie die Methode in der Rails console.
 
-13. Erzeugen Sie einen Kontoauszug, der die Transaktionen eines Kontos ausgibt.
+13. Erzeugen Sie einen Kontoauszug, der die Transaktionen eines Kontos ausgibt. Testen Sie die Methode in der Rails console.
