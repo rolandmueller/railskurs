@@ -25,7 +25,6 @@ git remote add origin ...
     ```
     Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
 6.  Generieren Sie drei Modelle '''account''', '''customer''' und '''transaction'''. In der Datenbank soll das so aussehen:
-
 	![](https://dl.dropboxusercontent.com/u/10978171/er-diagramm.jpg)
 
 	Überlegen Sie in welchen Tabellen die Fremdschlüssel seien müssen.
@@ -33,7 +32,6 @@ git remote add origin ...
 	Folgende Attribute sollen die Modelle zusätzlich zu den Fremdschlüsseln haben:
 	
 	Customer:
-	
 	* first_name
 	* last_name
 	* address
@@ -46,7 +44,7 @@ git remote add origin ...
 	* amount
 	* description
 	* balance_after_transaction
-	Generieren Sie die Modelle mit '''rails generate model ...'''
+Generieren Sie die Modelle mit '''rails generate model ...'''
 6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to)
 
 7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) 
@@ -58,7 +56,7 @@ git remote add origin ...
 	sieh Slides oder http://guides.rubyonrails.org/active_record_validations.html für Validatoren
   
 9. Öffnen Sie die Rails consonel
-````bash
+```bash
 rails console
 ```
 	* Kreieren Sie mehrere Customer die ein oder mehrere Konten haben. Füge für zwei Konten mehrere Transactionen durch
