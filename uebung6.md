@@ -44,7 +44,7 @@ git remote add origin ...
 	* amount
 	* description
 	* balance_after_transaction
-Generieren Sie die Modelle mit '''rails generate model ...'''
+Generieren Sie die Modelle mit ````rails generate model ...````
 6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to)
 
 7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) 
@@ -62,20 +62,20 @@ rails console
 	* Kreieren Sie mehrere Customer die ein oder mehrere Konten haben. Füge für zwei Konten mehrere Transactionen durch
 	* Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
 
-10. Erzeugen sie in '''db/seeds.rb''' neue Kunden, mit Konten und Transaktion. Erzeugen Sie diese mit 
+10. Erzeugen sie in ````db/seeds.rb```` neue Kunden, mit Konten und Transaktion. Erzeugen Sie diese mit 
 ````bash
 rake db:setup
 ```
 
 11. Wiederholen Sie die suchen nach einem Kunden in der Rails Konsole. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
 
-12. Erzeugen Sie eine Methode '''withdraw'' und '''deposit'' in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
+12. Erzeugen Sie eine Methode ````withdraw```` und ````deposit```` in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
     Transaction für dieses Konto hinzufügen mit abgehoben bzw. eingezahlten Betrag (Amount) (soll negative bei withdral sein), Beschreibung ("Withdrawal" bzw. "Deposit"), und balance_after_transaction.
     Testen Sie die Methode in der Rails console.
 
-12. Erzeugen Sie eine Methode '''transfer'' in der Klasse Account, die einen Betrag auf ein anderes Konto überweist. Parameter sollen der Betrag und die Kontonummer (number) des anderen Kontos sein.
+12. Erzeugen Sie eine Methode ````transfer```` in der Klasse Account, die einen Betrag auf ein anderes Konto überweist. Parameter sollen der Betrag und die Kontonummer (number) des anderen Kontos sein.
     Es sollen bei beiden Konten der Kontostand (Balance) angepasst werden. Für beide Konten soll jeweils eine
     Transaction hinzugefügt werden mit dem Betrag amount (positiv bzw. negative), description ("Transfer to " Kontonummer, bzw. "Transfer from " Kontonummer), und jeweilige balance_after_transaction.
     Testen Sie die Methode in der Rails console.
 
-13. Erzeugen Sie einen Kontoauszug, der die Transaktionen eines Kontos ausgibt. Testen Sie die Methode in der Rails console.
+13. Erzeugen Sie eine Methode ````statement```` (Kontoauszug), der die Transaktionen eines Kontos ausgibt. Testen Sie die Methode in der Rails console.
