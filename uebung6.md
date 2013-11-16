@@ -47,5 +47,10 @@
 	* amount
 	* description
 	* balance_after_transaction
+
+	Generieren Sie die Modelle mit
 	
+	````bash
+	rails generate model ...
+	```	
 
