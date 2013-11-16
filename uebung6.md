@@ -46,7 +46,6 @@ git remote add origin ...
 	* amount
 	* description
 	* balance_after_transaction
-
 	Generieren Sie die Modelle mit '''rails generate model ...'''
 6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to)
 
