@@ -51,11 +51,10 @@ Generieren Sie die Modelle mit ````rails generate model ...````  (siehe Slides b
 
 7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
 
-8.  Erzeugen Sie Validatoren, damit
+8.  Erzeugen Sie Validatoren (siehe Slides bzw. http://guides.rubyonrails.org/active_record_validations.html), damit
 	* first_name, last_name, number, balance, amount, description und balance_after_transaction nicht leer seien könne 
 	* balance numerisch seien muss und nicht negative seien kann
 	* number nicht doppelt vorkommen darf
-	siehe Slides oder http://guides.rubyonrails.org/active_record_basics.html
   
 9. Öffnen Sie die Rails consonel
 ```bash
