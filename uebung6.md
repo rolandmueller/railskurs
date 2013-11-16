@@ -25,7 +25,27 @@
     git push origin master
     ```
     Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
-6.  Generieren Sie drei Modelle '''account''', '''customer''' und '''transaction'''
+6.  	Generieren Sie drei Modelle '''account''', '''customer''' und '''transaction'''. In der Datenbank soll das so aussehen:
 
+	![](https://dl.dropboxusercontent.com/u/10978171/er-diagramm.jpg)
 
-![](https://dl.dropboxusercontent.com/u/10978171/er-diagramm.jpg)
+	Überlegen Sie in welchen Tabellen die Fremdschlüssel seien müssen.
+	
+	Folgende Attribute sollen die Modelle zusätzlich zu den Fremdschlüsseln haben:
+	
+	User:
+	
+	* first_name
+	* last_name
+	* address
+	
+	Account:
+	* number
+	* balance
+	
+	Transaction:
+	* amount
+	* description
+	* balance_after_transaction
+	
+
