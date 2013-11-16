@@ -45,9 +45,9 @@ git remote add origin ...
 	* description
 	* balance_after_transaction
 Generieren Sie die Modelle mit ````rails generate model ...````
-6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to)
+6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
 
-7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) 
+7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
 
 8.  Erzeugen Sie Validatoren, damit
 	* first_name, last_name, number, balance, amount, description und balance_after_transaction nicht leer seien könne 
