@@ -44,7 +44,7 @@ git remote add origin ...
 	* amount
 	* description
 	* balance_after_transaction
-Generieren Sie die Modelle mit ````rails generate model ...````  (siehe Slides) und erzeugen die Tabellen in der Datenbank mit ````rake db:migrate````
+Generieren Sie die Modelle mit ````rails generate model ...````  (siehe Slides bzw http://guides.rubyonrails.org/command_line.html#rails-generate ) und erzeugen die Tabellen in der Datenbank mit ````rake db:migrate````
 6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
 
 7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
