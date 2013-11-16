@@ -15,16 +15,17 @@
     ```
 3.	Erzeugen Sie bei Github ein leeres Repositorium (ohne Readme und .gitignore file) mit dem Namen uebung6
 4.	Fügen Sie das Github als Remote-Repositorium hinzu 
-```bash
-git remote add origin ...
-```
+
+	```bash
+	git remote add origin ...
+	```
 5.  Pushen Sie das Projekt zu Github. Kontrollieren Sie bei Github ob es da ist.
 
     ````bash
     git push origin master
     ```
     Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
-6.  Generieren Sie drei Modelle '''account''', '''customer''' und '''transaction'''. In der Datenbank soll das so aussehen:
+6.  Generieren Sie drei Modelle ````Account````, ````Customer```` und ````Transaction````. In der Datenbank soll das so aussehen:
 	![](https://dl.dropboxusercontent.com/u/10978171/er-diagramm.jpg)
 
 	Überlegen Sie in welchen Tabellen die Fremdschlüssel seien müssen.
