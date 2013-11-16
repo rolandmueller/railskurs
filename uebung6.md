@@ -79,3 +79,14 @@ rake db:setup
     Es soll kein Überweisen von negativen Beträgen möglich sein und der Kontostand darf nach dem Überweisen nicht negativ seien. Testen Sie die Methode in der Rails console.
 
 13. Erzeugen Sie eine Methode ````statement```` (Kontoauszug), der den Kontostand und den Kunden sowie die Transaktionen eines Kontos ausgibt. Testen Sie die Methode in der Rails console.
+
+14. Ändern Sie die *README.rdoc* Datei. Fügen Sie Ihren Namen und eine kurze Beschreibung des Projekts ein
+
+15. Alles zu git hinzufügen, commiten und pushen:
+
+    ````bash
+    git add .
+    git commit -m "Alles fertig! Die Kunden können kommen."
+    git push origin master
+    ```
+    Kontrollieren Sie bei Github ob es da ist.
