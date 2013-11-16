@@ -44,7 +44,7 @@ git remote add origin ...
 	* amount
 	* description
 	* balance_after_transaction
-Generieren Sie die Modelle mit ````rails generate model ...````
+Generieren Sie die Modelle mit ````rails generate model ...````  (siehe Slides) und erzeugen die Tabellen in der Datenbank mit ````rake db:migrate````
 6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
 
 7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) (siehe Slides oder http://guides.rubyonrails.org/association_basics.html)
@@ -53,14 +53,15 @@ Generieren Sie die Modelle mit ````rails generate model ...````
 	* first_name, last_name, number, balance, amount, description und balance_after_transaction nicht leer seien könne 
 	* balance numerisch seien muss und nicht negative seien kann
 	* number nicht doppelt vorkommen darf
-	sieh Slides oder http://guides.rubyonrails.org/active_record_validations.html für Validatoren
+	siehe Slides oder http://guides.rubyonrails.org/active_record_basics.html
   
 9. Öffnen Sie die Rails consonel
 ```bash
 rails console
 ```
 	* Kreieren Sie mehrere Customer die ein oder mehrere Konten haben. Füge für zwei Konten mehrere Transactionen durch
-	* Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
+	* Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?
+	* Siehe Slides oder http://guides.rubyonrails.org/active_record_querying.html
 
 10. Erzeugen sie in ````db/seeds.rb```` neue Kunden, mit Konten und Transaktion. Erzeugen Sie diese mit 
 ````bash
