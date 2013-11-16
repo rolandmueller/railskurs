@@ -78,4 +78,4 @@ rake db:setup
     Transaction hinzugefügt werden mit dem Betrag amount (positiv bzw. negative), description ("Transfer to " Kontonummer, bzw. "Transfer from " Kontonummer), und jeweilige balance_after_transaction.
     Testen Sie die Methode in der Rails console.
 
-13. Erzeugen Sie eine Methode ````statement```` (Kontoauszug), der die Transaktionen eines Kontos ausgibt. Testen Sie die Methode in der Rails console.
+13. Erzeugen Sie eine Methode ````statement```` (Kontoauszug), der den Kontostand und den Kunden sowie die Transaktionen eines Kontos ausgibt. Testen Sie die Methode in der Rails console.
