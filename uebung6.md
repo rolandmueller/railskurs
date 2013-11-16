@@ -15,10 +15,9 @@
     ```
 3.	Erzeugen Sie bei Github ein leeres Repositorium (ohne Readme und .gitignore file) mit dem Namen uebung6
 4.	Fügen Sie das Github als Remote-Repositorium hinzu 
-
-    ````bash
-    git remote add origin ...
-    ```
+````bash
+git remote add origin ...
+```
 5.  Pushen Sie das Projekt zu Github. Kontrollieren Sie bei Github ob es da ist.
 
     ````bash
@@ -49,9 +48,9 @@
 	* balance_after_transaction
 
 	Generieren Sie die Modelle mit
-	````bash
-	rails generate model ...
-	```	
+````bash
+rails generate model ...
+```	
 6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to)
 
 7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) 
