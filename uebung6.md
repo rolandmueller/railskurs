@@ -26,6 +26,7 @@
     ```
     Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
 6.  Generieren Sie drei Modelle ````Account````, ````Customer```` und ````Transaction````. In der Datenbank soll das so aussehen:
+	
 	![](https://dl.dropboxusercontent.com/u/10978171/er-diagramm.jpg)
 
 	Überlegen Sie in welchen Tabellen die Fremdschlüssel seien müssen.
@@ -64,11 +65,11 @@ rails console
 	* Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?
 	* Siehe Slides oder http://guides.rubyonrails.org/active_record_querying.html
 
-10. Erzeugen sie in ````db/seeds.rb```` neue Kunden, mit Konten und Transaktion. Erzeugen Sie diese mit 
-````bash
-rake db:setup
-```
+10. Erzeugen sie in ````db/seeds.rb```` neue Kunden, mit Konten und Transaktion. Erzeugen Sie diese mit
 
+	```bash
+	rake db:setup
+	```
 11. Wiederholen Sie die Suche nach einem Kunden in der Rails Konsole (````rails console````). Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
 
 12. Erzeugen Sie eine Methode ````withdraw```` und ````deposit```` in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
