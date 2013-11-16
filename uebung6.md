@@ -53,5 +53,4 @@
 	````bash
 	rails generate model ...
 	```	
-
 7. Erzeugen Sie 
