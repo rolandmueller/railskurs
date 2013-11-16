@@ -33,7 +33,7 @@
 	
 	Folgende Attribute sollen die Modelle zusätzlich zu den Fremdschlüsseln haben:
 	
-	User:
+	Customer:
 	
 	* first_name
 	* last_name
@@ -41,7 +41,7 @@
 	
 	Account:
 	* number
-	* balance
+	* balance (default Wert 0)
 	
 	Transaction:
 	* amount
@@ -53,4 +53,24 @@
 	````bash
 	rails generate model ...
 	```	
-7. Erzeugen Sie 
+6. Erzeugen Sie die 1-n Relationen in den drei Modellen	(has_many bzw. belong_to)
+
+7. Erzeugen Sie eine 1-n Relation von Customer zu Transaction über Account (has_many through) 
+
+8.  Erzeugen Sie Validatoren, damit
+	* first_name, last_name, number, balance, amount, description und balance_after_transaction nicht leer seien könne 
+	* balance numerisch seien muss und nicht negative seien kann
+	* number nicht doppelt vorkommen darf
+	sieh Slides oder http://guides.rubyonrails.org/active_record_validations.html für Validatoren
+  
+9. Öffnen Sie die Rails consonel
+	````bash
+	rails console
+	```
+
+	* Kreieren Sie mehrere Customer die ein oder mehrere Konten haben. Füge für zwei Konten mehrere Transactionen durch
+	* Suchen Sie einen Kunden. Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
+	
+10. Erzeugen Sie eine Methode '''withdraw'' und '''deposit'' in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
+    Transaction für dieses Konto hinzufügen mit abgehoben bzw. eingezahlten Betrag (Amount), Beschreibung ("Withdrawal" bzw. "Deposit"), und balance_after_transaction	
+
