@@ -40,7 +40,7 @@
 	
 	Account:
 	* number
-	* balance (default Wert 0)
+	* balance
 	
 	Transaction:
 	* amount
