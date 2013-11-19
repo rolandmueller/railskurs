@@ -71,7 +71,7 @@ rails console
 	```
 11. Wiederholen Sie die Suche nach einem Kunden in der Rails Konsole (````rails console````). Wieviele Konten hat dieser Kunde? Wieviel Geld ist auf meine Bank deponiert (Summe alle Konten)? Wie ist die Summe alle Konten-Balance eines Kunden?   	
 
-12. Erzeugen Sie eine Methode ````withdraw```` und ````deposit```` in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
+12. Erzeugen Sie zwei Methoden ````withdraw```` und ````deposit```` in der Klasse Account, die Geld abhebt bzw. einzaheln. Sie soll die balance anpassen und eine 
     Transaction für dieses Konto hinzufügen mit abgehoben bzw. eingezahlten Betrag (Amount) (soll negative bei withdral sein), Beschreibung ("Withdrawal" bzw. "Deposit"), und balance_after_transaction.
     Es soll kein Abheben oder Einzahlen von negativen Beträgen möglich sein und der Kontostand darf nach dem Abheben nicht negativ seien. Testen Sie die Methode in der Rails console. 
 
