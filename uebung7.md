@@ -10,7 +10,7 @@
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/database.png)
 	
-	Die Attrbute *id*, *created_at* und *updated_at* werden von Rails standardmäß hinzugefügt, d.h. wir müssen die nicht explizit beim Generieren des Modells angeben.
+	Die Attrbute ```id```, ```created_at``` und ```updated_at``` werden von Rails standardmäß hinzugefügt, d.h. wir müssen die nicht explizit beim Generieren des Modells angeben.
 	
 	Für eine erste Gestaltung benutzen wir myBalsamique für den Mockup. Wir haben eigenlich nur zwei wesentliche Screens.  Einerseits die Liste alle Aufgaben (Das wäre die Index-Methode im Controller):
 	
