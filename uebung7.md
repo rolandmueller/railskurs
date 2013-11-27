@@ -1,5 +1,13 @@
 # 7. Übung: Todo-App
 
+0.	Entwurf
+
+	Wir wollen eine einfache Todo-Applikation programmieren. In der ersten Version soll diese nur Aufgaben 
+	verwalten. Eine Aufgabe (```Task```) hat einen Titel (```title```) und ein
+	Fälligkeitsdatum (```deadline```), kann entweder feritg sein (```done```)
+	oder nicht und dauert eine Anzahl von Stunden (```duration```).
+	![](https://dl.dropboxusercontent.com/u/10978171/index.png)
+
 1.	Generieren Sie ein neues Rails Projekt todoapp
 	
     ```bash
