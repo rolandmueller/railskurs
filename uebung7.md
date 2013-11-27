@@ -1,10 +1,10 @@
 # 7. Übung: Todo-App
 
-1.	Generieren Sie ein neues Rails Projekt uebung6
+1.	Generieren Sie ein neues Rails Projekt todoapp
 	
     ```bash
     rails new todoapp
-    cd uebung6
+    cd todoapp
     ```
 2.	Initialisieren Sie ein Git-Repositorium, fügen Sie alles hinzu und commiten Sie
 
