@@ -308,7 +308,7 @@ validates :duration, presence: true, numericality: true
         <td><%= task.name %></td>
 	```	
 	```html	
-        <td><%= task.name %></td>
+        <td><%= link_to task.name, edit_task_path(task) %></td>
 	```	        
 
 	Da wir Spalten in der Tabelle gelöscht haben, brauchen wir weniger Header:
