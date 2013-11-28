@@ -97,6 +97,17 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
     rails server
     ```	
 
-und gehen Sie zu [http://localhost:3000/tasks](http://localhost:3000/tasks)
+	und gehen Sie zu [http://localhost:3000/tasks](http://localhost:3000/tasks)
 	
-![](https://dl.dropboxusercontent.com/u/10978171/scaffold1.png)
+	![](https://dl.dropboxusercontent.com/u/10978171/scaffold1.png)
+	
+12. Starten wir mit den Anforderungen zur Geschäftslogik und den Validierungsregeln: Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch. Dafür fügen wir folgendes in die ```Task``` Model-Klasse (in *app/models/task.rb*):
+```ruby
+validates :name, presence: true
+validates :deadline, presence: true
+validates :duration, presence: true, numericality: true 
+```
+
+
+ 
+
