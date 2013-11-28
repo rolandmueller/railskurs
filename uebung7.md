@@ -123,14 +123,21 @@ validates :duration, presence: true, numericality: true
 	Wir commiten die Änderungen
     
     ```bash
-    git commit -am "Validation-Regeln"
-    ```	
-
-	Wir brauchten kein ```git add . ``` schreiben, weil keine neuen Dateien erzeugt wurden. Statt dessen haben wir ```-a``` im *commit* geschrieben für *Add*. Dies reicht aus, wenn schon bestehende Daten verändert werden. Ansonsten muss man ```git add .``` die Dateien erst hinzufügen. Statt dessen häten man auch alternativ 
-	
-    ```bash
     git add .
-    git commit -m "Validation-Regeln"
+    git commit -m "Validationsregeln hinzugefügt"
     ```	
 
-	schreiben können. Beides ist in diesem Fall möglich.
+	Man hätte alternativ auch ```git commit -am "Validation-Regeln"``` schreiben können. Das ```-a``` im *commit* steht für *Add*.  Wir brauchen kein ```git add . ``` schreiben, weil keine neuen Dateien erzeugt wurden. Dies reicht aus, wenn schon bestehende Daten verändert werden. Ansonsten muss man mit ```git add .``` die Dateien erst hinzufügen. 
+
+14. Die Index-Seite sollte die Home-Page sein. In *config/routes.rb* verändern wir die auskommentierte Zeile 
+	```ruby
+	# You can have the root of your site routed with "root"
+	# root 'welcome#index'
+	```
+	
+	und schreiben statt dessen
+	```ruby
+	root 'tasks#index'
+	```
+
+	Nun weist [http://localhost:3000](http://localhost:3000) auf die Index-Methode.
