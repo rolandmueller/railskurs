@@ -99,3 +99,4 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
 
 und gehen Sie zu [http://localhost:3000/tasks](http://localhost:3000/tasks)
 	
+![](https://dl.dropboxusercontent.com/u/10978171/scaffold1.png)
