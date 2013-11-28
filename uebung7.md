@@ -140,4 +140,44 @@ validates :duration, presence: true, numericality: true
 	root 'tasks#index'
 	```
 
-	Nun weist [http://localhost:3000](http://localhost:3000) auf die Index-Methode.
+	Nun weist [http://localhost:3000](http://localhost:3000) auf die Index-Methode des Task-Controllers.
+
+    ```bash
+    git commit -am "Home-Page verändert"
+    ```
+
+15. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show). D.h. wir können einiges löschen.
+
+	Im Task-Controller (*app/controllers/task_controller.rb*) kann die Show-Methode gelöscht werden und die before-action Zeile
+	```ruby
+	before_action :set_task, only: [:show, :edit, :update, :destroy]
+	```
+	wie folgt verändert werden:
+	```ruby
+	before_action :set_task, only: [:edit, :update, :destroy]
+	```
+	
+	Wir brauchen auch keine Route zur Show-Methode mehr. In *config/routes.rb* kann die zweite Zeile wie folgt verändert werden:
+	```ruby	
+	  resources :tasks, except: [:show]
+	```
+	
+	Falls eine Aufgabe erfolgreich kreiert wurde (Create-Methode) bzw. verändert wurde (Update-Methode) wird normalerweise auf die Show-Methode umgeleitet (Redirect). Das müssen wir ändern. Nun soll auf die Index-Methode umgeleitet werden. Diese Zeile
+	```ruby	
+        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+	```
+	muss nun so lauten
+
+	```ruby	
+        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+	```
+	
+	Anschließend kann man auch die Links zur Show-Methode im *app/views/index.html.erb* löschen. Folgende Zeile kann weg:
+	```html
+	 <td><%= link_to 'Show', task %></td>
+	```
+	
+	
+
+
+	
