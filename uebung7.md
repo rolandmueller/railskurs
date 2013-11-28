@@ -346,7 +346,7 @@ validates :duration, presence: true, numericality: true
 	```
 
 
-	Im Index-View *app/views/index.html.erb* schneiden wir die komplette Tablle aus (von ```<table>``` bis ```</table>```)  und fügen die diese in eine neue Datei namens *_table.html.erb* ein. Dies ist ein sogenanntes Partial. Anstatt
+	Im Index-View *app/views/index.html.erb* schneiden wir die komplette Tablle aus (von ```<table>``` bis ```</table>```)  und fügen die diese in eine neue Datei namens *_table.html.erb* im Verzeichnis *app/views/tasks/* ein. Dies ist ein sogenanntes Partial. Anstatt
 	```html	
 	<% @tasks.each do |task| %>
 	```
@@ -368,5 +368,21 @@ validates :duration, presence: true, numericality: true
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/zwei_listen.png)
 	
+	Die Spalte *Done* ist jetzt redundant und kann entfernt werden. Folgendes in *app/views/tasks/_table.html.erb* löschen:
+
+	```html
+	<th>Done</th>
+	```
+	```html
+	<td><%= task.done %></td>
+	```	
+
+	Nun sieht die Seite so aus:
 	
+	![](https://dl.dropboxusercontent.com/u/10978171/ohne_done.png)
 	
+	Anschliessend können wir commiten:	
+	```bash
+	git add .
+	git commit -m "Todo und Done Liste getrennt"
+	```	
