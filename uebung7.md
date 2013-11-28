@@ -24,9 +24,9 @@
 	1. Die Seite sollte die Home-Page sein, also bei der Eingabe der Haupt-URL erscheinen. Also während der Entwicklung direkt unter httt://localhost:3000/
 	2. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show-Methode im Task-Controller). Die Liste der Aufgaben reicht völlig aus. D.h. wir müssen die Show-Methode im Controller und die Show-Views entfernen.
 	3. Die Seite sollte mit Bootstrap ein netteres Design bekommen.
-	4. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
-	5. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
-	6. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
+	4. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
+	5. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
+	6. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
 	7. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Inde-Screen nicht verlassen.
 	8. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
 	
@@ -258,16 +258,16 @@ validates :duration, presence: true, numericality: true
 	In *app/assets/stylesheets/applications.css* fügen wir folgendes ans Ende:
 	```css	
 	body {
-  	  padding-top: 50px;
+  	  padding-top: 60px;
 	}
 	```
 	
-	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach ganz nach oben. Ausserdem bekommt er noch die Bootstrap CSS-Klassen btn und btn-success zugewiesen:
+	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor dem Überschrift (vor dem h1 Tag). Ausserdem bekommt er noch die Bootstrap CSS-Klassen btn und btn-success zugewiesen:
 	```html	
 	<%= link_to 'New Task', new_task_path, :class => "btn btn-success" %>
 	```
 	
-	In *app/views/tasks/index.html.erb* wollen wir die *notice* mit einem Bootstrap-Alert stylen (http://getbootstrap.com/components/#alerts):
+	In *app/views/tasks/index.html.erb* wollen wir die *notice* mit einem Bootstrap-Alert stylen (http://getbootstrap.com/components/#alerts und http://getbootstrap.com/javascript/#alerts):
 	anstatt 
 	```html	
   	<p id="notice"><%= notice %></p>
@@ -275,23 +275,49 @@ validates :duration, presence: true, numericality: true
 	das:
 	```html	
 	<% if notice %> 
-  	  <p id="notice" class="alert alert-success"><%= notice %></p>
+	  <p id="notice" class="alert alert-success fade in" data-dismiss="alert" aria-hidden="true">
+	    <%= notice %>
+	    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button></p>
 	<% end %>
 	```	
-
 	
 	Nun sieht die Seite schon etwas besser aus:
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/bootstrap.png)
 	
 	
-	Nun sollten Sie einmal die Anwendung ausprobieren, ob alles funktioniert. Unter http://getbootstrap.com können Sie sich über Bootstrap erkundigen. Anschliessend können wir commiten:
+	Nun sollten Sie einmal die Anwendung ausprobieren, ob alles funktioniert. Unter http://getbootstrap.com können Sie mehr über Bootstrap erfahren. Anschliessend können wir commiten:
 
 	```bash
 	git add .
 	git commit -m "Design mit Bootstrap"
 	```	
 
+17. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden. In *app/views/tasks/index.html.erb* löschen wir 
+	```html	
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+	```
+
+	und schreiben statt
+	```html	
+        <td><%= task.name %></td>
+	```	
+	```html	
+        <td><%= task.name %></td>
+	```	        
+
+	Da wir Spalten in der Tabelle gelöscht haben, brauchen wir weniger Header:
+	```html	
+        <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Deadline</th>
+	  <th>Done</th>
+	  <th>Duration</th>
+	  <th></th>
+	</tr>
+	</thead>
+	```	
 
 17. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
 	
