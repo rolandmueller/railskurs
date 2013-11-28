@@ -27,7 +27,8 @@
 	4. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
 	5. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
 	6. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
-	7. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Inde-Screen nicht verlassen.
+	7. Die Todo-Liste soll die als letztes erzeugten Tasks oben sein. In der Done-Liste soll der als letztes abgehakten Aufgaben oben sein.
+	8. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Inde-Screen nicht verlassen.
 	8. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
 	
 	Der New- bzw. Edit-View soll ungefähr so aussehen.
@@ -90,6 +91,10 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
 ```
 
 	Beachten Sie, dass wir die Deadline dynamisch basierend vom heutigen Tag (```Date.today```) um einige Tage (z.B. ```7.days```) vor oder zurückgesetzt haben. Die Methode ```days``` wurde durch Rails zu der Integer-Klasse hinzugefügt. Damit kann man Integers als Datums-Tage umwandeln.
+	
+    ```bash
+    rake db:setup
+    ```		
 
 11. Öffnen Sie noch ein weitere Konsole (Terminal / Eingabeaufforderung / Rails Command-Prompt) im Verzeichnis *todoapp*. So kann in der einen Konsole der Rails-Server laufen und in der anderen kann man weitere Befehle ausführen. Starten Sie den Rails Server
 
@@ -406,12 +411,30 @@ validates :duration, presence: true, numericality: true
 	![](https://dl.dropboxusercontent.com/u/10978171/kalkulation.png)
 	
 	
-	Der Rails-Helper *pluralize* verändert das Wort im zweiten Parameter ("Task" bzw. "Hour") je nachdem ob der erste Parameter 1 ist ode viele.
+	Der Rails-Helper *pluralize* verändert das Wort im zweiten Parameter ("Task" bzw. "Hour") je nachdem ob der erste Parameter 1 ist ode viele. Wenn wir einen Done-Task löschen, sehen wir das:
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/one_task_done.png)
+	
+	Wir können immer für die Datenbank ein neues setup durchführen und die Seed-Daten wieder laden: 
+	```bash
+	rake db:setup
+    	```	
 	
 	Nun können wir commiten:	
 	```bash
 	git add .
 	git commit -m "Gesamte Anzahl und Dauer anzeigen"
 	```	
+
+19. Die Todo-Liste soll die als letztes erzeugten Tasks oben sein. In der Done-Liste soll der als letztes abgehakten Aufgaben oben sein.
+
+	Wir müssen ordnen http://guides.rubyonrails.org/active_record_querying.html#ordering. In der Index-Methode im Task-Controller *app/controllers/task_controller.rb* schreiben wir 
+	```ruby
+	@done = Task.where(done: true).order(created_at: :desc)
+	@todo = Task.where(done: false).order(updated_at: :desc)
+	```
+
+	```bash
+	git commit -am "Todo und Done geordnet"
+	```
+
