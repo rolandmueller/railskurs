@@ -166,18 +166,36 @@ validates :duration, presence: true, numericality: true
 	```ruby	
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
 	```
-	muss nun so lauten
+	muss nun so lauten (*tasks_path* ist Link zur Index-Methode von Task (Mehrzahl von Task), Siehe auch http://guides.rubyonrails.org/routing.html):
 
 	```ruby	
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+	format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
 	```
 	
-	Anschließend kann man auch die Links zur Show-Methode im *app/views/index.html.erb* löschen. Folgende Zeile kann weg:
+	Das selbe gilt für die Update-Methode. Statt
+	```ruby	
+	format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+ 	```
+ 	muss es so heissen:
+	```ruby	
+        format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
+	```	
+	
+	Nun sollte man auch die Links zur Show-Methode im *app/views/index.html.erb* löschen. Folgende Zeile kann weg:
 	```html
 	 <td><%= link_to 'Show', task %></td>
 	```
 	
+	Ausserdem kann die Datei *app/views/tasks/show.html.erb* gelöscht werden.
 	
+	In der Datei *app/views/tasks/index.html.erb* sollte man jedoch noch die Meldung, die vorher im Show-View war, einfügen:
+	
+	```html	
+	<p id="notice"><%= notice %></p>
+	```
+	
+
+
 
 
 	
