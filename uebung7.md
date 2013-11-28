@@ -97,5 +97,5 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
     rails server
     ```	
 
-und gehen Sie zu http://localhost:3000/tasks
+und gehen Sie zu [http://localhost:3000/tasks](http://localhost:3000/tasks)
 	
