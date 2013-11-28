@@ -327,10 +327,46 @@ validates :duration, presence: true, numericality: true
 	Nun sieht die Seite so aus:
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/kein_edit.png)
+	
+	Anschliessend können wir commiten:
+
+	```bash
+	git commit -am "Edit Link integriert"
+	```
 
 17. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
+
+	In der Index-Methode im Task-Controller *app/controllers/task_controller.rb* schreiben wir statt
+	```ruby
+   	@tasks = Task.all
+	```
+	```ruby
+    	@done = Task.where(done: true)
+    	@todo = Task.where(done: false)
+	```
+
+
+	Im Index-View *app/views/index.html.erb* schneiden wir die komplette Tablle aus (von ```<table>``` bis ```</table>```)  und fügen die diese in eine neue Datei namens *_table.html.erb* ein. Dies ist ein sogenanntes Partial. Anstatt
+	```html	
+	<% @tasks.each do |task| %>
+	```
+	schreiben wir 
+	```html	
+	<% tasks.each do |task| %>
+	```	
+	*tasks* ist eine lokale Variable die wir dann entweder @done oder @todo übergeben.
 	
+	Im Index-View *app/views/index.html.erb* ersetzen wir ```<h1>Listing Tasks<h1>``` mit folgendem: 
+	```html
+	<h2>Todo</h2>
+	<%= render partial: "table", locals: {tasks: @todo} %>
+	<h2>Done</h2>
+	<%= render partial: "table", locals: {tasks: @done} %>
+	```
 
-
-
-
+	Nun sieht die Seite so aus:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/zwei_listen.png)
+	
+	
+	
