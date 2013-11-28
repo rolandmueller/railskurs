@@ -36,6 +36,7 @@
 	![](https://dl.dropboxusercontent.com/u/10978171/new.png)
 	
 	Es gibt einige Anforderungen an diesen Screen:
+	
 	1. Es soll eine Datum-Auswahl via einem Kalender geben.
 	2. Den Aufwand soll man mit einem numerischen Stepper verändern können.
 
@@ -285,9 +286,10 @@ validates :duration, presence: true, numericality: true
 	das:
 	```html	
 	<% if notice %> 
-	  <p id="notice" class="alert alert-success fade in" data-dismiss="alert" aria-hidden="true">
+	  <p id="notice" class="alert alert-success alert-dismissable fade in" data-dismiss="alert" aria-hidden="true">
 	    <%= notice %>
-	    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button></p>
+	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  </p>
 	<% end %>
 	```	
 	
