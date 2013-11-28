@@ -255,6 +255,13 @@ validates :duration, presence: true, numericality: true
 	</div>
 	```
 	
+	In *app/assets/stylesheets/applications.css* fügen wir folgendes ans Ende:
+	```css	
+	body {
+  	  padding-top: 50px;
+	}
+	```
+	
 	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach ganz nach oben. Ausserdem bekommt er noch die Bootstrap CSS-Klassen btn und btn-success zugewiesen:
 	```html	
 	<%= link_to 'New Task', new_task_path, :class => "btn btn-success" %>
