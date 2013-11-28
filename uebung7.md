@@ -416,9 +416,10 @@ validates :duration, presence: true, numericality: true
 	![](https://dl.dropboxusercontent.com/u/10978171/one_task_done.png)
 	
 	Wir können immer für die Datenbank ein neues setup durchführen und die Seed-Daten wieder laden: 
+	
 	```bash
 	rake db:setup
-    	```	
+	```	
 	
 	Nun können wir commiten:	
 	```bash
