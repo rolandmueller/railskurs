@@ -108,6 +108,8 @@ validates :deadline, presence: true
 validates :duration, presence: true, numericality: true 
 ```
 
-
+	Wenn Sie nun in [http://localhost:3000/tasks/new](http://localhost:3000/tasks/new) eine Aufgabe ohne Namen und mit einer nicht numerischen Dauer eingeben, erhalten Sie folgende:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/validation.png)
  
 
