@@ -386,3 +386,32 @@ validates :duration, presence: true, numericality: true
 	git add .
 	git commit -m "Todo und Done Liste getrennt"
 	```	
+
+18. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
+
+	Fügen Sie folgendes hinter Todo in den h2 Tag ein
+	```html	
+	(<%= pluralize(@todo.count, "Task") %>, <%= pluralize(@todo.sum("duration"), "Hour") %>)
+	```
+	
+	Fügen Sie folgendes hinter Todo in den h2 Tag ein
+	```html	
+	(<%= pluralize(@done.count, "Task") %>, <%= pluralize(@done.sum("duration"), "Hour") %>)
+	```	
+	
+	Für *count* und *sum* siehe Aggregations-Funktionen von Active-Record http://guides.rubyonrails.org/active_record_querying.html#calculations
+	
+	Nun sieht die Seite so aus:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/kalkulation.png)
+	
+	
+	Der Rails-Helper *pluralize* verändert das Wort im zweiten Parameter ("Task" bzw. "Hour") je nachdem ob der erste Parameter 1 ist ode viele.
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/one_task_done.png)
+	
+	Nun können wir commiten:	
+	```bash
+	git add .
+	git commit -m "Gesamte Anzahl und Dauer anzeigen"
+	```	
