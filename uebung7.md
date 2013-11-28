@@ -23,7 +23,7 @@
 	Es gibt einige Anforderungen an diesen Screen:
 	1. Die Seite sollte die Home-Page sein, also bei der Eingabe der Haupt-URL erscheinen. Also während der Entwicklung direkt unter httt://localhost:3000/
 	2. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show-Methode im Task-Controller). Die Liste der Aufgaben reicht völlig aus. D.h. wir müssen die Show-Methode im Controller und die Show-Views entfernen.
-	3. Die Seite sollte mit Bootstrap ein nettes Design bekommen.
+	3. Die Seite sollte mit Bootstrap ein netteres Design bekommen.
 	4. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
 	5. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
 	6. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
@@ -186,6 +186,11 @@ validates :duration, presence: true, numericality: true
 	 <td><%= link_to 'Show', task %></td>
 	```
 	
+	Auch in *app/views/edit.html.erb* kann das weg:
+	```html
+	<%= link_to 'Show', @task %> |
+	```	
+	
 	Ausserdem kann die Datei *app/views/tasks/show.html.erb* gelöscht werden. Da wir auch *git* mitteilen wollen, 	dass diese Datei gelöscht werden soll, geben wir folgendes in der Konsole ein (rm steht für remove)
 	
 	```bash	
@@ -205,5 +210,62 @@ validates :duration, presence: true, numericality: true
 	git commit -m "Show in Task gelöscht"
 	```	
 
+16. Die Seite sollte mit Bootstrap ein netteres Design bekommen. Sie sollten nach jedem Schritt immer wieder den Browser refreshen (F5) um die Veränderung im Design zu sehen.
+
+	Links zu Twitter Bootstrap Stylesheets hinzufügen. In *app/views/layouts/application.html.erb* nach dem 
+	title tag einfügen:
+
+	```html
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+	```
+
+	Twitter Bootstrap JavaScript in *app/views/layouts/application.html.erb* kurz vor ``` </body> ``` einfügen:
+	```html
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	```
+
+	Wir löschen den Stylesheet von Scaffold
+	```bash
+	git rm app/assets/stylesheets/scaffolds.css.scss
+	```
+	
+	In *app/views/layouts/application.html.erb* ```<%= yield %>``` tag mit Bootstrap container umschließen:
+	```html
+	<div class="container">
+		<%= yield %>
+	</div> <!-- /container -->
+	```
+	In *app/views/tasks/index.html.erb* die Tabelle mit der CSS-Class ```table``` stylen:
+	```html
+	<table class="table">	
+	```
+	
+	In *app/views/layouts/application.html.erb* nach dem ```<body>``` Tag fügen wir eine Navigations-Leiste ein:
+	```html
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Todo-App</a>
+	    </div>
+	  </div>
+	</div>
+	```
+	
+	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach ganz nach oben. Ausserdem bekommt er noch die Bootstrap CSS-Klassen btn und btn-success zugewiesen:
+	```html	
+	<%= link_to 'New Task', new_task_path, :class => "btn btn-success" %>
+	```
+	
+	Danach sieht die Seite schon etwas besser aus:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/bootstrap.png)
 
 	
+
+
+
+
