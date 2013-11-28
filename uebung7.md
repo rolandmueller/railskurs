@@ -186,16 +186,24 @@ validates :duration, presence: true, numericality: true
 	 <td><%= link_to 'Show', task %></td>
 	```
 	
-	Ausserdem kann die Datei *app/views/tasks/show.html.erb* gelöscht werden.
+	Ausserdem kann die Datei *app/views/tasks/show.html.erb* gelöscht werden. Da wir auch *git* mitteilen wollen, 	dass diese Datei gelöscht werden soll, geben wir folgendes in der Konsole ein (rm steht für remove)
+	
+	```bash	
+	git rm app/views/tasks/show.html.erb
+	```
 	
 	In der Datei *app/views/tasks/index.html.erb* sollte man jedoch noch die Meldung, die vorher im Show-View war, einfügen:
 	
 	```html	
 	<p id="notice"><%= notice %></p>
 	```
-	
 
+	Nun sollten Sie einmal die Anwendung ausprobieren, ob alles funktioniert. Wenn ja, dann commiten wir:
 
+	```bash
+	git add .
+	git commit -m "Show in Task gelöscht"
+	```	
 
 
 	
