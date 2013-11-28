@@ -267,10 +267,33 @@ validates :duration, presence: true, numericality: true
 	<%= link_to 'New Task', new_task_path, :class => "btn btn-success" %>
 	```
 	
-	Danach sieht die Seite schon etwas besser aus:
+	In *app/views/tasks/index.html.erb* wollen wir die *notice* mit einem Bootstrap-Alert stylen (http://getbootstrap.com/components/#alerts):
+	anstatt 
+	```html	
+  	<p id="notice"><%= notice %></p>
+	```	
+	das:
+	```html	
+	<% if notice %> 
+  	  <p id="notice" class="alert alert-success"><%= notice %></p>
+	<% end %>
+	```	
+
+	
+	Nun sieht die Seite schon etwas besser aus:
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/bootstrap.png)
+	
+	
+	Nun sollten Sie einmal die Anwendung ausprobieren, ob alles funktioniert. Unter http://getbootstrap.com können Sie sich über Bootstrap erkundigen. Anschliessend können wir commiten:
 
+	```bash
+	git add .
+	git commit -m "Design mit Bootstrap"
+	```	
+
+
+17. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
 	
 
 
