@@ -12,6 +12,8 @@
 	
 	Die Attrbute ```id```, ```created_at``` und ```updated_at``` werden von Rails standardmäß hinzugefügt, d.h. wir müssen die nicht explizit beim Generieren des Modells angeben.
 	
+	Es sollen keine Aufgaben ohne einem Namen, einer Deadline und einer Dauer geben (Validations-Regeln). 
+	
 	Für eine erste Gestaltung benutzen wir myBalsamique für den Mockup. Wir haben eigenlich nur zwei wesentliche Screens.  Einerseits die Liste alle Aufgaben (Das wäre die Index-Methode im Task-Controller) und andererseits ein Formular zum Einfügen (New-Methode im Controller) und Ändern (Edit-Methode im Controller) einer Aufgabe.
 	
 	Der Index-View soll ungefähr so aussehen:
@@ -19,16 +21,22 @@
 	![](https://dl.dropboxusercontent.com/u/10978171/index.png)
 	
 	Es gibt einige Anforderungen an diesen Screen:
-	1. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
-	2. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
-	3. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show-Methode im Task-Controller). Die Liste der Aufgaben reicht völlig aus. D.h. wir müssen die Show-Methode im Controller und die Show-Views entfernen.
-	4. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
-	5. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Inde-Screen nicht verlassen.
-	6. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
+	1. Die Seite sollte die Home-Page sein, also bei der Eingabe der Haupt-URL erscheinen. Also während der Entwicklung direkt unter httt://localhost:3000/
+	2. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show-Methode im Task-Controller). Die Liste der Aufgaben reicht völlig aus. D.h. wir müssen die Show-Methode im Controller und die Show-Views entfernen.
+	3. Die Seite sollte mit Bootstrap ein nettes Design bekommen.
+	4. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
+	5. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
+	6. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
+	7. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Inde-Screen nicht verlassen.
+	8. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
 	
 	Der New- bzw. Edit-View soll ungefähr so aussehen.
 
-
+	![](https://dl.dropboxusercontent.com/u/10978171/new.png)
+	
+	Es gibt einige Anforderungen an diesen Screen:
+	1. Es soll eine Datum-Auswahl via einem Kalender geben.
+	2. Den Aufwand soll man mit einem numerischen Stepper verändern können.
 
 1.	Generieren Sie ein neues Rails Projekt todoapp
 	
