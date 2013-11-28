@@ -79,4 +79,23 @@ https://github.com/rolandmueller/railskurs.git, Sieht man rechts in Github).
 8. Öffne das komplette Projekt in Sublime Text 2 in dem Sie z.B. den Ordner *todoapp* in Sublime schieben oder im Menu File | Open den Ordner *todoapp* öffnen.
 
 
-10. Erzeugen Sie ein paar Aufgaben mithilfe einer Seed-Datei. Kopiere diese Daten in 
+10. Erzeugen Sie ein paar Aufgaben mithilfe einer Seed-Datei. Kopiere diese Daten in der Datei *db/seeds.rb*
+```ruby
+Task.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false)
+Task.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
+Task.create(name: "Rails for Zombies", deadline: Date.today - 2.days, duration: 3, done: false)
+Task.create(name: "Übung 6: Rails Account", deadline: Date.today - 4.days, duration: 3, done: false)
+Task.create(name: "Übung 1: FizzBuzz", deadline: Date.today - 26.days, duration: 4, done: true)
+Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, duration: 5, done: true)
+```
+
+	Beachten Sie, dass wir die Deadline dynamisch basierend vom heutigen Tag (```Date.today```) um einige Tage (z.B. ```7.days```) vor oder zurückgesetzt haben. Die Methode ```days``` wurde durch Rails zu der Integer-Klasse hinzugefügt. Damit kann man Integers als Datums-Tage umwandeln.
+	
+11. Öffnen Sie noch ein weitere Konsole (Terminal / Eingabeaufforderung / Rails Command-Prompt) im Verzeichnis *todoapp*. So kann in der einen Konsole der Rails-Server laufen und in der anderen kann man weitere Befehle ausführen. Starten Sie den Rails Server
+
+    ```bash
+    rails server
+    ```	
+
+und gehen Sie zu http://localhost:3000/tasks
+	
