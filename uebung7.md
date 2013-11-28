@@ -262,9 +262,14 @@ validates :duration, presence: true, numericality: true
 	}
 	```
 	
-	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor dem Überschrift (vor dem h1 Tag). Ausserdem bekommt er noch die Bootstrap CSS-Klassen btn und btn-success zugewiesen:
+	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor dem Überschrift (vor dem h1 Tag). Ausserdem soll er als kleine grüner Button gestylt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden:
 	```html	
-	<%= link_to 'New Task', new_task_path, :class => "btn btn-success" %>
+	<%= link_to 'New Task', new_task_path, class: "btn btn-success btn-sm" %>
+	```
+	
+	Der Delete-Link soll als kleiner roter Button gestylt werden:
+	```html		
+	<%= link_to 'Destroy', task, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
 	```
 	
 	In *app/views/tasks/index.html.erb* wollen wir die *notice* mit einem Bootstrap-Alert stylen (http://getbootstrap.com/components/#alerts und http://getbootstrap.com/javascript/#alerts):
@@ -308,7 +313,7 @@ validates :duration, presence: true, numericality: true
 
 	Da wir Spalten in der Tabelle gelöscht haben, brauchen wir weniger Header:
 	```html	
-        <thead>
+	<thead>
 	<tr>
 	  <th>Name</th>
 	  <th>Deadline</th>
@@ -318,6 +323,10 @@ validates :duration, presence: true, numericality: true
 	</tr>
 	</thead>
 	```	
+
+	Nun sieht die Seite so aus:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/kein_edit.png)
 
 17. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
 	
