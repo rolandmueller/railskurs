@@ -12,7 +12,7 @@
 	
 	Die Attrbute ```id```, ```created_at``` und ```updated_at``` werden von Rails standardmäß hinzugefügt, d.h. wir müssen diese nicht explizit beim Generieren des Modells angeben.
 	
-	Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben (Validations-Regeln). 
+	Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch (Validations-Regeln). 
 	
 	Für eine erste Gestaltung benutzen wir myBalsamique für den Mockup. Wir haben eigenlich nur zwei wesentliche Screens.  Einerseits die Liste alle Aufgaben (Das wäre die Index-Methode im Task-Controller) und andererseits ein Formular zum Einfügen (New-Methode im Controller) und Ändern (Edit-Methode im Controller) einer Aufgabe.
 	
@@ -75,3 +75,8 @@ https://github.com/rolandmueller/railskurs.git, Sieht man rechts in Github).
     ```bash
     rake db:migrate
     ```	
+
+8. Öffne das komplette Projekt in Sublime Text 2 in dem Sie z.B. den Ordner *todoapp* in Sublime schieben oder im Menu File | Open den Ordner *todoapp* öffnen.
+
+
+10. Erzeugen Sie ein paar Aufgaben mithilfe einer Seed-Datei. Kopiere diese Daten in 
