@@ -60,7 +60,18 @@ https://github.com/rolandmueller/railskurs.git, Sieht man rechts in Github).
 	```
 5.  Pushen Sie das Projekt zu Github. Kontrollieren Sie bei Github ob es da ist.
 
-    ````bash
+    ```bash
     git push origin master
     ```
     Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
+    
+6.  Wir generieren ein Gerüst (Scaffold) für das Modell ```Task```
+
+    ```bash
+    rails generate scaffold task name deadline:date done:boolean duration:float
+    ```	
+7.  und erzeugen die Tabelle in der Datenbank
+
+    ```bash
+    rake db:migrate
+    ```	
