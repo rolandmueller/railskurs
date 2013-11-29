@@ -523,9 +523,10 @@ validates :duration, presence: true, numericality: true
 	Anschließend kopieren wir diesen Coffeescript Code in *app/assets/javascript/tasks.js.coffee* ans Ende:
 	```javascript	
 	$(document).on 'ready page:load', ->
-    	  $('#task_deadline').datepicker({
-    	    format: "yyyy-mm-dd"
-    	});
+	  $('#task_deadline').datepicker({
+	  	format: "yyyy-mm-dd",
+	  	autoclose: true
+	  });
 	```
 	
 	Der Code macht folgendes: Nach dem der Seite geladen wurde (```$(document).on 'ready page:load'```) wird die Datums-Feld (mit der CSS-ID 'task_deadline') mit einem datepicker versehen. Coffeescript vereinfacht die Javascript Programmierung und wird zu Javascript kompeliert (siehe auch http://coffeescript.org/, http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html oder http://railscasts.com/episodes/267-coffeescript-basics für mehr Informationen). Nach dem man den Rails-Server neu gestartet hat, haben wir ein netten Datepicker.
