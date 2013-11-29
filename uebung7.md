@@ -513,7 +513,7 @@ validates :duration, presence: true, numericality: true
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
 	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *app/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *app/assets/stylesheets/*
 
-	Anschließend kopieren wir dieses Coffeescript Code in *app/assets/javascript/tasks.js.coffee* ans Ende:
+	Anschließend kopieren wir diesen Coffeescript Code in *app/assets/javascript/tasks.js.coffee* ans Ende:
 	```javascript	
 	$(document).on 'ready page:load', ->
     	  $('#task_deadline').datepicker({
@@ -521,7 +521,7 @@ validates :duration, presence: true, numericality: true
     	});
 	```
 	
-	Der Code macht folgendes: Nach dem der Seite geladen wurde (```$(document).on 'ready page:load'```) wird die Datums-Feld (mit der CSS-ID 'task_deadline') mit einem datepicker versehen. Nach dem man den Rails-Server neu gestartet hat, haben wir ein netten Datepicker.
+	Der Code macht folgendes: Nach dem der Seite geladen wurde (```$(document).on 'ready page:load'```) wird die Datums-Feld (mit der CSS-ID 'task_deadline') mit einem datepicker versehen. Coffeescript vereinfacht die Javascript Programmierung und wird zu Javascript kompeliert (siehe auch http://coffeescript.org/, http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html oder http://railscasts.com/episodes/267-coffeescript-basics für mehr Informationen). Nach dem man den Rails-Server neu gestartet hat, haben wir ein netten Datepicker.
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/datepicker.png)
 	
