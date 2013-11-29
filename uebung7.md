@@ -29,8 +29,8 @@
 	6. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
 	7. Die Todo-Liste soll die als letztes erzeugten Tasks oben sein. In der Done-Liste soll der als letztes abgehakten Aufgaben oben sein.
 	8. Die erledigten Aufgaben sollen durchgestrichen sein.
-	9. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
-	10. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Index-Screen nicht verlassen.
+	9. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Index-Screen nicht verlassen.
+	10. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
 
 	
 	Der New- bzw. Edit-View soll ungefähr so aussehen.
@@ -596,7 +596,7 @@ validates :duration, presence: true, numericality: true
 	
 	Anschließend fügen wir diesen Coffeescript an Ende von *app/assets/javascript/tasks.js.coffee*
 	```javascript		
-	$ ->
+	$(document).on 'ready page:load', ->
 	  $(".checkable").click ->
 	    $(this).parents('form').submit();
 	```
@@ -605,3 +605,98 @@ validates :duration, presence: true, numericality: true
 	git add .
 	git commit -m "Checkboxen im Index-View"
 	```
+
+23. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
+
+	In der Index-Methode im Task-Controller ersetzt man den Code mit folgendem:
+	```ruby
+	if params[:sorting]
+	  @done = Task.where(done: true).order(params[:sorting] => :desc)
+	  @todo = Task.where(done: false).order(params[:sorting] => :desc)
+	else
+	  @done = Task.where(done: true).order(created_at: :desc)
+	  @todo = Task.where(done: false).order(updated_at: :desc)
+	end
+	```
+	
+	In *app/views/tasks/_table.html.erb* ersetzen wir die Header von Deadline und Duration mit diesem:
+	```html
+	<th><%= link_to "Deadline", tasks_path(sorting: "deadline") %>
+	  <% if params[:sorting] == "deadline" %>
+	    <span class="glyphicon glyphicon-chevron-up"></span>
+	  <% end %>
+	</th>
+	<th><%= link_to "Duration", tasks_path(sorting: "duration") %> 
+	  <% if params[:sorting] == "duration" %>
+	    <span class="glyphicon glyphicon-chevron-up"></span>
+	  <% end %> 
+	</th>
+	```
+	
+	```bash
+	git add .
+	git commit -m "Sortierung nach Aufwand und Deadline"
+	```
+	
+24. Zeit unsere App der Welt zu zeigen. 
+
+
+	Wir nutzen Heroku um unsere App zu deployen. Hier gibt es eine Anleitung:
+	https://devcenter.heroku.com/articles/getting-started-with-rails4
+	
+	Einloggen in Heroku auf der Konsole
+	```bash
+	heroku login
+	```
+	
+	Im *Gemfile* folgendes hinzufügen
+	```ruby
+	group :production do
+	  gem 'pg'
+	  gem 'rails_12factor'
+	end
+	```
+	
+	In *config/database.yml* den Konfiguration der Produktions-Datenbank mit diesem ersetzen:
+
+	```javascript	
+	production:
+	  adapter: postgresql
+	  encoding: unicode
+	  database: task_production
+	  pool: 5
+	  password:
+	```
+	
+	auf der Konsole die Gems mit bundle install installieren jedoch ohne Productions.
+	```bash
+	bundle install --without production
+	```
+
+	auf der Konsole die Gems mit bundle install installieren jedoch ohne Productions.
+	```bash
+	git commit -a -m "Update Gemfile.lock fuer Heroku"
+	```	
+
+	Auf der Konsole
+	```bash
+	heroku create
+	```		
+
+	Auch auf Heroku db:migrate durchführen
+	```bash
+	heroku run rake db:migrate
+	```
+	
+	und wenn man will auch db:setup durchführen
+	```bash
+	heroku run rake db:setup
+	```
+	
+	Im Browser öffnen:
+	```bash
+	heroku open
+	```
+	
+	
+	
