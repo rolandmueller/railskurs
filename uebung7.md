@@ -583,15 +583,15 @@ validates :duration, presence: true, numericality: true
 	und nach 
 	```html 
 	<% tasks.each do |task| %>
-      	  <tr>
+	  <tr>
 	```
 	fügen wir das ein:
 	```html 	
 	<td>
-          <%= form_for task do |f| %>
-            <%= f.check_box :done, class: "checkable" %>
-          <% end %>
-        </td>
+	  <%= form_for task do |f| %>
+	    <%= f.check_box :done, class: "checkable" %>
+	  <% end %>
+	</td>
 	```
 	
 	Anschließend fügen wir diesen Coffeescript an Ende von *app/assets/javascript/tasks.js.coffee*
