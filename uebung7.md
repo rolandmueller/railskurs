@@ -245,12 +245,12 @@ validates :duration, presence: true, numericality: true
 		<%= yield %>
 	</div> <!-- /container -->
 	```
-	In *app/views/tasks/index.html.erb* die Tabelle mit der CSS-Class ```table``` stylen:
+	In *app/views/tasks/index.html.erb* die Tabelle mit der CSS-Class ```table``` stylen (http://getbootstrap.com/css/#tables ):
 	```html
-	<table class="table">	
+	<table class="table  table-hover">	
 	```
 	
-	In *app/views/layouts/application.html.erb* nach dem ```<body>``` Tag fügen wir eine Navigations-Leiste ein:
+	In *app/views/layouts/application.html.erb* nach dem ```<body>``` Tag fügen wir eine Navigations-Leiste ein (http://getbootstrap.com/components/#navbar):
 	```html
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	  <div class="container">
@@ -268,7 +268,7 @@ validates :duration, presence: true, numericality: true
 	}
 	```
 	
-	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor dem Überschrift (vor dem h1 Tag). Ausserdem soll er als kleine grüner Button gestylt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden:
+	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor dem Überschrift (vor dem h1 Tag). Ausserdem soll er als kleine grüner Button gestylt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden (http://getbootstrap.com/css/#buttons):
 	```html	
 	<%= link_to 'New Task', new_task_path, class: "btn btn-success btn-sm" %>
 	```
@@ -441,3 +441,90 @@ validates :duration, presence: true, numericality: true
 	git commit -am "Todo und Done geordnet"
 	```
 
+20. New bzw. Edit-View soll besser aussehen. 
+
+	Für die Fehlermeldungen nehmen wir ein Pannel mit Überschrift von Bootstrap
+	http://getbootstrap.com/components/#panels. Wir ersetzen den Fehler-Code mit folgendem:
+	
+	```html	
+	  <% if @task.errors.any? %>
+	    <div class="panel panel-danger">
+	      <div class="panel-heading">
+	        <h3 class="panel-title"><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h3>
+	      </div>
+	      <div class="panel-body">
+	        <ul>
+	          <% @task.errors.full_messages.each do |msg| %>
+	            <li><%= msg %></li>
+	          <% end %>
+	        </ul>
+	      </div>
+	    </div>
+	  <% end %>
+	```
+	
+	Das Formular soll auch besser aussehen. Dafür nutzen wir Bootstrap Forms (http://getbootstrap.com/css/#forms). Wir ersetzen in in *app/views/tasks/_form.html.erb* die Zeile 
+	
+	```html		
+	<%= form_for(@task) do |f| %>
+	  </div>	
+	```
+	mit
+	```html		
+	<%= form_for @task, :html => { :role => "form"} do |f| %>
+	  </div>	
+	```	
+	
+	Dann ersetzen wir im unteren Teil des Formulares den Teil mit diesem Code:
+	```html		
+	  <div class="checkbox">
+	    <label>
+	      <%= f.check_box :done %> <%= f.label :done %>
+	    </label>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :name %><br>
+	    <%= f.text_field :name, class: "form-control", placeholder: "Name of Task" %>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :deadline %><br>
+	    <%= f.date_field :deadline, class: "form-control", placeholder: "Deadline of Task" %>
+	  </div>
+	  <div class="form-group">
+	    <%= f.label :duration %><br>
+	    <%= f.text_field :duration, class: "form-control", placeholder: "Duration of Task" %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "Save Task", class: "btn btn-primary" %>  <%= link_to 'Cancel', tasks_path, class: "btn btn-default" %>
+	  </div>	
+	```	
+	
+	Dann löschen wir in *app/views/tasks/new.html.erb* und  *app/views/tasks/edit.html.erb* folgende Zeile:
+	```html		
+	<%= link_to 'Back', tasks_path %>
+	```
+	
+	Das Formular sieht schon besser aus:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/form.png)
+	
+21. Es soll eine Datum-Auswahl via einem Kalender geben.
+
+	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *app/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *app/assets/stylesheets/*
+
+	Anschließend kopieren wir dieses Coffeescript Code in *app/assets/javascript/tasks.js.coffee* ans Ende:
+	```javascript	
+	$(document).on 'ready page:load', ->
+    	  $('#task_deadline').datepicker({
+    	    format: "yyyy-mm-dd"
+    	});
+	```
+	
+	Der Code macht folgendes: Nach dem der Seite geladen wurde (```$(document).on 'ready page:load'```) wird die Datums-Feld (mit der CSS-ID 'task_deadline') mit einem datepicker versehen. Nach dem man den Rails-Server neu gestartet hat, haben wir ein netten Datepicker.
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/datepicker.png)
+	
+	
+	
+	
