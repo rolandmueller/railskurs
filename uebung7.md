@@ -678,10 +678,15 @@ validates :duration, presence: true, numericality: true
 	git commit -a -m "Update Gemfile.lock fuer Heroku"
 	```	
 
-	Auf der Konsole
+	Auf der Konsole. Muss man nur einmal pro Projekt machen. 
 	```bash
 	heroku create
 	```		
+
+	Auf Heroku den Source-Code pushen:
+	```bash
+	git push heroku master
+	```
 
 	Auch auf Heroku db:migrate durchführen
 	```bash
