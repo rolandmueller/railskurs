@@ -28,8 +28,10 @@
 	5. Offene Aufgaben ("Todos") und erledigte Aufgaben ("Done") sollen in seperaten Listen dargestellt werden.
 	6. Für offenen und erledigten Aufgaben soll die Anzahl der Aufgaben und die Summe der Stunden ausgegeben werden ("2 Tasks, 3 Hours).
 	7. Die Todo-Liste soll die als letztes erzeugten Tasks oben sein. In der Done-Liste soll der als letztes abgehakten Aufgaben oben sein.
-	8. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Inde-Screen nicht verlassen.
-	8. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
+	8. Die erledigten Aufgaben sollen durchgestrichen sein.
+	9. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
+	10. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden. Genauso umgekehrt für schon erledigte Aufgaben. D.h. um eine Aufgabe als erledigt zu markieren, musss man nicht erst in den Edit-Screen, sondern muss den Index-Screen nicht verlassen.
+
 	
 	Der New- bzw. Edit-View soll ungefähr so aussehen.
 
@@ -37,8 +39,7 @@
 	
 	Es gibt einige Anforderungen an diesen Screen:
 	
-	1. Es soll eine Datum-Auswahl via einem Kalender geben.
-	2. Den Aufwand soll man mit einem numerischen Stepper verändern können.
+	1. Es soll eine Datum-Auswahl via einem Kalender (Date-Picker) geben.
 
 1.	Generieren Sie ein neues Rails Projekt todoapp
 	
@@ -508,6 +509,12 @@ validates :duration, presence: true, numericality: true
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/form.png)
 	
+	Nun können wir commiten:	
+	```bash
+	git add .
+	git commit -m "Formular mit Bootstrap"
+	```
+	
 21. Es soll eine Datum-Auswahl via einem Kalender geben.
 
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
@@ -525,6 +532,76 @@ validates :duration, presence: true, numericality: true
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/datepicker.png)
 	
+	```bash
+	git add .
+	git commit -m "Bootstrap Date-Picker integriert"
+	```
 	
+22. Die erledigten Aufgaben sollen durchgestrichen sein.
+
+	Wir fügen dieses CSS in *app/assets/stylesheets/application.css* ein
+	```css
+	.done {
+	  text-decoration:line-through;
+	}
+	```
 	
+	In *app/views/tasks/index.html.erb* übergeben wir dem Partial die zusätzliche lokale Variable *css_class*:
+	```html  
+	<%= render partial: "table", locals: {tasks: @todo, css_class: "todo"} %>
+	```
+	und
+	```html  
+	<%= render partial: "table", locals: {tasks: @done, css_class: "done"} %>
+	```
 	
+	In *app/views/tasks/_table.html.erb* ändern wir den ```<td>``` Tag in der Zeile 
+	```html       
+	<td><%= link_to task.name, edit_task_path(task) %></td>
+	```
+	zu
+	```html  	
+	<td class="<%= css_class %>">
+	```
+	D.h. die CSS-Klasse wird durch die lokale Variable *css_class* bestimmt.
+
+	![](https://dl.dropboxusercontent.com/u/10978171/durchgestrichen.png)	
+
+	```bash
+	git add .
+	git commit -m "Erledigt Aufgaben durchgestrichen"
+	```
+
+22. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden.
+
+	In *app/views/tasks/_table.html.erb* fügen wir eine erste Spalte mit einer Checkbox ein.
+
+	Nach ```<thead><tr>```fügen wir dies ein
+	```html 	
+	<th></th>
+	```
+	und nach 
+	```html 
+	<% tasks.each do |task| %>
+      	  <tr>
+	```
+	fügen wir das ein:
+	```html 	
+	<td>
+          <%= form_for task do |f| %>
+            <%= f.check_box :done, class: "checkable" %>
+          <% end %>
+        </td>
+	```
+	
+	Anschließend fügen wir diesen Coffeescript an Ende von *app/assets/javascript/tasks.js.coffee*
+	```javascript		
+	$ ->
+	  $(".checkable").click ->
+	    $(this).parents('form').submit();
+	```
+	
+	```bash
+	git add .
+	git commit -m "Checkboxen im Index-View"
+	```
