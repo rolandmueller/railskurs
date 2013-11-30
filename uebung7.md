@@ -109,7 +109,7 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
 
 	
 
-12. Es ist gute Praxis oft zu commiten. Wenn man mit anderen gleichzeitig zusammenarbeitet sollte man auch oft pushen. Das müssen wir hier nicht. Jedoch sollte man vor einem Commit und insbesondere vor einem Push sich vergewissern das alles läuft.
+12. Es ist gute Praxis oft zu commiten. Wenn man mit anderen gleichzeitig zusammenarbeitet sollte man auch oft pushen und pullen. Das müssen wir hier nicht. Jedoch sollte man vor einem Commit und insbesondere vor einem Push sich vergewissern das alles läuft.
     ```bash
     git add .
     git commit -m "Task Scaffold und Seed Daten"
