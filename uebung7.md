@@ -596,13 +596,13 @@ validates :duration, presence: true, numericality: true
 	</td>
 	```
 	
-	Anschließend fügen wir diesen Coffeescript an Ende von *app/assets/javascript/tasks.js.coffee*
+	Anschließend fügen wir dieses Coffeescript ans Ende von *app/assets/javascript/tasks.js.coffee*
 	```javascript		
 	$(document).on 'ready page:load', ->
 	  $(".checkable").click ->
 	    $(this).parents('form').submit();
 	```
-	Der Code bewerkstelligt, dass für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzugefügt wird: falls die Checkbox geklickt wird, wird die Form zu dieser Checkbox (parent) submittet.
+	Der Code fügt für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzu: falls die Checkbox geklickt wird, wird die Form zu dieser Checkbox submittet ```parents('form').sumit()```
 	
 	```bash
 	git add .
