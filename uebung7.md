@@ -14,7 +14,7 @@
 	
 	Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch (Validations-Regeln). 
 	
-	Für eine erste Gestaltung benutzen wir myBalsamique für den Mockup. Wir haben eigenlich nur zwei wesentliche Screens.  Einerseits die Liste alle Aufgaben (Das wäre die Index-Methode im Task-Controller) und andererseits ein Formular zum Einfügen (New-Methode im Controller) und Ändern (Edit-Methode im Controller) einer Aufgabe.
+	Für eine erste Gestaltung benutzen wir [myBalsamique](https://berlin.mybalsamiq.com/) für den [Mockup](http://de.wikipedia.org/wiki/Mock-up). Wir haben eigenlich nur zwei wesentliche Seiten.  Einerseits die Liste alle Aufgaben (Das wäre die Index-Methode im Task-Controller) und andererseits ein Formular zum Einfügen (New-Methode im Controller) und Ändern (Edit-Methode im Controller) einer Aufgabe.
 	
 	Der Index-View soll ungefähr so aussehen:
 	
@@ -234,7 +234,7 @@ validates :duration, presence: true, numericality: true
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	```
 
-	Ausserdem fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) nach title tag ein:
+	Ausserdem fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) nach dem Title tag ein:
 	```html	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	```
