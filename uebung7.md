@@ -234,6 +234,11 @@ validates :duration, presence: true, numericality: true
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 	```
 
+	Ausserdem fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) nach title tag ein:
+	```html	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	```
+
 	Wir löschen den Stylesheet von Scaffold
 	```bash
 	git rm app/assets/stylesheets/scaffolds.css.scss
