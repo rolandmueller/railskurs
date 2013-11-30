@@ -55,11 +55,10 @@
     git commit -m "Erstes Commit"
     ```
 3.	Erzeugen Sie bei Github ein leeres Repositorium (ohne Readme und .gitignore file) mit dem Namen todoapp
-4.	Fügen Sie das Github als Remote-Repositorium hinzu. ... Ist die Adresse Ihres Git-Repositories (Bei mir z.B.
-https://github.com/rolandmueller/railskurs.git, Sieht man rechts in Github). 
+4.	Fügen Sie das Github als Remote-Repositorium hinzu. https://github.com/GITHUB-ACCOUNT-NAME/todoapp.git ist die Adresse Ihres Git-Repositories (Sieht man rechts im Github-Repository bzw. nach erfolgreicher Erstellung des Repositoriums in der Erklärung). 
 
 	```bash
-	git remote add origin ...
+	git remote add origin https://github.com/GITHUB-ACCOUNT-NAME/todoapp.git
 	```
 5.  Pushen Sie das Projekt zu Github. Kontrollieren Sie bei Github ob es da ist.
 
