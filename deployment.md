@@ -4,7 +4,7 @@ Wir nutzen Heroku um unsere App zu deployen. (siehe auch
 https://devcenter.heroku.com/articles/getting-started-with-rails4):
 
 Voraussetzung:
-* Sie haben bereits auf Heroku https://www.heroku.com/ einen Account erstellt
+* Sie haben bereits auf Heroku https://www.heroku.com/ einen Account erstellt. Wir sollten für die Anmeldung die selbe Email wir bei Github nutzen.
 * Sie haben Heroku Toolbelt auf ihrem Rechner installiert https://toolbelt.heroku.com/
 
 Wenn ja, dann weiter:	
