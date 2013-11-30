@@ -83,4 +83,6 @@ Heroku weisst der App ein zufällig erstellten Namen zu. Den kann man wie folgt 
 heroku apps:rename mein-neuer-appname
 ```	
 
+Die URL Ihrer App ist dann http://mein-neuer-appname.herokuapp.com z.B. http://hwr-berlin-todoapp.herokuapp.com/
+
 Falls wir nun Änderungen im Projekt haben, müssen wir nur diese commiten und dann nach Heroku pushen. Falls wir neue Modelle erstellt haben oder die sonstwie Datenbank geändert haben, müssen wir danach noch ein db:migrate auf Heroku dürchführen, sonst nicht.
