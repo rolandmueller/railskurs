@@ -66,7 +66,6 @@ https://github.com/rolandmueller/railskurs.git, Sieht man rechts in Github).
     ```bash
     git push origin master
     ```
-    Falls nach dem User und dem Passwort gefragt wurde, hier wird beschriben wie man das automatisieren kann: https://help.github.com/articles/generating-ssh-keys
     
 6.  Wir generieren ein Gerüst (Scaffold) für das Modell ```Task```
 
