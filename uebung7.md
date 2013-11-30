@@ -650,3 +650,5 @@ validates :duration, presence: true, numericality: true
 	```
 	
 	Kontrollieren Sie bei Github ob es da ist.
+	
+25. Nun ist es Zeit, die Anwendung auf einen Server zu veröffentlichen (sog. Deployment). Auf gehts: https://github.com/rolandmueller/railskurs/blob/master/deployment.md 
