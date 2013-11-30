@@ -559,11 +559,10 @@ validates :duration, presence: true, numericality: true
 	```html       
 	<td><%= link_to task.name, edit_task_path(task) %></td>
 	```
-	zu
+	und fügen dort dynamisch die CSS-Klasse ein. D.h. die CSS-Klasse wird durch die lokale Variable *css_class* bestimmt:
 	```html  	
 	<td class="<%= css_class %>">
 	```
-	D.h. die CSS-Klasse wird durch die lokale Variable *css_class* bestimmt.
 
 	![](https://dl.dropboxusercontent.com/u/10978171/durchgestrichen.png)	
 
@@ -574,7 +573,7 @@ validates :duration, presence: true, numericality: true
 
 22. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden.
 
-	Wir bewerkstelligen dies, in dem in jeder Zeile der Tabelle eine Mini-Form eingefügt wird, die jeweils nur aus einer Checkbox besteht. Diese Form hat auch kein Submit-Button. Für das Submit, fügen wir etwas Javascript hinzu, dass falls die Checkbox geklickt wird, die Form submittet wird.
+	Wir bewerkstelligen dies, in dem in jeder Zeile der Tabelle eine Mini-Form eingefügt wird, die jeweils nur aus einer Checkbox besteht. Diese Form hat auch kein Submit-Button. Für das Submit, fügen wir etwas Javascript hinzu, dass falls die Checkbox geklickt wird, die Form submittet.
 	
 	In *app/views/tasks/_table.html.erb* fügen wir eine erste Spalte mit einer Checkbox ein.
 
