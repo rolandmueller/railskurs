@@ -172,7 +172,7 @@ validates :duration, presence: true, numericality: true
 	```ruby	
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
 	```
-	muss nun so lauten (*tasks_path* ist Link zur Index-Methode von Task (Mehrzahl von Task), Siehe auch http://guides.rubyonrails.org/routing.html):
+	muss nun so lauten (*tasks_url* ist URL der Index-Methode von Task (Mehrzahl von Task), Siehe auch http://guides.rubyonrails.org/routing.html):
 
 	```ruby	
 	format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
