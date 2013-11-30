@@ -574,18 +574,21 @@ validates :duration, presence: true, numericality: true
 
 22. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden.
 
+	Wir bewerkstelligen dies, in dem in jeder Zeile der Tabelle eine Mini-Form eingefügt wird, die jeweils nur aus einer Checkbox besteht. Diese Form hat auch kein Submit-Button. Für das Submit, fügen wir etwas Javascript hinzu, dass falls die Checkbox geklickt wird, die Form submittet wird.
+	
 	In *app/views/tasks/_table.html.erb* fügen wir eine erste Spalte mit einer Checkbox ein.
 
-	Nach ```<thead><tr>```fügen wir dies ein
+	Nach ```<thead><tr>```fügen wir eine weitere leere Header-Spalte für die Checkbox ein:
 	```html 	
 	<th></th>
 	```
-	und nach 
+	
+	Nach 
 	```html 
 	<% tasks.each do |task| %>
 	  <tr>
 	```
-	fügen wir das ein:
+	fügen wir die Mini-Formulare ein (alle haben die CSS-Klasse "checkabele"):
 	```html 	
 	<td>
 	  <%= form_for task do |f| %>
@@ -600,6 +603,7 @@ validates :duration, presence: true, numericality: true
 	  $(".checkable").click ->
 	    $(this).parents('form').submit();
 	```
+	Der Code bewerkstelligt, dass für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzugefügt wird: falls die Checkbox geklickt wird, wird die Form zu dieser Checkbox (parent) submittet.
 	
 	```bash
 	git add .
