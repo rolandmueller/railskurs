@@ -522,8 +522,8 @@ validates :duration, presence: true, numericality: true
 	//= require bootstrap-datepicker
 	```
 	
-	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```//= require_tree .```einfügen:
-	```javascript
+	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```*= require_tree .```einfügen:
+	```css
 	*= require datepicker
 	```	
 
