@@ -514,7 +514,7 @@ validates :duration, presence: true, numericality: true
 21. Es soll eine Datum-Auswahl via einem Kalender geben.
 
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
-	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. Das *vendor* Verzeichnis ist für Dateien und Code von anderen. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der Fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
 	
 	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```//= require_tree .``` einfügen:
 	
@@ -526,7 +526,7 @@ validates :duration, presence: true, numericality: true
 	```css
 	*= require datepicker
 	```	
-
+	
 	Anschließend kopieren wir diesen Coffeescript Code in *app/assets/javascript/tasks.js.coffee* ans Ende:
 	```javascript	
 	$(document).on 'ready page:load', ->
