@@ -403,7 +403,7 @@ validates :duration, presence: true, numericality: true
 	(<%= pluralize(@done.count, "Task") %>, <%= pluralize(@done.sum("duration"), "Hour") %>)
 	```	
 	
-	Für *count* und *sum* siehe Aggregations-Funktionen von Active-Record http://guides.rubyonrails.org/active_record_querying.html#calculations
+	Die Rails-Funktion *pluralize* beugt das Wort (Einzahl oder Mehrzahl) je nach erstem Parameter: http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-pluralize.  *count* und *sum* sind die Aggregations-Funktionen von ActiveRecord analog zu SQL: http://guides.rubyonrails.org/active_record_querying.html#calculations
 	
 	Nun sieht die Seite so aus:
 	
