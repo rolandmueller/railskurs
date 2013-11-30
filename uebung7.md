@@ -514,7 +514,18 @@ validates :duration, presence: true, numericality: true
 21. Es soll eine Datum-Auswahl via einem Kalender geben.
 
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
-	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *app/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *app/assets/stylesheets/*
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*
+
+	Dann müssen wir beide Dateien (Javascript und CSS) noch einbinden. Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```//= require_tree .```einfügen:
+	
+	```javascript
+	//= require bootstrap-datepicker
+	``
+	
+	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```//= require_tree .```einfügen:
+	```javascript
+	*= require datepicker
+	``	
 
 	Anschließend kopieren wir diesen Coffeescript Code in *app/assets/javascript/tasks.js.coffee* ans Ende:
 	```javascript	
