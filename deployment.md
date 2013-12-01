@@ -32,6 +32,10 @@ Auf der Konsole installieren wir die Gems mit bundle install jedoch ohne die Pro
 ```bash
 bundle install --without production
 ```
+Ausserdem sollten wir unsere Assets (Javascript und CSS Dateien) kompremieren und in eine Datei kompilieren:
+```bash
+rake assets:precompile
+```
 
 Da Heroku das Projekt über Git gepusht bekommt (genauso wie Github) müssen wir die Änderungen noch commiten.
 ```bash
