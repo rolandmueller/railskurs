@@ -656,12 +656,12 @@ validates :duration, presence: true, numericality: true
 	```html
 	<th><%= link_to "Deadline", tasks_path(sorting: "deadline") %>
 	  <% if params[:sorting] == "deadline" %>
-	    <span class="glyphicon glyphicon-chevron-up"></span>
+	    ^
 	  <% end %>
 	</th>
 	<th><%= link_to "Duration", tasks_path(sorting: "duration") %> 
 	  <% if params[:sorting] == "duration" %>
-	    <span class="glyphicon glyphicon-chevron-up"></span>
+	    ^
 	  <% end %> 
 	</th>
 	```
