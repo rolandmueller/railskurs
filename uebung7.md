@@ -217,14 +217,34 @@ validates :duration, presence: true, numericality: true
 
 16. Die Seite sollte mit Bootstrap ein netteres Design bekommen. Sie sollten nach jedem Schritt immer wieder den Browser refreshen (F5) um die Veränderung im Design zu sehen.
 
-	Links zu Twitter Bootstrap Stylesheets hinzufügen. In *app/views/layouts/application.html.erb* nach dem 
-	title tag einfügen:
-
-	```html
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	Laden Sie aktuelle Twitter Bootstrap herunter (Anleitung http://rvg.me/using-bootstrap-3-with-rails-4/): 
+	https://github.com/twbs/bootstrap/releases/download/v3.0.2/bootstrap-3.0.2-dist.zip 
+	
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. Das *fonts* Verzeichnis kopieren wir nach */vendor/assets/*. Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der Fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
+	
+	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```//= require turbolinks``` einfügen:
+	
+	```javascript
+	//= require bootstrap.min
 	```
+	
+	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```*= require_self```einfügen:
+	```css
+	 *= require bootstrap.min
+	 *= require bootstrap-theme.min	 
+	```
+	Dann in der selben Datei ans Ende Folgendes einfügen:
+	```css
+	@font-face {
+	  font-family: 'Glyphicons Halflings';
+	  src: url('../assets/glyphicons-halflings-regular.eot');
+	  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+	       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
+	       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+	       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+	}
+	```
+
 
 	Ausserdem fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein:
 	```html	
@@ -514,7 +534,7 @@ validates :duration, presence: true, numericality: true
 21. Es soll eine Datum-Auswahl via einem Kalender geben.
 
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
-	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der Fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
 	
 	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```//= require_tree .``` einfügen:
 	
@@ -522,7 +542,7 @@ validates :duration, presence: true, numericality: true
 	//= require bootstrap-datepicker
 	```
 	
-	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```*= require_tree .```einfügen:
+	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```*= require_self```einfügen:
 	```css
 	*= require datepicker
 	```	
