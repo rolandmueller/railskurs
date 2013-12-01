@@ -654,15 +654,19 @@ validates :duration, presence: true, numericality: true
 	
 	In *app/views/tasks/_table.html.erb* ersetzen wir die Header von Deadline und Duration mit diesem:
 	```html
-	<th><%= link_to "Deadline", tasks_path(sorting: "deadline") %>
-	  <% if params[:sorting] == "deadline" %>
-	    ^
-	  <% end %>
+	<th>
+	<% if params[:sorting] == "deadline" %>
+	  Deadline ^
+	<% else %>
+	  <%= link_to "Deadline", tasks_path(sorting: "deadline") %>
+	<% end %>
 	</th>
-	<th><%= link_to "Duration", tasks_path(sorting: "duration") %> 
-	  <% if params[:sorting] == "duration" %>
-	    ^
-	  <% end %> 
+	<th>
+	<% if params[:sorting] == "duration" %>
+	  Duration ^
+	<% else %>
+	  <%= link_to "Duration", tasks_path(sorting: "duration") %>
+	<% end %> 
 	</th>
 	```
 	
