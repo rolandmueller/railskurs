@@ -536,7 +536,7 @@ validates :duration, presence: true, numericality: true
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
 	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
 	
-	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```//= require_tree .``` einfügen:
+	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```/= require turbolinks``` einfügen:
 	
 	```javascript
 	//= require bootstrap-datepicker
