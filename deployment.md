@@ -39,7 +39,8 @@ rake assets:precompile
 
 Da Heroku das Projekt über Git gepusht bekommt (genauso wie Github) müssen wir die Änderungen noch commiten.
 ```bash
-git commit -a -m "Update Gemfile.lock fuer Heroku"
+git add .
+git commit -m "Update Gemfile.lock fuer Heroku"
 ```	
 	
 Einloggen in Heroku auf der Konsole
