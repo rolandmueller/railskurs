@@ -220,7 +220,7 @@ validates :duration, presence: true, numericality: true
 	Laden Sie aktuelle Twitter Bootstrap herunter (Anleitung http://rvg.me/using-bootstrap-3-with-rails-4/): 
 	https://github.com/twbs/bootstrap/releases/download/v3.0.2/bootstrap-3.0.2-dist.zip 
 	
-	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. Alle Dateien im *fonts* Verzeichnises kopieren wir nach */vendor/assets/*. 
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
 	
 	Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der Fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
 	
@@ -235,18 +235,6 @@ validates :duration, presence: true, numericality: true
 	 *= require bootstrap.min
 	 *= require bootstrap-theme.min	 
 	```
-	Dann in der selben Datei ans Ende Folgendes einfügen:
-	```css
-	@font-face {
-	  font-family: 'Glyphicons Halflings';
-	  src: url('../assets/glyphicons-halflings-regular.eot');
-	  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
-	       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
-	       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
-	       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-	}
-	```
-
 
 	Ausserdem fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein:
 	```html	
