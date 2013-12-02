@@ -220,7 +220,7 @@ validates :duration, presence: true, numericality: true
 	Laden Sie aktuelle Twitter Bootstrap herunter (Anleitung http://rvg.me/using-bootstrap-3-with-rails-4/): 
 	https://github.com/twbs/bootstrap/releases/download/v3.0.2/bootstrap-3.0.2-dist.zip 
 	
-	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
+	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Dateien *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
 	
 	Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der Fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
 	
@@ -275,7 +275,7 @@ validates :duration, presence: true, numericality: true
 	}
 	```
 	
-	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor dem Überschrift (vor dem h1 Tag). Ausserdem soll er als kleine grüner Button gestylt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden (http://getbootstrap.com/css/#buttons):
+	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor der Überschrift (vor dem h1 Tag). Ausserdem soll er als kleiner grüner Button dargestellt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden (http://getbootstrap.com/css/#buttons):
 	```html	
 	<%= link_to 'New Task', new_task_path, class: "btn btn-success btn-sm" %>
 	```
