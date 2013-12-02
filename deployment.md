@@ -32,7 +32,7 @@ Auf der Konsole installieren wir die Gems mit bundle install jedoch ohne die Pro
 ```bash
 bundle install --without production
 ```
-Ausserdem sollten wir unsere Assets (Javascript und CSS Dateien) kompremieren und in eine Datei kompilieren:
+Ausserdem sollten wir unsere Assets (Javascript und CSS Dateien) komprimieren und in eine Datei kompilieren:
 ```bash
 rake assets:precompile
 ```
@@ -48,7 +48,7 @@ Einloggen in Heroku auf der Konsole
 heroku login
 ```
 
-Auf der Konsole kreieren wir einen neuen Heroku Server. Muss man nur einmal pro Projekt machen. 
+Auf der Konsole kreieren wir einen neuen Heroku virtuellen Server. Muss man nur einmal pro Projekt machen. 
 ```bash
 heroku create
 ```		
