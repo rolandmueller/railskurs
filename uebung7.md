@@ -222,7 +222,7 @@ validates :duration, presence: true, numericality: true
 	
 	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Dateien *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
 	
-	Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln einbinden. Dies ist nicht für Javascripts und CSS der Fall, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
+	Das *vendor* Verzeichnis ist für Code der nicht von uns programmiert wurden ist. Wir müssen jedoch Javascript und CSS Dateien im *Vendor* Verzeichnis einzeln im sog. Manifest einbinden. Dies ist nicht für Javascripts und CSS erforderlich, die im Verzeichnis *app/assets/javascripts/* bzw. *app/assets/stylesheets/* liegen.
 	
 	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```//= require turbolinks``` einfügen:
 	
@@ -235,8 +235,10 @@ validates :duration, presence: true, numericality: true
 	 *= require bootstrap.min
 	 *= require bootstrap-theme.min	 
 	```
+	
+	Rails nutzt eine sog. Asset Pipeline http://guides.rubyonrails.org/asset_pipeline.html. Dies erlaubt für den Produktivbetrieb alle verschiedenen Javascript-Dateien bzw. CSS-Dateien in jeweils eine Javascript und eine CSS Datei zu kombinieren und diese zu kompremieren. Dies verringert die Größe dieser Dateien erheblich und dadurch auch Ladezeit für den Browser.
 
-	Ausserdem fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein:
+	Anschließend fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein:
 	```html	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	```
