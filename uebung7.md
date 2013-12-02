@@ -114,7 +114,7 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
     git commit -m "Task Scaffold und Seed Daten"
     ```	
 
-13. Starten wir mit den Anforderungen zur Geschäftslogik und den Validierungsregeln: Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch. Dafür fügen wir folgendes in die ```Task``` Model-Klasse (in *app/models/task.rb*):
+13. Starten wir mit den Anforderungen zur Geschäftslogik und den Validierungsregeln: Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch. Dies können wir mit ActiveRecords Validations gewährleisten: http://edgeguides.rubyonrails.org/active_record_validations.html Dafür fügen wir folgendes in die ```Task``` Model-Klasse (in *app/models/task.rb*):
 ```ruby
 validates :name, presence: true
 validates :deadline, presence: true
@@ -134,7 +134,7 @@ validates :duration, presence: true, numericality: true
 
 	Man hätte alternativ auch ```git commit -am "Validation-Regeln"``` schreiben können. Das ```-a``` im *commit* steht für *Add*.  Wir brauchen kein ```git add . ``` schreiben, weil keine neuen Dateien erzeugt wurden. Dies reicht aus, wenn schon bestehende Daten verändert werden. Ansonsten muss man mit ```git add .``` die Dateien erst hinzufügen. 
 
-14. Die Index-Seite sollte die Home-Page sein. In *config/routes.rb* verändern wir die auskommentierte Zeile 
+14. Die Index-Seite sollte die Home-Page sein. Dazu müssen wir die Routes ändern ( http://guides.rubyonrails.org/routing.html). In *config/routes.rb* verändern wir die auskommentierte Zeile 
 	```ruby
 	# You can have the root of your site routed with "root"
 	# root 'welcome#index'
@@ -153,7 +153,9 @@ validates :duration, presence: true, numericality: true
 
 15. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show). D.h. wir können einiges löschen.
 
-	Im Task-Controller (*app/controllers/task_controller.rb*) kann die Show-Methode gelöscht werden und die before-action Zeile
+	Im Task-Controller (*app/controllers/task_controller.rb*) kann die Show-Methode gelöscht werden.
+	
+	Auch im Task-Controller soll die before-action Zeile
 	```ruby
 	before_action :set_task, only: [:show, :edit, :update, :destroy]
 	```
@@ -162,7 +164,7 @@ validates :duration, presence: true, numericality: true
 	before_action :set_task, only: [:edit, :update, :destroy]
 	```
 	
-	Wir brauchen auch keine Route zur Show-Methode mehr. In *config/routes.rb* kann die zweite Zeile wie folgt verändert werden:
+	Wir brauchen auch kein Route zur Show-Methode mehr. In *config/routes.rb* kann die zweite Zeile wie folgt verändert werden:
 	```ruby	
 	  resources :tasks, except: [:show]
 	```
@@ -217,7 +219,7 @@ validates :duration, presence: true, numericality: true
 
 16. Die Seite sollte mit Bootstrap ein netteres Design bekommen. Sie sollten nach jedem Schritt immer wieder den Browser refreshen (F5) um die Veränderung im Design zu sehen.
 
-	Laden Sie aktuelle Twitter Bootstrap herunter (Anleitung http://rvg.me/using-bootstrap-3-with-rails-4/): 
+	Laden Sie aktuelle Twitter Bootstrap herunter: 
 	https://github.com/twbs/bootstrap/releases/download/v3.0.2/bootstrap-3.0.2-dist.zip 
 	
 	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap.min.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Dateien *bootstrap.min.css* und *bootstrap-theme.min.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
@@ -472,7 +474,7 @@ validates :duration, presence: true, numericality: true
 	  <% end %>
 	```
 	
-	Das Formular soll auch besser aussehen. Dafür nutzen wir Bootstrap Forms (http://getbootstrap.com/css/#forms). Wir ersetzen in in *app/views/tasks/_form.html.erb* die Zeile 
+	Das Formular soll auch besser aussehen. Dafür nutzen wir Bootstrap Forms (http://getbootstrap.com/css/#forms). Wir ersetzen in *app/views/tasks/_form.html.erb* die Zeile 
 	
 	```html		
 	<%= form_for(@task) do |f| %>
@@ -526,7 +528,7 @@ validates :duration, presence: true, numericality: true
 21. Es soll eine Datum-Auswahl via einem Kalender geben.
 
 	Wir laden uns den Bootstrap 3 Datepicker runter: http://eternicode.github.io/bootstrap-datepicker/
-	Die Zip Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
+	Die Zip-Datei entpacken wir und kopieren die Datei *bootstrap-datepicker.js* im *js* Ordner nach *vendor/assets/javascripts/* und die Datei *datepicker.css* im *css* Ordner nach *vendor/assets/stylesheets/*. 
 	
 	Für das Javascript: In *app/assets/javascripts/application.js* folgende Zeile vor ```/= require turbolinks``` einfügen:
 	
@@ -534,7 +536,7 @@ validates :duration, presence: true, numericality: true
 	//= require bootstrap-datepicker
 	```
 	
-	 Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```*= require_self```einfügen:
+	Für das CSS: In *app/assets/stylesheets/application.css* folgende Zeile vor ```*= require_self```einfügen:
 	```css
 	*= require datepicker
 	```	
@@ -548,7 +550,7 @@ validates :duration, presence: true, numericality: true
 	  });
 	```
 	
-	Der Code macht folgendes: Nach dem der Seite geladen wurde (```$(document).on 'ready page:load'```) wird die Datums-Feld (mit der CSS-ID 'task_deadline') mit einem datepicker versehen. Coffeescript vereinfacht die Javascript Programmierung und wird zu Javascript kompiliert (siehe auch http://coffeescript.org/, http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html oder http://railscasts.com/episodes/267-coffeescript-basics für mehr Informationen). Nach dem man den Rails-Server neu gestartet hat, haben wir ein netten Datepicker.
+	Der Code macht folgendes: Nach dem der Seite geladen wurde (```$(document).on 'ready page:load'```) wird die Datums-Feld (mit der CSS-ID task 'task_deadline') mit einem datepicker versehen. *$('#task_deadline')* heisst, selektiere das HTML-Element mit der ID task_deadline. Das *$* ist Teil von jQuery, einer JavaScript Bibliothek: http://de.wikipedia.org/wiki/JQuery . Damit selektiert man bestimmte Elemente im HTML und manipuliert diese mit Javascript.  Coffeescript vereinfacht die Javascript Programmierung und wird zu Javascript kompiliert (siehe auch http://de.wikipedia.org/wiki/CoffeeScript, http://coffeescript.org/, http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html oder http://railscasts.com/episodes/267-coffeescript-basics für mehr Informationen). Nach dem man den Rails-Server stoppt und neu gestartet hat, haben wir einen netten Datepicker.
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/datepicker.png)
 	
@@ -565,6 +567,8 @@ validates :duration, presence: true, numericality: true
 	  text-decoration:line-through;
 	}
 	```
+	D.h. alle HTML-Elemente mit der CSS-Klasse 'done' sollen durchgestrichen werden.
+	
 	
 	In *app/views/tasks/index.html.erb* übergeben wir dem Partial die zusätzliche lokale Variable *css_class*:
 	```html  
@@ -593,7 +597,7 @@ validates :duration, presence: true, numericality: true
 
 22. Wenn man die Checkbox einer unerledigten Aufgabe anklickt, soll die Aufgabe von der Todo zur Done Liste verschoben werden.
 
-	Wir bewerkstelligen dies, in dem in jeder Zeile der Tabelle eine Mini-Form eingefügt wird, die jeweils nur aus einer Checkbox besteht. Diese Form hat auch kein Submit-Button. Für das Submit, fügen wir etwas Javascript hinzu, dass falls die Checkbox geklickt wird, die Form submittet.
+	Wir bewerkstelligen dies, in dem in jeder Zeile der Tabelle ein Mini-Formular eingefügt wird, das jeweils nur aus einer Checkbox besteht. Diese Form hat auch kein Submit-Button. Für das Submit, fügen wir etwas Javascript hinzu, dass falls die Checkbox geklickt wird, die Form submittet.
 	
 	In *app/views/tasks/_table.html.erb* fügen wir eine erste Spalte mit einer Checkbox ein.
 
@@ -622,7 +626,7 @@ validates :duration, presence: true, numericality: true
 	  $(".checkable").click ->
 	    $(this).parents('form').submit();
 	```
-	Der Code fügt für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzu: falls die Checkbox geklickt wird, wird die Form zu dieser Checkbox submittet ```parents('form').sumit()```
+	Der Code fügt für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzu: falls die Checkbox geklickt wird ```$(".checkable").click```), wird die Form zu dieser Checkbox submittet ```$(this).parents('form').sumit()```
 	
 	```bash
 	git add .
@@ -648,7 +652,7 @@ validates :duration, presence: true, numericality: true
 	<% end %> 
 	</th>
 	```
-  	Als erstes wird geprüft ob ein parameter in der Anfrage enthalten ist. Parameter vom Browser (z.B. localhost:3000/localhost?sorting=deadline) werden von Rails im *params* Hash bereitgestellt (http://guides.rubyonrails.org/action_controller_overview.html#parameters). Dann wird ein Link auf die Index-Methode gesetzt (Route tasks_path). Der Link hat einen Paramater: sorting=deadline bzw. sorting=duration.
+  	Als erstes wird geprüft ob ein Parameter in der Anfrage enthalten ist. Parameter vom Browser (z.B. localhost:3000/localhost?sorting=deadline) werden von Rails im *params* Hash bereitgestellt (http://guides.rubyonrails.org/action_controller_overview.html#parameters). Dann wird ein Link auf die Index-Methode gesetzt (Route tasks_path). Der Link hat einen Paramater: sorting=deadline bzw. sorting=duration.
 	
 	In der Index-Methode im Task-Controller ersetzt man den Code mit folgendem:
 	```ruby
