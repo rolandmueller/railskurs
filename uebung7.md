@@ -628,17 +628,6 @@ validates :duration, presence: true, numericality: true
 	```
 
 23. Man soll die Aufgaben nach Aufwand (duration) und Deadline sortieren können.
-
-	In der Index-Methode im Task-Controller ersetzt man den Code mit folgendem:
-	```ruby
-	if params[:sorting]
-	  @done = Task.where(done: true).order(params[:sorting] => :desc)
-	  @todo = Task.where(done: false).order(params[:sorting] => :desc)
-	else
-	  @done = Task.where(done: true).order(created_at: :desc)
-	  @todo = Task.where(done: false).order(updated_at: :desc)
-	end
-	```
 	
 	In *app/views/tasks/_table.html.erb* ersetzen wir die Header von Deadline und Duration mit diesem:
 	```html
@@ -657,6 +646,19 @@ validates :duration, presence: true, numericality: true
 	<% end %> 
 	</th>
 	```
+  	Als erstes wird geprüft ob ein parameter in der Anfrage enthalten ist. Parameter vom Browser (z.B. localhost:3000/localhost?sorting=deadline) werden von Rails im *params* Hash bereitgestellt (http://guides.rubyonrails.org/action_controller_overview.html#parameters). Dann wird ein Link auf die Index-Methode gesetzt (Route tasks_path). Der Link hat einen Paramater: sorting=deadline bzw. sorting=duration.
+	
+	In der Index-Methode im Task-Controller ersetzt man den Code mit folgendem:
+	```ruby
+	if params[:sorting]
+	  @done = Task.where(done: true).order(params[:sorting] => :desc)
+	  @todo = Task.where(done: false).order(params[:sorting] => :desc)
+	else
+	  @done = Task.where(done: true).order(created_at: :desc)
+	  @todo = Task.where(done: false).order(updated_at: :desc)
+	end
+	```
+	Je nach dem ob der Sorting-Parameter gesetzt wurde oder nicht wird dieser für das Sortieren genutzt.
 	
 	```bash
 	git add .
