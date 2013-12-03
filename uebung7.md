@@ -21,7 +21,7 @@
 	![](https://dl.dropboxusercontent.com/u/10978171/index.png)
 	
 	Es gibt einige Anforderungen an diesen Screen:
-	1. Die Seite sollte die Home-Page sein, also bei der Eingabe der Haupt-URL erscheinen. Also während der Entwicklung direkt unter httt://localhost:3000/
+	1. Die Seite sollte die Home-Page sein, also bei der Eingabe der Haupt-URL erscheinen. Also während der Entwicklung direkt unter http://localhost:3000/
 	2. Wir brauchen keine Seite für die einzelne Darstellung von Aufgaben (Show-Methode im Task-Controller). Die Liste der Aufgaben reicht völlig aus. D.h. wir müssen die Show-Methode im Controller und die Show-Views entfernen.
 	3. Die Seite sollte mit Bootstrap ein netteres Design bekommen.
 	4. Man soll die Aufgabe ändern können (Link zur Edit-Methode im Controller), wenn man auf den Namen der Aufgabe klickt. Es soll kein extra Edit-Link oder Edit-Button angezeigt werden.
