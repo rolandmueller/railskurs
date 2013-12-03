@@ -240,7 +240,7 @@ validates :duration, presence: true, numericality: true
 	
 	Rails nutzt eine sog. Asset Pipeline http://guides.rubyonrails.org/asset_pipeline.html. Dies erlaubt für den Produktivbetrieb alle verschiedenen Javascript-Dateien bzw. CSS-Dateien in jeweils eine Javascript und eine CSS Datei zu kombinieren und diese zu kompremieren. Dies verringert die Größe dieser Dateien erheblich und dadurch auch die Ladezeit für den Browser.
 
-	Anschließend fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein:
+	Anschließend fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein (in *app/views/layouts/application.html.erb*):
 	```html	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	```
@@ -279,7 +279,7 @@ validates :duration, presence: true, numericality: true
 	}
 	```
 	
-	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor der Überschrift (vor dem h1 Tag). Ausserdem soll er als kleiner grüner Button dargestellt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden (http://getbootstrap.com/css/#buttons):
+	Den Link für "New Task" in *app/views/tasks/index.html.erb* verschieben wir von ganz am Ende der Seite nach  nach oben vor der Überschrift (vor dem h1 Tag). Ausserdem soll er als kleiner grüner Button dargestellt werden. D.h. es müssen die Bootstrap CSS-Klassen btn, btn-success und btn-sm zugewiesen werden (http://getbootstrap.com/css/#buttons) (in *app/views/tasks/index.html.erb*):
 	```html	
 	<%= link_to 'New Task', new_task_path, class: "btn btn-success btn-sm" %>
 	```
