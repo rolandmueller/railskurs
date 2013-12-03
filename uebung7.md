@@ -189,7 +189,7 @@ validates :duration, presence: true, numericality: true
         format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
 	```	
 	
-	Nun sollte man auch die Links zur Show-Methode im *app/views/index.html.erb* löschen. Folgende Zeile kann weg:
+	Nun sollte man auch die Links zur Show-Methode im *app/views/tasks/index.html.erb* löschen. Folgende Zeile kann weg:
 	```html
 	 <td><%= link_to 'Show', task %></td>
 	```
