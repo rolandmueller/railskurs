@@ -456,7 +456,7 @@ validates :duration, presence: true, numericality: true
 20. New bzw. Edit-View soll besser aussehen. 
 
 	Für die Fehlermeldungen nehmen wir ein Pannel mit Überschrift von Bootstrap
-	http://getbootstrap.com/components/#panels. Wir ersetzen den Fehler-Code mit folgendem:
+	http://getbootstrap.com/components/#panels. Wir ersetzen den Fehler-Code in *app/views/tasks/_form.html.erb* mit folgendem:
 	
 	```html	
 	  <% if @task.errors.any? %>
