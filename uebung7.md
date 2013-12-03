@@ -114,7 +114,7 @@ Task.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, durati
     git commit -m "Task Scaffold und Seed Daten"
     ```	
 
-13. Starten wir mit den Anforderungen zur Geschäftslogik und den Validierungsregeln: Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch. Dies können wir mit ActiveRecords Validations gewährleisten: http://edgeguides.rubyonrails.org/active_record_validations.html Dafür fügen wir folgendes in die ```Task``` Model-Klasse (in *app/models/task.rb*):
+13. Starten wir mit den Anforderungen zur Geschäftslogik und den Validierungsregeln: Es sollen keine Aufgaben ohne einen Namen, eine Deadline und eine Dauer geben und Dauer ist numerisch. Dies können wir mit ActiveRecords Validations gewährleisten: http://edgeguides.rubyonrails.org/active_record_validations.html Dafür fügen wir folgendes in die ```Task``` Model-Klasse (in *app/models/task.rb*). Um in Sublime schnell Dateien zu öffnen können Sie *Strg + P* (Mac: *cmd + P*) drücken. Wenn man z.B. *task* erscheint schon nach dem zweiten Buchstaben das Model und mit der  *Return* Taste kann man es öffnen:
 ```ruby
 validates :name, presence: true
 validates :deadline, presence: true
