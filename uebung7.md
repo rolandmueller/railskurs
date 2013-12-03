@@ -205,7 +205,7 @@ validates :duration, presence: true, numericality: true
 	git rm app/views/tasks/show.html.erb
 	```
 	
-	In der Datei *app/views/tasks/index.html.erb* sollte man jedoch noch die Meldung, die vorher im Show-View war, einfügen:
+	In der Datei *app/views/tasks/index.html.erb* sollte man jedoch noch die Meldung, die vorher im Show-View war, einfügen (vor dem ```<h1>```Tag):
 	
 	```html	
 	<p id="notice"><%= notice %></p>
