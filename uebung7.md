@@ -238,7 +238,7 @@ validates :duration, presence: true, numericality: true
 	 *= require bootstrap-theme.min	 
 	```
 	
-	Rails nutzt eine sog. Asset Pipeline http://guides.rubyonrails.org/asset_pipeline.html. Dies erlaubt für den Produktivbetrieb alle verschiedenen Javascript-Dateien bzw. CSS-Dateien in jeweils eine Javascript und eine CSS Datei zu kombinieren und diese zu kompremieren. Dies verringert die Größe dieser Dateien erheblich und dadurch auch Ladezeit für den Browser.
+	Rails nutzt eine sog. Asset Pipeline http://guides.rubyonrails.org/asset_pipeline.html. Dies erlaubt für den Produktivbetrieb alle verschiedenen Javascript-Dateien bzw. CSS-Dateien in jeweils eine Javascript und eine CSS Datei zu kombinieren und diese zu kompremieren. Dies verringert die Größe dieser Dateien erheblich und dadurch auch die Ladezeit für den Browser.
 
 	Anschließend fügen wir noch für mobile Geräte ein [Viewport](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) vor dem Title tag ein:
 	```html	
