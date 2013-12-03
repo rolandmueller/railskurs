@@ -169,7 +169,7 @@ validates :duration, presence: true, numericality: true
 	  resources :tasks, except: [:show]
 	```
 	
-	Falls eine Aufgabe erfolgreich kreiert wurde (Create-Methode) bzw. verändert wurde (Update-Methode) wird normalerweise auf die Show-Methode umgeleitet (Redirect). Das müssen wir ändern. Nun soll auf die Index-Methode umgeleitet werden. Diese Zeile
+	Falls eine Aufgabe erfolgreich kreiert wurde (Create-Methode) bzw. verändert wurde (Update-Methode) wird normalerweise auf die Show-Methode umgeleitet (Redirect). Das müssen wir ändern. Nun soll auf die Index-Methode umgeleitet werden. Im Task-Controller (*app/controllers/task_controller.rb*):  Diese Zeile
 	```ruby	
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
 	```
