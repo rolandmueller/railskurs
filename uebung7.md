@@ -82,6 +82,7 @@
 
 10. Erzeugen Sie ein paar Aufgaben mithilfe einer Seed-Datei. Kopiere diese Daten in der Datei *db/seeds.rb*
 ```ruby
+# ruby encoding: utf-8
 Task.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false)
 Task.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
 Task.create(name: "Rails for Zombies", deadline: Date.today - 2.days, duration: 3, done: false)
