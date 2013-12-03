@@ -54,7 +54,7 @@
     git add .
     git commit -m "Erstes Commit"
     ```
-3.	Erzeugen Sie bei Github ein leeres Repositorium (ohne Readme und .gitignore file) mit dem Namen todoapp
+3.	Erzeugen Sie bei Github ein leeres Repositorium (ohne Readme und .gitignore file) mit dem Namen todoapp. Fügen Sie jedoch in *Description* eine kurze Beschreibung ein, etwa *Todo-Anwendung mit Ruby on Rails*
 4.	Fügen Sie das Github als Remote-Repositorium hinzu. https://github.com/GITHUB-ACCOUNT-NAME/todoapp.git ist die Adresse Ihres Git-Repositories (Sieht man rechts im Github-Repository bzw. nach erfolgreicher Erstellung des Repositoriums in der Erklärung). 
 
 	```bash
