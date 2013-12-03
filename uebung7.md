@@ -627,7 +627,7 @@ validates :duration, presence: true, numericality: true
 	  $(".checkable").click ->
 	    $(this).parents('form').submit();
 	```
-	Der Code fügt für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzu: falls die Checkbox geklickt wird ```$(".checkable").click```), wird die Form zu dieser Checkbox submittet ```$(this).parents('form').sumit()```
+	Der Code fügt für alle Elemente mit der CSS-Klasse "checkable" (unsere Checkboxen) folgendes Verhalten hinzu: falls die Checkbox geklickt wird ```$(".checkable").click```), wird die Form zu dieser Checkbox submittet (```$(this).parents('form').sumit()```).
 	
 	```bash
 	git add .
