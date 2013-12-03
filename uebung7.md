@@ -413,7 +413,7 @@ validates :duration, presence: true, numericality: true
 	(<%= pluralize(@todo.count, "Task") %>, <%= pluralize(@todo.sum("duration"), "Hour") %>)
 	```
 	
-	Fügen Sie folgendes hinter Todo in den h2 Tag ein
+	Fügen Sie folgendes hinter Done in den h2 Tag ein
 	```html	
 	(<%= pluralize(@done.count, "Task") %>, <%= pluralize(@done.sum("duration"), "Hour") %>)
 	```	
