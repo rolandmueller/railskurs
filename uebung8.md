@@ -112,9 +112,9 @@
 
    ```ruby  
    test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:tasks)
+     get :index
+     assert_response :success
+     assert_not_nil assigns(:tasks)
    end
    ```
    
@@ -122,10 +122,10 @@
    
    ```ruby  
    test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:done)
-    assert_not_nil assigns(:todo)
+     get :index
+     assert_response :success
+     assert_not_nil assigns(:done)
+     assert_not_nil assigns(:todo)
    end
    ```
    
