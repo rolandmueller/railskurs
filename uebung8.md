@@ -4,6 +4,7 @@
     * Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen
     * Hinzufügen von Functional-Tests, die den Controller testen
     * Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
+    * Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
     * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden
     * Man soll sich als User registrieren und  ein und ausloggen können (Authentifizierung).
     * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
@@ -209,7 +210,7 @@
     
 4. Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
 
-   FÜgen wir als ein Test in *app/tests/models/task_test.rb* hinzu
+   Wir fÜgen als ein paar Tests in *app/tests/models/task_test.rb* hinzu
    ```ruby
    test "is delayed" do
      task = Task.new
@@ -272,5 +273,76 @@
     git add .
     git commit -m "is_delayed? Methode in Task eingefügt "
     ```
-    
+5.  Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
+   Wir fÜgen als ein paar Tests in *app/tests/models/task_test.rb* hinzu
+   	```ruby
+	test "destance in days from today" do
+	  task = Task.new
+	  task.deadline = Date.today
+	  assert_equal 0, task.distance_from_now_in_days
+	end
+	
+	test "destance in days from yesterday" do
+	  task = Task.new
+	  task.deadline = Date.today - 1
+	  assert_equal -1, task.distance_from_now_in_days
+	end
+	
+	test "destance in days from tomorrow" do
+	  task = Task.new
+	  task.deadline = Date.today + 1
+	  assert_equal 1, task.distance_from_now_in_days
+	end 
+   	```
+	Wenn man auf der Konsole
+	```bash
+	rake test:units
+	```	
+	eingibt erhält man 3 Fehler, weil *distance_from_now_in_day* noch nicht definiert ist:
+	```bash
+	EEE.....
+	
+	8 tests, 5 assertions, 0 failures, 3 errors, 0 skips
+	```
+
+	Wenn man in *app/models/task.rb* die Funktion *distance_from_now_in_days* einfügt
+	```ruby
+	def distance_from_now_in_days
+	(self.deadline - Date.today).to_i		
+	end
+	```
+	
+	laufen alle Unit-Tests:
+	```bash
+	rake test:units
+	.......
+	
+	8 tests, 8 assertions, 0 failures, 0 errors, 0 skips
+	```   
+	
+	und alle Test zusammen auch:
+	```bash
+	rake test
+	..............
+	
+	Finished tests in 0.165166s, 84.7632 tests/s, 115.0358 assertions/s.
+	
+	14 tests, 19 assertions, 0 failures, 0 errors, 0 skips
+	```   
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "distance_from_now_in_days Methode in Task eingefügt "
+	```   
+5.  Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden. In *app/views/tasks/_table.html.erb* kann folgende Zeile
+	```ruby
+	<td><%= task.deadline %></td>
+	```  
+	
+	wie folgt geändert werden:
+	```ruby
+	<td><%= task.deadline %></td>
+	```  
 
