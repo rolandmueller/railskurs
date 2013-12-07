@@ -343,6 +343,13 @@
 	
 	wie folgt geändert werden:
 	```ruby
-	<td><%= task.deadline %></td>
+        <td>
+          <%= "in " if !task.is_delayed? %> 
+          <%= pluralize(task.distance_from_now_in_days.abs, "Day")  %>
+          <%= " ago " if task.is_delayed? %> 
+        </td>
 	```  
+	Man kann die if-Abfrage auch nach einem Statement schreiben. *abs* steht für Absolut-Betrag der Zahl. Die *pluralize* Funktion von Rails kennen wir schon von der letzten Aufgabe. 
+
+	![](https://dl.dropboxusercontent.com/u/10978171/index-mit-days.png)
 
