@@ -408,10 +408,54 @@
 
 	```html	
 	<%= render 'layouts/messages' %>
-	<% end %>
 	```
 	
 	
-	Als letztes brauchen wir noch Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. W
+	Wir brauchen wir noch Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. 
 	
+	Anschließend fügen wir die Login/Registrations-links in die Navigations-Bar. Und zwar nach dem *Todo-App* Logo, also nach
+	
+	```html
+	<div class="navbar-header">
+	  <%= link_to "Todo-App", tasks_path, :class => "navbar-brand" %>
+	</div>
+	```
+	fügen folgendes ein:
+	```htm
+	<ul class="nav navbar-nav navbar-right">
+	<% if user_signed_in? %>
+	  <li>
+	    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+	  </li>
+	<% else %>
+	  <li>
+	    <%= link_to 'Login', new_user_session_path %>
+	  </li>
+	<% end %>
+	<% if user_signed_in? %>
+	  <li>
+	    <%= link_to 'Edit account', edit_user_registration_path %>
+	  </li>
+	<% else %>
+	  <li>
+	    <%= link_to 'Sign up', new_user_registration_path %>
+	  </li>
+	<% end %>
+	</ul>
+	```
+	
+	Das Navigations-Parial binden wir wieder in der Datei *app/views/layouts/application.html.rb* vor ```<%= render 'layouts/messages' %>``` wie folgt ein:
+
+	```html	
+	<%= render 'layouts/navigation' %>
+	```
+	Nun müssen wir noch ein Devise-Model für die User generieren. Auf der Konsole:
+	```bash
+	rails generate devise user
+	```
+	
+	Und die User-Tabelle in der Datenbank erzeugen:
+	```bash
+	rake db:migrate
+	```
 	
