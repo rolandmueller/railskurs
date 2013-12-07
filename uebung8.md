@@ -469,7 +469,7 @@
 	include Devise::TestHelpers
 	```
 	
-	In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil mit:
+	In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil ```one {} two {}``` mit:
 	
 	```javascript	
 	one:
@@ -481,7 +481,7 @@
 	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 	```
 	
-	Alle Test kaufen noch:
+	Alle Test laufen noch:
 	```bash
 	rake test
 	..............
