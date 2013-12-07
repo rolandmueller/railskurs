@@ -459,3 +459,5 @@
 	rake db:migrate
 	```
 	
+	Nun muss man den Server noch mal stoppen und starten. Anschließend kann man sich einloggen.
+	
