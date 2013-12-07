@@ -185,7 +185,7 @@
    6 tests, 11 assertions, 0 failures, 0 errors, 0 skips
    ```
    
-   Alle Functional-Test laufen. Wenn wir alle Test durchlaufen lass wolle (Functional und Unit) geben wir folgendes in der Konsole ein:
+   Alle Functional-Test laufen. Wenn wir alle Test durchlaufen lassen wollen (Functional und Unit) geben wir folgendes in der Konsole ein:
 
    ```bash
    rake test
