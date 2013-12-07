@@ -382,7 +382,7 @@
 	
 	Die zweite Anmerkung "2. Ensure you have defined root_url to *something* in your config/routes.rb." haben wir schon erledigt, da wir schon ein Route zum Root (Home-Page) haben.
 	
-	Als nächstes ändern wir die Flash-Nachrichten, für das erfolgreiche oder nicht erfolgreiche Einloggen. Folgenden Code in *app/views/tasks/index.html.rb* schneiden wir aus und fügen ihn in *app/views/layouts/application.html.rb* vor ```<div class="container">``` ein
+	Als nächstes ändern wir die Flash-Nachrichten, für das erfolgreiche oder nicht erfolgreiche Einloggen. Wir erstellen ein Partial *_messages.html.erb* im Verzeichnis *app/views/layout/*. Folgenden Code in *app/views/tasks/index.html.rb* schneiden wir aus und fügen ihn in *app/views/layouts/_messages.html.rb* ein: 
 	
 	```html	
 	<% if notice %> 
@@ -403,5 +403,15 @@
 	  </p>
 	<% end %>
 	```	
-		
+	
+	Wir binden das Partial in der Datei *app/views/layouts/application.html.rb* vor dem tag ```<div class="container">``` wie folgt ein:
+
+	```html	
+	<%= render 'layouts/messages' %>
+	<% end %>
+	```
+	
+	
+	Als letztes brauchen wir noch Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. W
+	
 	
