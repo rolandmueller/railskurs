@@ -201,7 +201,7 @@
    
    ```bash
     git add .
-    git commit -m "Unit und Functional Test angepasst"
+    git commit -m "Unit und Functional Tests angepasst"
     ```	
     
     
