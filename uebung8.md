@@ -404,7 +404,7 @@
 	<% end %>
 	```	
 	
-	Wir binden das Partial in der Datei *app/views/layouts/application.html.rb* vor dem tag ```<div class="container">``` wie folgt ein:
+	Wir binden das Partial in der Datei *app/views/layouts/application.html.rb* nach dem tag ```<div class="container">``` (vor ```<%= yield %>```) wie folgt ein:
 
 	```html	
 	<%= render 'layouts/messages' %>
@@ -444,7 +444,7 @@
 	</ul>
 	```
 	
-	Das Navigations-Parial binden wir wieder in der Datei *app/views/layouts/application.html.rb* vor ```<%= render 'layouts/messages' %>``` wie folgt ein:
+	Das Navigations-Parial binden wir wieder in der Datei *app/views/layouts/application.html.rb* vor ```<div class="container">``` wie folgt ein:
 
 	```html	
 	<%= render 'layouts/navigation' %>
