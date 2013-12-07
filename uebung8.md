@@ -462,3 +462,38 @@
 	Nun muss man den Server noch mal stoppen und starten. Anschließend kann man sich einloggen. Einmal bitte alles manuell ausprobieren (registrieren, login, logout).
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/login.png)
+	
+	Als nächstes müssen wir noch zwei Sachen machen, damit auch die Test laufen. In *test/controllers/task_controller.rb* fügen wir nach ```class TasksControllerTest < ActionController::TestCase```folgendes ein:
+	
+	```ruby
+	include Devise::TestHelpers
+	``
+	
+	In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil mit:
+	
+	```javascript	
+	one:
+	  email: 'some@user.com'
+	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+	
+	two:
+	  email: 'test@test.com'
+	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+	```
+	
+	Alle Test kaufen noch:
+	```bash
+	rake test
+	..............
+	
+	Finished tests in 0.165166s, 84.7632 tests/s, 115.0358 assertions/s.
+	
+	14 tests, 19 assertions, 0 failures, 0 errors, 0 skips
+	```   
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "Authentifizierung mit Devise"
+	```
