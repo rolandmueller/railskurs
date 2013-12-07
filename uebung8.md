@@ -5,8 +5,10 @@
     * Hinzufügen von Functional-Tests, die den Controller testen
     * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden
     * Man soll sich als User registrieren und  ein und ausloggen können (Authentifizierung).
+    * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
     * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
+    * Im Index-Screen soll für jeden Task der User angezeigt werden, der den Task erstellt hat.
     * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
     * Es soll eine Projekt-Seite geben, wo man Projekte anlegen, umbennen und löschen kann. Projekte kann man nur erstellen, wenn man eingeloggt ist.
     * Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
