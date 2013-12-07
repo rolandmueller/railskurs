@@ -467,7 +467,7 @@
 	
 	```ruby
 	include Devise::TestHelpers
-	``
+	```
 	
 	In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil mit:
 	
