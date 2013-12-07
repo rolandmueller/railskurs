@@ -32,7 +32,7 @@
    end
    ```  
    
-   Das Ausrufezeichen (!) steht für nicht. Also gibt task.save hier falsch zurück und kann die Aufgabe wegen der Validations-Regel nicht speichern. Das was wir erwartet (assert) haben.
+   Das Ausrufezeichen (!) steht für nicht. Also gibt task.save hier falsch zurück und kann die Aufgabe wegen der Validations-Regel nicht speichern. Das ist dass, was wir erwartet (assert) haben.
    
    ```bash
    rake test:units
