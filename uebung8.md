@@ -397,7 +397,7 @@
 	
 	```html	
 	<% if alert %> 
-	  <p id="notice" class="alert alert-warning alert-dismissable fade in" data-dismiss="alert" aria-hidden="true">
+	  <p id="notice" class="alert alert-danger alert-dismissable fade in" data-dismiss="alert" aria-hidden="true">
 	    <%= alert %>
 	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	  </p>
