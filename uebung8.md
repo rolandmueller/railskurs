@@ -3,6 +3,7 @@
 1. Zusätzliche Anforderungen
     * Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen
     * Hinzufügen von Functional-Tests, die den Controller testen
+    * Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
     * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden
     * Man soll sich als User registrieren und  ein und ausloggen können (Authentifizierung).
     * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
@@ -26,7 +27,7 @@
    ```
    Unser erster Test in *app/tests/models/task_test.rb*
    ```ruby
-   test "Task kann nicht ohne Name gespeichert werden" do
+   test "task can not be saved without name" do
      task = Task.new
      assert !task.save
    end
@@ -45,7 +46,7 @@
    
    Wir fügen ein zweiten Test in *app/tests/models/task_test.rb* ein
    ```ruby
-   test "Task kann mit Name, Deadline und Duraton gespeichert werden" do
+   test "task can be saved with name, deadline and duraton" do
      task = Task.new
      task.name = "Eine Aufgabe"
      task.deadline = Date.today + 7.days
@@ -206,7 +207,70 @@
     git commit -m "Unit und Functional Tests angepasst"
     ```	
     
-    
-   
+4. Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
 
+   FÜgen wir als ein Test in *app/tests/models/task_test.rb* hinzu
+   ```ruby
+   test "is delayed" do
+     task = Task.new
+     task.deadline = Date.today - 10.days
+     assert task.is_delayed?
+   end
+   test "is not delayed" do
+     task = Task.new
+     task.deadline = Date.today + 10.days
+     assert !task.is_delayed?
+   end
+   test "is not delayed if deadline is today" do
+     task = Task.new
+     task.deadline = Date.today
+     assert !task.is_delayed?
+   end
+   ```
+   
+   Ein Methode, die mit einem Fragezeichen endet, nimmt man in Ruby gerne als Name für Methoden die Wahr oder Falsch zurückliern (boolean).
+   
+   Wenn man auf der Konsole
+   ```bash
+   rake test:units
+   ```	
+   eingibt erhält man 3 Fehler, weil *is_delayed?* noch nicht definiert ist:
+   ```bash
+   EEE..
+   
+   5 tests, 2 assertions, 0 failures, 3 errors, 0 skips
+   ```
+   
+   Wenn man in *app/models/task.rb* die Funktion *is_delayed?* einfügt
+   ```ruby
+   def is_delayed?
+     self.deadline < Date.today				
+	end
+   ```
+   
+   laufen alle Unit-Tests:
+   ```bash
+   rake test:units
+   .....
+
+   5 tests, 5 assertions, 0 failures, 0 errors, 0 skips
+   ```   
+   
+   und natürlich alle Test zusammen auch:
+   ```bash
+   rake test
+   ...........
+   
+   Finished tests in 0.157968s, 69.6344 tests/s, 101.2863 assertions/s.
+   
+   11 tests, 16 assertions, 0 failures, 0 errors, 0 skips
+   ```   
+   
+   Alles läuft. Zeit für ein Commit.
+   
+   ```bash
+    git add .
+    git commit -m "is_delayed? Methode in Task eingefügt "
+    ```
+    
 
