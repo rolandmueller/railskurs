@@ -6,7 +6,7 @@
     * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden
     * Man soll sich als User registrieren und  ein und ausloggen können (Authentifizierung).
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
-    * Ein erstellter Task wird zu dem User, der ihn erstellt zugeordnet. Ein User kann mehrere Tasks haben.
+    * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
     * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
     * Es soll eine Projekt-Seite geben, wo man Projekte anlegen, umbennen und löschen kann. Projekte kann man nur erstellen, wenn man eingeloggt ist.
     * Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
