@@ -353,3 +353,55 @@
 
 	![](https://dl.dropboxusercontent.com/u/10978171/index-mit-days.png)
 
+6. Man soll sich als User registrieren und ein und ausloggen können (Authentifizierung).
+
+	Wir nutzen dafür das Gem *devise* (https://github.com/plataformatec/devise). Ein *Gem* ist ein Ruby Paket. Rails ist auch ein Ruby Gem. Wenn man ein Gem zu einem Projekt hinzufügen will muss man als erstes dieses in der Datei *Gemfile* hinzufügen:
+	
+	```ruby
+	gem 'devise'
+	```
+	
+	Anschließend installieren wir dies mit 
+	```bash
+	bundle install
+	```	
+	
+	Dann können wir den Devise Generator starten:
+	```bash
+	rails generate devise:install
+	```	
+
+	Der Output sagt uns, was wir noch machen müssen:
+	
+	Als erstes fügen wir in *config/environments/development.rb* folgende Zeile hinzu:
+	
+	```ruby	
+	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+	```	
+	
+	
+	Die zweite Anmerkung "2. Ensure you have defined root_url to *something* in your config/routes.rb." haben wir schon erledigt, da wir schon ein Route zum Root (Home-Page) haben.
+	
+	Als nächstes ändern wir die Flash-Nachrichten, für das erfolgreiche oder nicht erfolgreiche Einloggen. Folgenden Code in *app/views/tasks/index.html.rb* schneiden wir aus und fügen ihn in *app/views/layouts/application.html.rb* vor ```<div class="container">``` ein
+	
+	```html	
+	<% if notice %> 
+	  <p id="notice" class="alert alert-success alert-dismissable fade in" data-dismiss="alert" aria-hidden="true">
+	    <%= notice %>
+	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  </p>
+	<% end %>
+	```	
+	
+	Dahinter fügen wir noch dasselbe nicht für eine Nachricht (notice) sondern für eine Warnung (alert) ein:
+	
+	```html	
+	<% if alert %> 
+	  <p id="notice" class="alert alert-warning alert-dismissable fade in" data-dismiss="alert" aria-hidden="true">
+	    <%= alert %>
+	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  </p>
+	<% end %>
+	```	
+		
+	
