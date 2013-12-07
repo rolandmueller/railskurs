@@ -459,5 +459,6 @@
 	rake db:migrate
 	```
 	
-	Nun muss man den Server noch mal stoppen und starten. Anschließend kann man sich einloggen.
+	Nun muss man den Server noch mal stoppen und starten. Anschließend kann man sich einloggen. Einmal bitte alles manuell ausprobieren (registrieren, login, logout).
 	
+	![](https://dl.dropboxusercontent.com/u/10978171/login.png)
