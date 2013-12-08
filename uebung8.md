@@ -6,10 +6,10 @@
     * Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
     * Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
     * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden
-    * Man soll sich als User registrieren und  ein und ausloggen können (Authentifizierung).
-    * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
+    * Man soll sich als User registrieren und ein und ausloggen können (Authentifizierung).
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
     * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
+    * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
     * Im Index-Screen soll für jeden Task der User angezeigt werden, der den Task erstellt hat.
     * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
     * Es soll eine Projekt-Seite geben, wo man Projekte anlegen, umbennen und löschen kann. Projekte kann man nur erstellen, wenn man eingeloggt ist.
@@ -497,3 +497,52 @@
 	git add .
 	git commit -m "Authentifizierung mit Devise"
 	```
+
+7. Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
+
+	Devise stellt dafür eine Funktion bereit: *authenticate_user!* . Diese wird vor einer Methode aufgerufen, in dem man ein *before_action* definiert. Wir fügen diese Zeile in *app/controllers/task_controllers.rb* vor die andere *before_action* Anweisung:
+
+	```ruby	
+	before_action :authenticate_user!, except: [:index]
+	```
+	
+	Wenn wir dann ausgeloggt sind und eine Aufgabe erstellen, ändern oder löschen wollen, werden wir zum Login umgeleitet:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/autorisierung.png)
+	
+	Wenn wir eingeloggt sind, können wir Aufgaben erstellen, ändern oder löschen.
+	
+	Nun müssen wir noch unsere Functional-Tests anpassen.
+	
+	Devise stellt die beiden Methoden ```sign_in``` und ```sign_out``` für die Functioanl-Test bereit.
+	
+	In *test/controllers/tasks_controller_test.rb* fügen wir in der Methode ```setup do``` folgendes hinzu:
+	```ruby	
+	@user = users(:one)
+	```
+	Damit wird der User "one" von den Fixtures geladen und in die Variable ```@user```gespeichert.
+	
+	Anschließend fügen wir in allen Tests außer für den Test der Index-Methode (```test "should get index" do```) folgende Zeile als erstes hinzu: 	
+	```ruby	
+	sign_in @user
+	```
+	
+	Alle Test laufen noch:
+	```bash
+	rake test
+	..............
+	
+	Finished tests in 0.165166s, 84.7632 tests/s, 115.0358 assertions/s.
+	
+	14 tests, 19 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Wir können ein weiteren Functional-Test hinzufügen, der checkt das man nicht auf die Edit-Seite kommt (sonden redirected wird), wenn man sich nicht eingeloggt hat:
+	
+	```ruby	
+	test "should not get edit if not logged in" do
+	  get :edit, id: @task
+	  assert_response :redirect
+	end
+	```	
+	
