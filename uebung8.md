@@ -9,9 +9,9 @@
     * Man soll sich als User registrieren und ein und ausloggen können (Authentifizierung).
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
     * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
+    * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
     * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
     * Im Index-Screen soll für jeden Task der User angezeigt werden, der den Task erstellt hat.
-    * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
     * Es soll eine Projekt-Seite geben, wo man Projekte anlegen, umbennen und löschen kann. Projekte kann man nur erstellen, wenn man eingeloggt ist.
     * Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
 
@@ -473,10 +473,12 @@
 	
 	```javascript	
 	one:
+	  id: 1
 	  email: 'some@user.com'
 	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 	
 	two:
+	  id: 2
 	  email: 'test@test.com'
 	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 	```
@@ -560,5 +562,105 @@
 	git add .
 	git commit -m "Autorisierung alles außer Index"
 	```
+8. Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
+
+	Dafür müssen wir in der Task-Tabelle in der Datenbank ein Fremdschlüssel *user_id* einfügen. In der Konsole:
+	```bash
+	rails generate migration AddUserIdToTasks user_id:integer:index
+	```	
 	
+	Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, dann sehen wir das die Migration-Anweisung gut aussieht, und so bleiben kann
+	```ruby	
+	class AddUserIdToTasks < ActiveRecord::Migration
+	  def change
+	    add_column :tasks, :user_id, :integer
+	    add_index :tasks, :user_id
+	  end
+	end
+	```	
 	
+	und wir diese durchführen können:
+	```bash
+	rake db:migrate
+	```
+	
+	Anschließend verknüpfen wir beide Modelle:
+	
+	In *app/models/task.rb* fügen wir hinzu:
+	```ruby	
+	belongs_to :user
+	```	
+
+	Und in *app/models/user.rb* fügen wir hinzu:
+	```ruby	
+	has_many :tasks
+	```	
+	
+	Nun müssen wir noch für neu erstellte Tasks den Fremdschlüssel auf den grade eingeloggten User setzten:
+	
+	Devise gibt den grade eingeloggten User in der Variable *current_user*. 
+	
+	Die Zeile in der *create* Methode in *app/controllers/task_controller.rb* 
+	```ruby	
+	@task = Task.new(task_params)
+	```		
+	ändern wir in 
+	```ruby	
+	@task = current_user.tasks.new(task_params)
+	```
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "Task wird dem User zugeordnet, der diesen erstellt"
+	```	
+	
+9. Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
+
+	In der *set_task* Methode in *app/controllers/task_controller.rb* fügen wir nach
+	```ruby	
+	@task = Task.find(params[:id])
+	```		
+	ändern wir in 
+	```ruby	
+	if @task.user_id != current_user.id
+          redirect_to tasks_url, alert: 'You can edit only your own Tasks.'
+        end
+	```
+	Damit die Tests laufen, müssen wir in den Fixtures noch den Fremdschlüssel hinzufügen:
+	In der Datei *test/fixtures/tasks.yaml* fügen wir *user_id: 1* hinzu :
+	
+	```javascript	
+	one:
+	  name: MyString
+	  deadline: 2013-11-28
+	  done: false
+	  duration: 1.5
+	  user_id: 1
+	
+	two:
+	  name: MyString
+	  deadline: 2013-11-28
+	  done: false
+	  duration: 1.5
+	  user_id: 1
+	```	
+
+	Alle Test laufen noch:
+	```bash
+	rake test
+	...............
+	
+	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "Task kann nur geändert werden vom Ersteller"
+	```	
+
+10. Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
+
