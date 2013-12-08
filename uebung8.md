@@ -187,7 +187,7 @@
    6 tests, 11 assertions, 0 failures, 0 errors, 0 skips
    ```
    
-   Alle Functional-Test laufen. Wenn wir alle Test durchlaufen lassen wollen (Functional und Unit) geben wir folgendes in der Konsole ein:
+   Alle Functional-Test laufen. Wenn wir alle Tests durchlaufen lassen wollen (Functional und Unit) geben wir folgendes in der Konsole ein:
 
    ```bash
    rake test
@@ -257,7 +257,7 @@
    5 tests, 5 assertions, 0 failures, 0 errors, 0 skips
    ```   
    
-   und natürlich alle Test zusammen auch:
+   und natürlich alle Tests zusammen auch:
    ```bash
    rake test
    ...........
@@ -320,7 +320,7 @@
 	8 tests, 8 assertions, 0 failures, 0 errors, 0 skips
 	```   
 	
-	und alle Test zusammen auch:
+	und alle Tests zusammen auch:
 	```bash
 	rake test
 	..............
@@ -483,7 +483,7 @@
 	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 	```
 	
-	Alle Test laufen noch:
+	Alle Tests laufen noch:
 	```bash
 	rake test
 	..............
@@ -529,7 +529,7 @@
 	sign_in @user
 	```
 	
-	Alle Test laufen noch:
+	Alle Tests laufen noch:
 	```bash
 	rake test
 	..............
@@ -548,7 +548,7 @@
 	end
 	```	
 	
-	Alle Test laufen noch:
+	Alle Tests laufen noch:
 	```bash
 	rake test
 	...............
@@ -647,7 +647,7 @@
 	  user_id: 1
 	```	
 
-	Alle Test laufen noch:
+	Alle Tests laufen noch:
 	```bash
 	rake test
 	...............
@@ -724,7 +724,7 @@
 	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 	```
 	
-	Alle Test laufen noch:
+	Alle Tests laufen noch:
 	```bash
 	rake test
 	...............
@@ -774,7 +774,7 @@
 	Sieht gut aus:
 	![](https://dl.dropboxusercontent.com/u/10978171/username.png)
 	
-	Alle Test laufen noch:
+	Alle Tests laufen noch:
 	```bash
 	rake test
 	...............
