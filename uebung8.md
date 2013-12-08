@@ -582,7 +582,7 @@
 	end
 	```	
 	
-	und wir diese durchführen können:
+	und wir ein Migration durchführen können:
 	```bash
 	rake db:migrate
 	```
@@ -793,6 +793,61 @@
 	```
 
 12. Man kann eine Aufgabe einem anderen User delegieren.
+
+	Wir brauchen in der Task-Tabelle in der Datenbank ein weiteren Fremdschlüssel *delegated_to* . In der Konsole:
+	```bash
+	rails generate migration AddDelegatedToTasks delegated_id:integer:index
+	```
+	
+	```bash
+	rake db:migrate
+	```
+
+	In *app/models/user.rb* fügen wir hinzu:
+	
+	```ruby
+	has_many :delegated_tasks, class_name: "Task", foreign_key: "delegated_id"
+	``
+	
+	In *app/models/task.rb* fügen wir hinzu:
+	```ruby
+	belongs_to :delegated, class_name: "User", foreign_key: "delegated_id"
+	```	
+	Wir verändern die *db/seed.rb* Datei:
+	```ruby
+	 User.create!(username: "Bob", email: 'test@test.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	user1.tasks.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false, delegated_id: user2.id)
+	user2.tasks.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
+	user1.tasks.create(name: "Rails for Zombies", deadline: Date.today - 2.days, duration: 3, done: false, delegated_id: user2.id)
+	user2.tasks.create(name: "Übung 6: Rails Account", deadline: Date.today - 4.days, duration: 3, done: false)
+	user1.tasks.create(name: "Übung 1: FizzBuzz", deadline: Date.today - 26.days, duration: 4, done: true)
+	user2.tasks.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, duration: 5, done: true, delegated_id: user1.id)
+	```
+	
+	In *app/views/tasks/_form.html.erb* folgendes hinzufügen:
+	```ruby	
+	<div class="form-group">
+	  <%= f.label :delegated_id %><br>
+	  <%= f.select :delegated_id, User.all.collect {|u| [ u.username, u.id ] }, { :include_blank => true, :selected => params[:delegated_id] }, class: "form-control" %>
+	</div>	
+	```
+	
+	In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
+	```ruby
+	params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id)
+	```
+	
 13. Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
+
+	In *app/views/tasks/_form.html.erb* statt ```<th>User</th>``` schreiben wir:
+	```html
+	<th>Created</th>
+	<th>Delegated</th>
+	```
+	Nach ```<td> <%= task.user.username %> </td>```fügen wir folgendes ein:
+	```html
+	<td> <%= task.delegated.username if task.delegated %> </td>
+	```	
+	
 14. Eine Aufgabe kann auch geändert werden, wenn man die Aufgabe delegiert bekommen hat.
 
