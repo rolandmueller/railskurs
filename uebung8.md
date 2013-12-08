@@ -12,8 +12,11 @@
     * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
     * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
     * Im Index-Screen soll für jeden Task der User angezeigt werden, der den Task erstellt hat.
-    * Es soll eine Projekt-Seite geben, wo man Projekte anlegen, umbennen und löschen kann. Projekte kann man nur erstellen, wenn man eingeloggt ist.
-    * Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
+    * Man kann eine Aufgabe einem anderen User delegieren.
+    * Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
+    * Eine Aufgabe kann auch geändert werden, wenn man die Aufgabe delegiert bekommen hat.
+    * Es soll eine Filterung der Aufgaben geben, so dass nur Aufgaben angezeigt werden, die man selber erstellt hat oder die an einem delegiert worden sind.
+
 
 2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen
 
@@ -788,4 +791,8 @@
 	git add .
 	git commit -m "User der den Task erstellt hat wird in Index-Tabelle angezeigt"
 	```
-	  
+
+12. Man kann eine Aufgabe einem anderen User delegieren.
+13. Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
+14. Eine Aufgabe kann auch geändert werden, wenn man die Aufgabe delegiert bekommen hat.
+
