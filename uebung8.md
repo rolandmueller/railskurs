@@ -703,10 +703,11 @@
 	```html
 	<%= link_to 'Edit account', edit_user_registration_path %>
 	```
+	
 	mit
 	```html
 	<%= link_to "Logged in as " + current_user.username, edit_user_registration_path %> 
-	``
+	```
 	
 	Die Fixtures der User ergänzen wir um den Usernamen. In *test/fixtures/users.yaml:
 	```javascript	
@@ -769,6 +770,9 @@
 	<td> <%= task.user.username %> </td>
 	```
 	ein.
+	
+	Sieht gut aus:
+	![](https://dl.dropboxusercontent.com/u/10978171/username.png)
 	
 	Alle Test laufen noch:
 	```bash
