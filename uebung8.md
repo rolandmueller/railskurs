@@ -802,7 +802,7 @@
 	```bash
 	rake db:migrate
 	```
-
+	
 	In *app/models/user.rb* fügen wir hinzu:
 	
 	```ruby
@@ -834,8 +834,9 @@
 	```ruby
 	params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id)
 	```
-13. Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
 
+13. Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
+	
 	In *app/views/tasks/_form.html.erb* statt ```<th>User</th>``` schreiben wir:
 	```html
 	<th>Created</th>
