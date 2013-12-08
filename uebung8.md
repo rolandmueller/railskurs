@@ -664,3 +664,69 @@
 
 10. Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
 
+	```bash
+	rails generate migration AddUsernameToUsers username
+	```
+	
+	```bash
+	rake db:migrate
+	```
+
+	```bash
+	rails generate devise:views
+	```	
+
+	In *app/views/devise/registration/new.html.erb* und *app/views/devise/registration/edit.html.erb* folgenden Code nach ```<%= f.email_field :email, :autofocus => true %></div>```einfügen:	
+	```html
+	<div><%= f.label :username %><br />
+	<%= f.text_field :username %></div>
+	```
+	
+	In *app/controllers/application_controller.rb* fügen wir dies hinzu:
+
+	```ruby	
+	before_filter :configure_permitted_parameters, if: :devise_controller?
+	
+	protected
+	
+	def configure_permitted_parameters
+	  devise_parameter_sanitizer.for(:sign_up) << :username
+	end
+	```
+	
+	In *app/models/user.rb* fügen wir folgendes ein:
+	```ruby
+	validates :username, presence:  true, uniqueness: true
+	```
+	
+	Die Fixtures der User ergänzen wir um den Usernamen. In *test/fixtures/users.yaml:
+	```javascript	
+	one:
+	  id: 1
+	  email: 'some@user.com'
+	  username: 'Alice'
+	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+	
+	two:
+	  id: 2
+	  email: 'test@test.com'
+	  username: 'Bob'
+	  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+	```
+	
+	Alle Test laufen noch:
+	```bash
+	rake test
+	...............
+	
+	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "Username zu User hinzugefügt"
+	```		
+
+	  
