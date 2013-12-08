@@ -850,3 +850,11 @@
 	
 14. Eine Aufgabe kann auch geändert werden, wenn man die Aufgabe delegiert bekommen hat.
 
+	In *app/controllers/task_controller.rb* ändern wir diese Zeile
+	```ruby
+	if @task.user_id != current_user.id 
+	```
+	wie folgt:
+	```ruby
+	if !(@task.user_id == current_user.id || @task.delegated_id == current_user.id)
+	```
