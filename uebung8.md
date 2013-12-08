@@ -625,8 +625,8 @@
 	ändern wir in 
 	```ruby	
 	if @task.user_id != current_user.id
-          redirect_to tasks_url, alert: 'You can edit only your own Tasks.'
-        end
+	  redirect_to tasks_url, alert: 'You can edit only your own Tasks.'
+	end
 	```
 	Damit die Tests laufen, müssen wir in den Fixtures noch den Fremdschlüssel hinzufügen:
 	In der Datei *test/fixtures/tasks.yaml* fügen wir *user_id: 1* hinzu :
