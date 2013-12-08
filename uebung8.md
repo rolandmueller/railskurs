@@ -827,7 +827,7 @@
 	```ruby	
 	<div class="form-group">
 	  <%= f.label :delegated_id %><br>
-	  <%= f.select :delegated_id, User.all.collect {|u| [ u.username, u.id ] }, { :include_blank => true, :selected => params[:delegated_id] }, class: "form-control" %>
+	  <%= f.select :delegated_id, User.all.collect {|u| [ u.username, u.id ] }, { :include_blank => true, :selected => @task.delegated_id}, class: "form-control" %>
 	</div>	
 	```
 	In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
