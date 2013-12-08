@@ -546,3 +546,19 @@
 	end
 	```	
 	
+	Alle Test laufen noch:
+	```bash
+	rake test
+	...............
+	
+	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "Autorisierung alles außer Index"
+	```
+	
+	
