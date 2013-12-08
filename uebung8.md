@@ -699,6 +699,15 @@
 	validates :username, presence:  true, uniqueness: true
 	```
 	
+	In *app/views/layouts/_navigation.html.erb* ändern wir die Zeile
+	```html
+	<%= link_to 'Edit account', edit_user_registration_path %>
+	```
+	mit
+	```html
+	<%= link_to "Logged in as " + current_user.username, edit_user_registration_path %> 
+	``
+	
 	Die Fixtures der User ergänzen wir um den Usernamen. In *test/fixtures/users.yaml:
 	```javascript	
 	one:
@@ -729,4 +738,50 @@
 	git commit -m "Username zu User hinzugefügt"
 	```		
 
+11. Im Index-Screen soll für jeden Task der User angezeigt werden, der den Task erstellt hat.
+
+	Als erstes können wir die Seed-Daten anpassen(in db/seed.db):
+
+	```ruby
+	user1 = User.create!(username: "Alice", email: 'some@user.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	user2 = User.create!(username: "Bob", email: 'test@test.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	user1.tasks.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false)
+	user2.tasks.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
+	user1.tasks.create(name: "Rails for Zombies", deadline: Date.today - 2.days, duration: 3, done: false)
+	user2.tasks.create(name: "Übung 6: Rails Account", deadline: Date.today - 4.days, duration: 3, done: false)
+	user1.tasks.create(name: "Übung 1: FizzBuzz", deadline: Date.today - 26.days, duration: 4, done: true)
+	user2.tasks.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, duration: 5, done: true)
+	```
+	
+	und die Datenbank updaten:
+
+	```bash
+	rake db:setup
+	```
+	
+	In *app/views/tasks/_table.html.erb* fügen wir nach ```<th>Name</th>```
+	
+	```html
+	<th>User</th>
+	```
+	ein. Und nach ```<td class="<%= css_class %>"><%= link_to task.name, edit_task_path(task) %></td>```fügen wir 
+	```html
+	<td> <%= task.user.username %> </td>
+	```
+	ein.
+	
+	Alle Test laufen noch:
+	```bash
+	rake test
+	...............
+	
+	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "User der den Task erstellt hat wird in Index-Tabelle angezeigt"
+	```
 	  
