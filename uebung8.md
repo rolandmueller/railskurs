@@ -858,3 +858,18 @@
 	```ruby
 	if !(@task.user_id == current_user.id || @task.delegated_id == current_user.id)
 	```
+	
+	Alle Tests laufen noch:
+	```bash
+	rake test
+	...............
+	
+	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Zeit für ein Commit.
+	
+	```bash
+	git add .
+	git commit -m "Tasks können geändert vom delegierten User geändert werden"
+	```
