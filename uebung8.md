@@ -823,7 +823,6 @@
 	user1.tasks.create(name: "Übung 1: FizzBuzz", deadline: Date.today - 26.days, duration: 4, done: true)
 	user2.tasks.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, duration: 5, done: true, delegated_id: user1.id)
 	```
-	
 	In *app/views/tasks/_form.html.erb* folgendes hinzufügen:
 	```ruby	
 	<div class="form-group">
@@ -831,12 +830,10 @@
 	  <%= f.select :delegated_id, User.all.collect {|u| [ u.username, u.id ] }, { :include_blank => true, :selected => params[:delegated_id] }, class: "form-control" %>
 	</div>	
 	```
-	
 	In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
 	```ruby
 	params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id)
 	```
-	
 13. Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
 
 	In *app/views/tasks/_form.html.erb* statt ```<th>User</th>``` schreiben wir:
@@ -844,7 +841,8 @@
 	<th>Created</th>
 	<th>Delegated</th>
 	```
-	Nach ```<td> <%= task.user.username %> </td>```fügen wir folgendes ein:
+	
+	Nach ```<td> <%= task.user.username %> </td>``` fügen wir folgendes ein:
 	```html
 	<td> <%= task.delegated.username if task.delegated %> </td>
 	```	
