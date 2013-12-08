@@ -17,7 +17,7 @@
     * Eine Aufgabe kann auch geändert werden, wenn man die Aufgabe delegiert bekommen hat.
 
 
-2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen
+2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen (für Tests siehe auch http://guides.rubyonrails.org/testing.html)
 
    Momentan ist der Unit-Test in *app/tests/models/task_test.rb* auskommentiert und wenn man auf der Konsole
    
@@ -855,7 +855,7 @@
 	```
 	wie folgt:
 	```ruby
-	if !(@task.user_id == current_user.id || @task.delegated_id == current_user.id)
+	if @task.user_id != current_user.id && @task.delegated_id != current_user.id
 	```
 	
 	Alle Tests laufen noch:
