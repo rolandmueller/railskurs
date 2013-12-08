@@ -807,7 +807,7 @@
 	
 	```ruby
 	has_many :delegated_tasks, class_name: "Task", foreign_key: "delegated_id"
-	``
+	```
 	
 	In *app/models/task.rb* fügen wir hinzu:
 	```ruby
