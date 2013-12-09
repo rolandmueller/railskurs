@@ -343,7 +343,7 @@
 	git add .
 	git commit -m "distance_from_now_in_days Methode in Task eingefügt "
 	```   
-5.  Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 20 days") dargestellt werden. In *app/views/tasks/_table.html.erb* kann folgende Zeile
+5.  Deadline soll als umgangssprachliger Text ("1 day ago" bzw. "in 20 days") dargestellt werden. In *app/views/tasks/_table.html.erb* kann folgende Zeile
 	```ruby
 	<td><%= task.deadline %></td>
 	```  
@@ -389,7 +389,7 @@
 	
 	Die zweite Anmerkung "2. Ensure you have defined root_url to *something* in your config/routes.rb." haben wir schon erledigt, da wir schon ein Route zum Root (Home-Page) haben.
 	
-	Als nächstes ändern wir die Flash-Nachrichten, für das erfolgreiche oder nicht erfolgreiche Einloggen. Wir erstellen ein Partial *_messages.html.erb* im Verzeichnis *app/views/layout/*. Folgenden Code in *app/views/tasks/index.html.rb* für die Nachricht (*notice*) schneiden wir aus und fügen ihn in *app/views/layouts/_messages.html.rb* ein: 
+	Als nächstes ändern wir die Flash-Nachrichten (http://guides.rubyonrails.org/action_controller_overview.html#the-flash), für das erfolgreiche oder nicht erfolgreiche Einloggen. Wir erstellen ein Partial *_messages.html.erb* im Verzeichnis *app/views/layout/*. Folgenden Code in *app/views/tasks/index.html.rb* für die Nachricht (*notice*) schneiden wir aus und fügen ihn in *app/views/layouts/_messages.html.rb* ein: 
 	
 	```html	
 	<% if notice %> 
@@ -417,7 +417,7 @@
 	<%= render 'layouts/messages' %>
 	```
 	
-	In diesem Fall müssen wir dem Partial den Ordner zusätzlich mitteilen, weil für alle verschiedenen Controller, der immer selbe Partial geladen werden soll. Ohne die */layout* Angabe würde für den Tasks-Controller im View im Tasks-Ordner gesucht.
+	In diesem Fall müssen wir beim Aufruf zum Partial den Ordner zusätzlich mitteilen, weil für alle verschiedenen Controller, der immer selbe Partial geladen werden soll. Ohne die */layout* Angabe würde für den Tasks-Controller im View im Tasks-Ordner gesucht.
 	
 	Wir brauchen wir noch Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. 
 	
@@ -428,7 +428,7 @@
 	  <%= link_to "Todo-App", tasks_path, :class => "navbar-brand" %>
 	</div>
 	```
-	fügen folgendes ein:
+	fügen folgendes ein (Logout und Edit Account Button wenn eingeloggt, Login und Sign Up Buttom wenn nicht eingeloggt):
 	```html
 	<ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
@@ -576,7 +576,7 @@
 	rails generate migration AddUserIdToTasks user_id:integer:index
 	```	
 	
-	Mit *:index* wird gleich noch ein Index für den Fremdschlüssel erzeugt. Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, dann sehen wir das die Migration-Anweisung gut aussieht, und so bleiben kann:
+	Mit *:index* wird gleich noch ein Index für den Fremdschlüssel *user_id* erzeugt. Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, dann sehen wir das die Migration-Anweisung gut aussieht, und so bleiben kann:
 	```ruby	
 	class AddUserIdToTasks < ActiveRecord::Migration
 	  def change
@@ -616,7 +616,7 @@
 	@task = current_user.tasks.new(task_params)
 	```
 	
-	Der Task wird damit für den *current_user* erstellt und der Fremdschlüssel *user_id* im neuen Task wird automatisch auf die *id* vom *current_user* gesetzt. Alternativ hätten wir auch den Fremdschlüssel extra setzen können.
+	Der Task wird damit für den *current_user* erstellt und der Fremdschlüssel *user_id* im neuen Task wird automatisch auf die *id* vom *current_user* gesetzt. Alternativ hätten wir auch den Fremdschlüssel *user_id* extra setzen können.
 	
 	Zeit für ein Commit.
 	
@@ -631,7 +631,7 @@
 	```ruby	
 	@task = Task.find(params[:id])
 	```		
-	folgendes ein: 
+	folgendes ein  (wenn der Task nicht vom aktuellen User ist, darf der User diesen nicht ändern/löschen sondern wir redirected mit einem Alert-Nachricht) 
 	```ruby	
 	if @task.user_id != current_user.id
 	  redirect_to tasks_url, alert: 'You can edit only your own Tasks.'
@@ -760,6 +760,7 @@
 	Als erstes können wir die Seed-Daten anpassen(in db/seed.db):
 
 	```ruby
+	# ruby encoding: utf-8
 	user1 = User.create!(username: "Alice", email: 'some@user.com', :password => 'topsecret', :password_confirmation => 'topsecret')
 	user2 = User.create!(username: "Bob", email: 'test@test.com', :password => 'topsecret', :password_confirmation => 'topsecret')
 	user1.tasks.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false)
@@ -821,7 +822,7 @@
 	```ruby
 	has_many :delegated_tasks, class_name: "Task", foreign_key: "delegated_id"
 	```
-	Hier müssen wir ausnahmsweise den Namen des Fremdschlüssels und den Namen der anderen Tabelle angeben, da dieser anhand des Namens der Verbindung nicht automatisch abgeleitet werden kann.
+	Hier müssen wir ausnahmsweise den Namen des Fremdschlüssels und den Namen der anderen Tabelle angeben, da dieser anhand des Namens der Verbindung nicht automatisch abgeleitet werden kann. User und Task sind ja durch zwei Fremdschlüssel verbunden (wer hat die Aufgabe erstellt und an wen wurde es delegiert).
 	
 	
 	In *app/models/task.rb* fügen wir hinzu:
@@ -830,6 +831,7 @@
 	```	
 	Wir verändern die *db/seed.rb* Datei:
 	```ruby
+	# ruby encoding: utf-8
 	 User.create!(username: "Bob", email: 'test@test.com', :password => 'topsecret', :password_confirmation => 'topsecret')
 	user1.tasks.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false, delegated_id: user2.id)
 	user2.tasks.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
@@ -846,7 +848,7 @@
 	</div>	
 	```
 	
-	
+	*f.select* erzeugt ein Drop-Down Menue im Formular für das Feld *delegated_id* (http://guides.rubyonrails.org/form_helpers.html#the-select-and-option-tags). *f.select* erwartet als zweiten Parameter ein Array für die Menu-Punkte. Es soll der *username* angezeigt werden aber die *id* in *delegated_id* gespeichert werden. Rails erlaubt das mit einem Array von Paaren, etwa so   *[['Alice', 1], ['Bob', 2], ...]* . Da wir aber diese Array dynamisch aus der Tabelle generieren wollen, nutzen wir die Array-Methode *collect* (http://www.ruby-doc.org/core-2.0.0/Array.html#method-i-collect) um aus der User-Tabelle so ein Array von username, id Paaren zu generieren  (*User.all.collect {|u| [ u.username, u.id ] }*). Der dritte Parameter gibt an, dass es eine leere Auswahl (nil) gibt und das der aktuelle Wert von *@task.delegated_id* im Drop-Down selektiert ist.
 	
 	In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
 	```ruby
