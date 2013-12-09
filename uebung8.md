@@ -5,7 +5,7 @@
     * Hinzufügen von Functional-Tests, die den Controller testen
     * Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
     * Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
-    * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden
+    * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 20 days") dargestellt werden
     * Man soll sich als User registrieren und ein und ausloggen können (Authentifizierung).
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
     * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
@@ -17,7 +17,7 @@
     * Eine Aufgabe kann auch geändert werden, wenn man die Aufgabe delegiert bekommen hat.
 
 
-2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen (für Tests siehe auch http://guides.rubyonrails.org/testing.html)
+2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen (für Tests siehe auch http://guides.rubyonrails.org/testing.html und Slides)
 
    Momentan ist der Unit-Test in *app/tests/models/task_test.rb* auskommentiert und wenn man auf der Konsole
    
@@ -28,7 +28,7 @@
    ```bash
    0 tests, 0 assertions, 0 failures, 0 errors, 0 skips
    ```
-   Unser erster Test in *app/tests/models/task_test.rb*
+   Unser erster Test in *app/tests/models/task_test.rb*. Wir fügen ein Test hinzu der prüft, dass man eine leere Aufgabe nicht speichern kann.
    ```ruby
    test "task can not be saved without name" do
      task = Task.new
@@ -47,7 +47,7 @@
    1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
    ```	
    
-   Wir fügen ein zweiten Test in *app/tests/models/task_test.rb* ein
+   Wir fügen ein zweiten Test in *app/tests/models/task_test.rb* ein, der testet, dass man ein vollständig ausgefülten Test speichern kann:
    ```ruby
    test "task can be saved with name, deadline and duraton" do
      task = Task.new
@@ -78,7 +78,7 @@
    7 tests, 12 assertions, 3 failures, 1 errors, 0 skips
    ```
 
-   Failure ist wenn ein Assert (Annahme) nicht erfüllt wird. Error ist, wenn das Programm ein Syntax-Fehler hat.  Warum? In der letzten Übung 7 haben wir einiges nach dem Scaffolding geändert. Insbesondere haben wir die Show-Methode gelöscht und die Redirects geändert. Schauen wir uns den ersten Failure an:
+   Failure ist wenn ein Assert (Annahme) nicht erfüllt wird. Error ist, wenn das Programm ein Syntax-Fehler hat. Die Functional-Tests (in *test/controllers*) wurden vom *generate scaffold* Befehl mit generiert. Warum funkionieren sie nicht mehr? In der letzten Übung 7 haben wir einiges nach dem Scaffolding geändert. Insbesondere haben wir die Show-Methode gelöscht und die Redirects geändert. Schauen wir uns den ersten Failure an:
 
    ```bash
    1) Failure:
@@ -93,16 +93,19 @@
    assert_redirected_to task_path(assigns(:task))
    ```
    
-   Wir redirecten aber auf Index. Sofern müssen wir den Test ändern (tasks_url ist die Index-Url):
+   Wir redirecten aber nun auf Index. Sofern müssen wir den Test ändern (tasks_url ist die Index-Url):
    
    ```ruby  
    assert_redirected_to tasks_url
    ```   
    
-   Und wir haben schon mal ein Failure weniger:
+   Und nach 
    ```bash
    rake test:functionals
-
+   ```
+   haben wir schon mal einen Failure weniger:
+   ```bash
+   
    7 tests, 11 assertions, 2 failures, 1 errors, 0 skips
    ```
    
@@ -124,7 +127,7 @@
    end
    ```
    
-   Wir haben aber garkeine *@tasks* Variable in der Index-Methode mehr, sondern  *@todo* und *@done* Variablen. Im Test *test "should get index"* ändern wir die Annahmen:
+   Wir haben aber gar keine *@tasks* Variable in der Index-Methode mehr, sondern  *@todo* und *@done* Variablen. Im Test *test "should get index"* ändern wir die Annahmen:
    
    ```ruby  
    test "should get index" do
@@ -153,7 +156,7 @@
    
    Wir haben kein *Show* mehr und können den Test *test "should show task"* löschen.
    
-   Wir haben ein Error weniger:
+   Nun haben wir einen Error weniger:
    ```bash
    rake test:functionals
 
@@ -167,7 +170,8 @@
    Expected response to be a redirect to <http://test.host/tasks/980190962> but was a redirect to <http://test.host/tasks>.
    Expected "http://test.host/tasks/980190962" to be === "http://test.host/tasks".
    ```
-   ist der selbe wie unser erster Fehler: Im Test *test "should update task"* wird erwartet, dass wir auf Show redirecten. Das können wir einfach ändern: 
+   
+   ist der selbe, wie unser erster Fehler: Im Test *test "should update task"* wird erwartet, dass wir auf Show redirecten. Das können wir einfach ändern: 
    Anstatt
    ```ruby  
    assert_redirected_to task_path(assigns(:task))
@@ -189,7 +193,7 @@
    6 tests, 11 assertions, 0 failures, 0 errors, 0 skips
    ```
    
-   Alle Functional-Test laufen. Wenn wir alle Tests durchlaufen lassen wollen (Functional und Unit) geben wir folgendes in der Konsole ein:
+   Alle Functional-Test laufen. Wenn wir alle Tests durchlaufen lassen wollen (Functional und Unit Tests) geben wir folgendes in der Konsole ein:
 
    ```bash
    rake test
@@ -212,7 +216,7 @@
     
 4. Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
 
-   Wir fÜgen als ein paar Tests in *app/tests/models/task_test.rb* hinzu
+   Wir fÜgen als ein paar Tests in *app/tests/models/task_test.rb* hinzu, die die Funktionalität testet, die wir danach entwickeln wollen (sog. Test-Driven Development (TDD)).
    ```ruby
    test "is delayed" do
      task = Task.new
@@ -231,7 +235,7 @@
    end
    ```
    
-   Ein Methode, die mit einem Fragezeichen endet, nimmt man in Ruby gerne als Name für Methoden die Wahr oder Falsch zurückliern (boolean).
+   Wenn in Ruby der Name einer Methode mit einem Fragezeichen endet, deutet das darauf hin, dass die Methoden  Wahr oder Falsch zurückliern soll (boolean).
    
    Wenn man auf der Konsole
    ```bash
@@ -247,8 +251,8 @@
    Wenn man in *app/models/task.rb* die Funktion *is_delayed?* einfügt
    ```ruby
    def is_delayed?
-     self.deadline < Date.today				
-	end
+     self.deadline < Date.today
+   end
    ```
    
    laufen alle Unit-Tests:
@@ -269,14 +273,14 @@
    11 tests, 16 assertions, 0 failures, 0 errors, 0 skips
    ```   
    
-   Alles läuft. Zeit für ein Commit.
+   Alles läuft. Wir commiten.
    
    ```bash
     git add .
     git commit -m "is_delayed? Methode in Task eingefügt "
     ```
-5.  Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
-   Wir fÜgen als ein paar Tests in *app/tests/models/task_test.rb* hinzu
+5.  Im Modell soll es eine Methode geben, die die Differenz in Tagen zu Heute zurückgibt.
+   Wir fÜgen ein paar Tests in *app/tests/models/task_test.rb* hinzu:
    	```ruby
 	test "destance in days from today" do
 	  task = Task.new
@@ -307,14 +311,15 @@
 	8 tests, 5 assertions, 0 failures, 3 errors, 0 skips
 	```
 
-	Wenn man in *app/models/task.rb* die Funktion *distance_from_now_in_days* einfügt
+	In *app/models/task.rb* fügen wir die Funktion *distance_from_now_in_days* hinzu:
 	```ruby
 	def distance_from_now_in_days
-	(self.deadline - Date.today).to_i		
+	  (self.deadline - Date.today).to_i		
 	end
 	```
+	*to_i* (to integer) wandelt die Variable um in ein *Integer*.
 	
-	laufen alle Unit-Tests:
+	Alle Unit-Tests laufen:
 	```bash
 	rake test:units
 	.......
@@ -338,7 +343,7 @@
 	git add .
 	git commit -m "distance_from_now_in_days Methode in Task eingefügt "
 	```   
-5.  Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 1 month") dargestellt werden. In *app/views/tasks/_table.html.erb* kann folgende Zeile
+5.  Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 20 days") dargestellt werden. In *app/views/tasks/_table.html.erb* kann folgende Zeile
 	```ruby
 	<td><%= task.deadline %></td>
 	```  
@@ -384,7 +389,7 @@
 	
 	Die zweite Anmerkung "2. Ensure you have defined root_url to *something* in your config/routes.rb." haben wir schon erledigt, da wir schon ein Route zum Root (Home-Page) haben.
 	
-	Als nächstes ändern wir die Flash-Nachrichten, für das erfolgreiche oder nicht erfolgreiche Einloggen. Wir erstellen ein Partial *_messages.html.erb* im Verzeichnis *app/views/layout/*. Folgenden Code in *app/views/tasks/index.html.rb* schneiden wir aus und fügen ihn in *app/views/layouts/_messages.html.rb* ein: 
+	Als nächstes ändern wir die Flash-Nachrichten, für das erfolgreiche oder nicht erfolgreiche Einloggen. Wir erstellen ein Partial *_messages.html.erb* im Verzeichnis *app/views/layout/*. Folgenden Code in *app/views/tasks/index.html.rb* für die Nachricht (*notice*) schneiden wir aus und fügen ihn in *app/views/layouts/_messages.html.rb* ein: 
 	
 	```html	
 	<% if notice %> 
@@ -395,7 +400,7 @@
 	<% end %>
 	```	
 	
-	Dahinter fügen wir noch dasselbe nicht für eine Nachricht (notice) sondern für eine Warnung (alert) ein:
+	Dahinter fügen wir noch dasselbe sondern für eine Warnung (*alert*) ein:
 	
 	```html	
 	<% if alert %> 
@@ -412,6 +417,7 @@
 	<%= render 'layouts/messages' %>
 	```
 	
+	In diesem Fall müssen wir dem Partial den Ordner zusätzlich mitteilen, weil für alle verschiedenen Controller, der immer selbe Partial geladen werden soll. Ohne die */layout* Angabe würde für den Tasks-Controller im View im Tasks-Ordner gesucht.
 	
 	Wir brauchen wir noch Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. 
 	
@@ -423,22 +429,19 @@
 	</div>
 	```
 	fügen folgendes ein:
-	```htm
+	```html
 	<ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
 	  <li>
 	    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
 	  </li>
-	<% else %>
-	  <li>
-	    <%= link_to 'Login', new_user_session_path %>
-	  </li>
-	<% end %>
-	<% if user_signed_in? %>
 	  <li>
 	    <%= link_to 'Edit account', edit_user_registration_path %>
 	  </li>
 	<% else %>
+	  <li>
+	    <%= link_to 'Login', new_user_session_path %>
+	  </li>
 	  <li>
 	    <%= link_to 'Sign up', new_user_registration_path %>
 	  </li>
@@ -471,7 +474,9 @@
 	include Devise::TestHelpers
 	```
 	
-	In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil ```one {} two {}``` mit:
+	Dies ist eine Test-Helfer von Devise für die Functional-Tests.
+	
+	Außerdem müssen wir die Fixtures der User noch ändern. Fixtures sind Test-Daten für die Tests. In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil ```one {} two {}``` mit:
 	
 	```javascript	
 	one:
@@ -504,7 +509,7 @@
 
 7. Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
 
-	Devise stellt dafür eine Funktion bereit: *authenticate_user!* . Diese wird vor einer Methode aufgerufen, in dem man ein *before_action* definiert. Wir fügen diese Zeile in *app/controllers/task_controllers.rb* vor die andere *before_action* Anweisung:
+	Devise stellt dafür eine Funktion bereit: *authenticate_user!* . Diese wird vor einer Controller-Methode aufgerufen, in dem man ein *before_action* definiert. Wir fügen diese Zeile in *app/controllers/task_controllers.rb* vor die andere *before_action* Anweisung:
 
 	```ruby	
 	before_action :authenticate_user!, except: [:index]
@@ -524,7 +529,7 @@
 	```ruby	
 	@user = users(:one)
 	```
-	Damit wird der User "one" von den Fixtures geladen und in die Variable ```@user```gespeichert.
+	Damit wird der User "one" von den Fixtures (Test-Daten) geladen und in die Variable ```@user```gespeichert.
 	
 	Anschließend fügen wir in allen Tests außer für den Test der Index-Methode (```test "should get index" do```) folgende Zeile als erstes hinzu: 	
 	```ruby	
@@ -541,7 +546,7 @@
 	14 tests, 19 assertions, 0 failures, 0 errors, 0 skips
 	```
 	
-	Wir können ein weiteren Functional-Test hinzufügen, der checkt das man nicht auf die Edit-Seite kommt (sonden redirected wird), wenn man sich nicht eingeloggt hat:
+	Wir können ein weiteren Functional-Test hinzufügen, der checkt dass man nicht auf die Edit-Seite kommt (sonden redirected wird), wenn man sich nicht eingeloggt hat:
 	
 	```ruby	
 	test "should not get edit if not logged in" do
@@ -571,7 +576,7 @@
 	rails generate migration AddUserIdToTasks user_id:integer:index
 	```	
 	
-	Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, dann sehen wir das die Migration-Anweisung gut aussieht, und so bleiben kann
+	Mit *:index* wird gleich noch ein Index für den Fremdschlüssel erzeugt. Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, dann sehen wir das die Migration-Anweisung gut aussieht, und so bleiben kann:
 	```ruby	
 	class AddUserIdToTasks < ActiveRecord::Migration
 	  def change
@@ -600,7 +605,7 @@
 	
 	Nun müssen wir noch für neu erstellte Tasks den Fremdschlüssel auf den grade eingeloggten User setzten:
 	
-	Devise gibt den grade eingeloggten User in der Variable *current_user*. 
+	Devise gibt uns den grade eingeloggten User in der Variable *current_user*. 
 	
 	Die Zeile in der *create* Methode in *app/controllers/task_controller.rb* 
 	```ruby	
@@ -611,6 +616,8 @@
 	@task = current_user.tasks.new(task_params)
 	```
 	
+	Der Task wird damit für den *current_user* erstellt und der Fremdschlüssel *user_id* im neuen Task wird automatisch auf die *id* vom *current_user* gesetzt. Alternativ hätten wir auch den Fremdschlüssel extra setzen können.
+	
 	Zeit für ein Commit.
 	
 	```bash
@@ -618,13 +625,13 @@
 	git commit -m "Task wird dem User zugeordnet, der diesen erstellt"
 	```	
 	
-9. Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
+9. Nur wenn man den Task erstellt hat, darf man den Task ändern oder löschen.
 
 	In der *set_task* Methode in *app/controllers/task_controller.rb* fügen wir nach
 	```ruby	
 	@task = Task.find(params[:id])
 	```		
-	ändern wir in 
+	folgendes ein: 
 	```ruby	
 	if @task.user_id != current_user.id
 	  redirect_to tasks_url, alert: 'You can edit only your own Tasks.'
@@ -664,16 +671,21 @@
 	git commit -m "Task kann nur geändert werden vom Ersteller"
 	```	
 
+	Aufgabe: Füge ein Functional-Test hinzu, der checkt, das der zweite User nicht die Tasks des ersten ändern kann.
+
 10. Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
 
+	Auf der Konsole:
 	```bash
 	rails generate migration AddUsernameToUsers username
 	```
 	
+	Datenbank aktualisieren:
 	```bash
 	rake db:migrate
 	```
 
+	Wir müssen nun die Views von Devise ändern, da dort kein *username* vorhanden ist. Dafür generieren wir diese erst:
 	```bash
 	rails generate devise:views
 	```	
@@ -684,7 +696,7 @@
 	<%= f.text_field :username %></div>
 	```
 	
-	In *app/controllers/application_controller.rb* fügen wir dies hinzu:
+	Rails checkt zur Sicherheit, welche Attribute man einem Model zuweisen kann. Da wir ein weiteres Attribut *username* haben, müssen wir diesen check für Devise erweitern und *username* erlauben. In *app/controllers/application_controller.rb* fügen wir dies hinzu:
 
 	```ruby	
 	before_filter :configure_permitted_parameters, if: :devise_controller?
@@ -696,7 +708,7 @@
 	end
 	```
 	
-	In *app/models/user.rb* fügen wir folgendes ein:
+	In *app/models/user.rb* fügen wir die Validationsregeln für *username* ein:
 	```ruby
 	validates :username, presence:  true, uniqueness: true
 	```
@@ -710,6 +722,8 @@
 	```html
 	<%= link_to "Logged in as " + current_user.username, edit_user_registration_path %> 
 	```
+	damit wir auch wissen, als was für ein User wir eingeloggt sind.
+	
 	
 	Die Fixtures der User ergänzen wir um den Usernamen. In *test/fixtures/users.yaml:
 	```javascript	
@@ -793,7 +807,7 @@
 
 12. Man kann eine Aufgabe einem anderen User delegieren.
 
-	Wir brauchen in der Task-Tabelle in der Datenbank ein weiteren Fremdschlüssel *delegated_to* . In der Konsole:
+	Wir brauchen in der Task-Tabelle in der Datenbank ein weiteren Fremdschlüssel *delegated_id* . In der Konsole:
 	```bash
 	rails generate migration AddDelegatedToTasks delegated_id:integer:index
 	```
@@ -807,6 +821,8 @@
 	```ruby
 	has_many :delegated_tasks, class_name: "Task", foreign_key: "delegated_id"
 	```
+	Hier müssen wir ausnahmsweise den Namen des Fremdschlüssels und den Namen der anderen Tabelle angeben, da dieser anhand des Namens der Verbindung nicht automatisch abgeleitet werden kann.
+	
 	
 	In *app/models/task.rb* fügen wir hinzu:
 	```ruby
@@ -822,13 +838,16 @@
 	user1.tasks.create(name: "Übung 1: FizzBuzz", deadline: Date.today - 26.days, duration: 4, done: true)
 	user2.tasks.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, duration: 5, done: true, delegated_id: user1.id)
 	```
-	In *app/views/tasks/_form.html.erb* folgendes hinzufügen:
+	In *app/views/tasks/_form.html.erb* fügen wir in dem Formular ein Dropdown Menue der User hinzu, sodass wir auswählen können, an wen wir den Task delegieren:
 	```ruby	
 	<div class="form-group">
 	  <%= f.label :delegated_id %><br>
 	  <%= f.select :delegated_id, User.all.collect {|u| [ u.username, u.id ] }, { :include_blank => true, :selected => @task.delegated_id}, class: "form-control" %>
 	</div>	
 	```
+	
+	
+	
 	In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
 	```ruby
 	params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id)
