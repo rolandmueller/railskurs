@@ -5,7 +5,7 @@
     * Hinzufügen von Functional-Tests, die den Controller testen
     * Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
     * Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
-    * Deadline soll als umgangssprachliger Text ("2 day ago" bzw. "in 20 days") dargestellt werden
+    * Deadline soll als umgangssprachliger Text ("1 day ago" bzw. "in 20 days") dargestellt werden
     * Man soll sich als User registrieren und ein und ausloggen können (Authentifizierung).
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
     * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
