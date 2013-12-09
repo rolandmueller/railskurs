@@ -850,7 +850,7 @@
 	
 	```f.select``` erzeugt ein Drop-Down Menue im Formular für das Feld *delegated_id* (http://guides.rubyonrails.org/form_helpers.html#the-select-and-option-tags). ```f.select``` erwartet als zweiten Parameter ein Array für die Menu-Punkte. Es soll der *username* angezeigt werden aber die *id* in *delegated_id* gespeichert werden. Rails erlaubt das mit einem Array von Paaren, etwa so ```[['Alice', 1], ['Bob', 2], ...]``` . Da wir aber diese Array dynamisch aus der Tabelle generieren wollen, nutzen wir die Array-Methode *collect* (http://www.ruby-doc.org/core-2.0.0/Array.html#method-i-collect) um aus der User-Tabelle so ein Array von username, id Paaren zu generieren  (```User.all.collect {|u| [ u.username, u.id ] }```). Der dritte Parameter gibt an, dass es eine leere Auswahl gibt  (```:include_blank => true```)  und das der aktuelle Wert von *@task.delegated_id* im Drop-Down selektiert ist (```:selected => @task.delegated_id```).
 	
-	In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
+	Wir haben ein weiteres Attribut und müssen die Zuweisung dieses Attributes explizit erlauben. Warum? Die Massenzuweisung ist zwar bequem, aber kann, wenn man nicht aufpasst zu Sicherheitslöchern führen, sog. Mass assignment vulnerability http://en.wikipedia.org/wiki/Mass_assignment_vulnerability. Darum gibt es in Rails 4 die Strategie, alle mögliche (```permit```) bzw. erforderlichen (```permit```) Attribute in einer "White List"  explizit anzugebn. Das Konzept heißt *Strong Parameter*  (http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters)  In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
 	```ruby
 	params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id)
 	```
@@ -893,3 +893,7 @@
 	git add .
 	git commit -m "Tasks können geändert vom delegierten User geändert werden"
 	```
+
+15. Deployment
+
+	Alles fertig. Zeit für ein Deployment. Auf gehts: https://github.com/rolandmueller/railskurs/blob/master/deployment.md
