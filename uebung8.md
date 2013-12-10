@@ -761,8 +761,8 @@
 
 	```ruby
 	# ruby encoding: utf-8
-	user1 = User.create!(username: "Alice", email: 'some@user.com', :password => 'topsecret', :password_confirmation => 'topsecret')
-	user2 = User.create!(username: "Bob", email: 'test@test.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	user1 = User.create!(username: "Alice", email: 'alice@alice.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	user2 = User.create!(username: "Bob", email: 'bob@bob.com', :password => 'topsecret', :password_confirmation => 'topsecret')
 	user1.tasks.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false)
 	user2.tasks.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
 	user1.tasks.create(name: "Rails for Zombies", deadline: Date.today - 2.days, duration: 3, done: false)
@@ -832,7 +832,8 @@
 	Wir verändern die *db/seed.rb* Datei:
 	```ruby
 	# ruby encoding: utf-8
-	 User.create!(username: "Bob", email: 'test@test.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	user1 = User.create!(username: "Alice", email: 'alice@alice.com', :password => 'topsecret', :password_confirmation => 'topsecret')
+	 user2 = User.create!(username: "Bob", email: 'bob@bob.com', :password => 'topsecret', :password_confirmation => 'topsecret')
 	user1.tasks.create(name: "Todo-Applikation", deadline: Date.today + 7.days, duration: 2, done: false, delegated_id: user2.id)
 	user2.tasks.create(name: "Idee für eigene Web-Applikation", deadline: Date.today + 10.days, duration: 2, done: false)
 	user1.tasks.create(name: "Rails for Zombies", deadline: Date.today - 2.days, duration: 3, done: false, delegated_id: user2.id)
