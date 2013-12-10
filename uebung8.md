@@ -893,7 +893,36 @@
 	git add .
 	git commit -m "Tasks können geändert vom delegierten User geändert werden"
 	```
-
+	
+	Und auf Github sichern:
+	```bash
+	git push origin master
+	```
+	
 15. Deployment
 
-	Alles fertig. Zeit für ein Deployment. Auf gehts: https://github.com/rolandmueller/railskurs/blob/master/deployment.md
+	Alles fertig. Zeit für ein Deployment. (Wenn Sie nicht Heroku eingerichtet haben, dann zu https://github.com/rolandmueller/railskurs/blob/master/deployment.md). Da wir schon alles grade  committed haben, können wir mit Git den Source-Code zu Heroku zu Heroku pushen.
+
+	```bash
+	git push heroku master
+	```
+	Genauso wie auf den lokalem PC müssen wir auf Heroku ein rake db:migrate durchführen, da wir das User-Model erstellt haben.
+	```bash
+	heroku run rake db:migrate
+	```
+	
+	Wenn man will kann man auch die Datenbank mit den seed.rb Daten füllen, durch rake db:setup 
+	```bash
+	heroku run rake db:setup
+	```
+	
+	Anschließend kann man die eigene Anwendung im Browser öffnen:
+	```bash
+	heroku open
+	```
+	
+	Man kann sich sogar remote auf Heroku auf die Rails Konsole einloggen und Daten so sich anschauen und ändern:
+	```bash
+	heroku run rails console
+	```	
+	
