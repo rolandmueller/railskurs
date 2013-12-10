@@ -1,7 +1,7 @@
 # Übung 8: Fortsetzung der Todo-App
 
 1. Zusätzliche Anforderungen
-    * Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen
+    * Hinzufügen von Unit-Tests, die die Geschäftslogik des Modells testen
     * Hinzufügen von Functional-Tests, die den Controller testen
     * Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
     * Im Modell soll es eine Methode geben, die die Differenz zu Heute anzeigt in Tagen.
@@ -10,7 +10,7 @@
     * Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
     * Ein erstellter Task wird zu dem User zugeordnet, der ihn erstellt. Ein User kann mehrere Tasks haben.
     * Nur wenn man eingeloggt ist und den Task erstellt hat, darf man den Task ändern oder löschen.
-    * Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
+    * Ein User soll einen User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
     * Im Index-Screen soll für jeden Task der User angezeigt werden, der den Task erstellt hat.
     * Man kann eine Aufgabe einem anderen User delegieren.
     * Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
@@ -28,7 +28,7 @@
    ```bash
    0 tests, 0 assertions, 0 failures, 0 errors, 0 skips
    ```
-   Unser erster Test in *test/models/task_test.rb*. Wir fügen ein Test hinzu der prüft, dass man eine leere Aufgabe nicht speichern kann.
+   Unser erster Test in *test/models/task_test.rb*. Wir fügen einen Test hinzu der prüft, dass man eine leere Aufgabe nicht speichern kann.
    ```ruby
    test "task can not be saved without name" do
      task = Task.new
@@ -47,7 +47,7 @@
    1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
    ```	
    
-   Wir fügen ein zweiten Test in *test/models/task_test.rb* ein, der testet, dass man ein vollständig ausgefülten Test speichern kann:
+   Wir fügen einen zweiten Test in *test/models/task_test.rb* ein, der testet, ob man einen vollständig ausgefüllten Test speichern kann:
    ```ruby
    test "task can be saved with name, deadline and duraton" do
      task = Task.new
@@ -78,7 +78,7 @@
    7 tests, 12 assertions, 3 failures, 1 errors, 0 skips
    ```
 
-   Failure ist wenn ein Assert (Annahme) nicht erfüllt wird. Error ist, wenn das Programm ein Syntax-Fehler hat. Die Functional-Tests (in *test/controllers*) wurden vom *generate scaffold* Befehl mit generiert. Warum funkionieren sie nicht mehr? In der letzten Übung 7 haben wir einiges nach dem Scaffolding geändert. Insbesondere haben wir die Show-Methode gelöscht und die Redirects geändert. Schauen wir uns den ersten Failure an:
+   Failure ist wenn ein Assert (Annahme) nicht erfüllt wird. Error ist, wenn das Programm ein Syntax-Fehler hat. Die Functional-Tests (in *test/controllers*) wurden vom *generate scaffold* Befehl mit generiert. Warum funktionieren sie nicht mehr? In der letzten Übung 7 haben wir einiges nach dem Scaffolding geändert. Insbesondere haben wir die Show-Methode gelöscht und die Redirects geändert. Schauen wir uns den ersten Failure an:
 
    ```bash
    1) Failure:
@@ -117,7 +117,7 @@
    Expected nil to not be nil.
    ```
    
-   In *test/controllers/task_controller_test.rb* im Test *test "should get index"* wird erwartet, dass wir der Instanz-Variable *@tasks* einen Wert hinzuweisen (*assigns*) und diese Wert nicht *nil* ist (```assert_not_nil assigns(:tasks)```):
+   In *test/controllers/task_controller_test.rb* im Test *test "should get index"* wird erwartet, dass wir der Instanz-Variable *@tasks* einen Wert hinzuweisen (*assigns*) und dieser Wert nicht *nil* ist (```assert_not_nil assigns(:tasks)```):
 
    ```ruby  
    test "should get index" do
@@ -138,7 +138,7 @@
    end
    ```
    
-   Und wir haben schon wieder ein Failure weniger:
+   Und wir haben schon wieder einen Failure weniger:
    ```bash
    rake test:functionals
 
@@ -214,7 +214,7 @@
     git commit -m "Unit und Functional Tests angepasst"
     ```	
     
-4. Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
+4. Im Modell soll es eine Methode geben, die angibt ob die Deadline überschritten ist.
 
    Wir fügen erst ein paar Tests in *test/models/task_test.rb* hinzu, die die Funktionalität testen, die wir danach entwickeln wollen (sog. Test-Driven Development (TDD)).
    ```ruby
@@ -235,7 +235,7 @@
    end
    ```
    
-   Wenn in Ruby der Name einer Methode mit einem Fragezeichen endet, deutet das darauf hin, dass die Methoden  Wahr oder Falsch zurückliern soll (boolean).
+   Wenn in Ruby der Name einer Methode mit einem Fragezeichen endet, deutet das darauf hin, dass die Methoden  Wahr oder Falsch zurückliefern soll (boolean).
    
    Wenn man auf der Konsole
    ```bash
@@ -280,7 +280,7 @@
     git commit -m "is_delayed? Methode in Task eingefügt "
     ```
 5.  Im Modell soll es eine Methode geben, die die Differenz in Tagen zu Heute zurückgibt.
-   Wir fÜgen ein paar Tests in *test/models/task_test.rb* hinzu:
+   Wir fügen ein paar Tests in *test/models/task_test.rb* hinzu:
    	```ruby
 	test "destance in days from today" do
 	  task = Task.new
@@ -400,7 +400,7 @@
 	<% end %>
 	```	
 	
-	Dahinter fügen wir noch dasselbe sondern für eine Warnung (*alert*) ein:
+	Dahinter fügen wir nicht dasselbe, sondern für eine Warnung ein *alert* ein:
 	
 	```html	
 	<% if alert %> 
@@ -411,15 +411,15 @@
 	<% end %>
 	```	
 	
-	Wir binden das Partial in der Datei *app/views/layouts/application.html.rb* nach dem tag ```<div class="container">``` (vor ```<%= yield %>```) wie folgt ein:
+	Wir binden das Partial in der Datei *app/views/layouts/application.html.rb* nach dem Tag ```<div class="container">``` (vor ```<%= yield %>```) wie folgt ein:
 
 	```html	
 	<%= render 'layouts/messages' %>
 	```
 	
-	In diesem Fall müssen wir beim Aufruf zum Partial den Ordner zusätzlich mitteilen, weil für alle verschiedenen Controller, der immer selbe Partial geladen werden soll. Ohne die */layout* Angabe würde für den Tasks-Controller im View im Tasks-Ordner gesucht.
+	In diesem Fall müssen wir beim Aufruf zum Partial den Ordner zusätzlich mitteilen, dass für alle verschiedenen Controller der immer selbe Partial geladen werden soll. Ohne die */layout* Angabe würde für den Tasks-Controller im View im Tasks-Ordner gesucht.
 	
-	Wir brauchen wir noch Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. 
+	Nun brauchen wir noch den Log-in und Registrations-Button. Die komplette Navigation-Bar aus *app/views/layouts/application.html.rb*  kopieren wir in ein neues Partial *_navigation.html.erb* im Verzeichnis *app/views/layout/*. 
 	
 	Anschließend fügen wir die Login/Registrations-links in die Navigations-Bar. Und zwar nach dem *Todo-App* Logo, also nach
 	
@@ -474,7 +474,7 @@
 	include Devise::TestHelpers
 	```
 	
-	Dies ist eine Test-Helfer von Devise für die Functional-Tests.
+	Dies ist ein Test-Helfer von Devise für die Functional-Tests.
 	
 	Außerdem müssen wir die Fixtures der User noch ändern. Fixtures sind Test-Daten für die Tests. In der Datei *test/fixtures/users.yaml* ersetzen wir den Teil ```one {} two {}``` mit:
 	
@@ -507,9 +507,9 @@
 	git commit -m "Authentifizierung mit Devise"
 	```
 
-7. Nur wenn man eingeloggt ist, darf man ein Task erstellen (Autorisierung).
+7. Nur wenn man eingeloggt ist, darf man eine Task erstellen (Autorisierung).
 
-	Devise stellt dafür eine Funktion bereit: *authenticate_user!* . Diese wird vor einer Controller-Methode aufgerufen, in dem man ein *before_action* definiert. Wir fügen diese Zeile in *app/controllers/task_controllers.rb* vor die andere *before_action* Anweisung:
+	Devise stellt dafür eine Funktion bereit: *authenticate_user!*. Diese wird vor einer Controller-Methode aufgerufen, in dem man ein *before_action* definiert. Wir fügen diese Zeile in *app/controllers/task_controllers.rb* vor die andere *before_action* Anweisung:
 
 	```ruby	
 	before_action :authenticate_user!, except: [:index]
@@ -576,7 +576,7 @@
 	rails generate migration AddUserIdToTasks user_id:integer:index
 	```	
 	
-	Mit *:index* wird gleich noch ein Index für den Fremdschlüssel *user_id* erzeugt. Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, dann sehen wir das die Migration-Anweisung gut aussieht, und so bleiben kann:
+	Mit *:index* wird gleich noch ein Index für den Fremdschlüssel *user_id* erzeugt. Wenn wir uns im *db/migrate/* Ordner die letzte Datei anschauen, sehen wir, dass die Migration-Anweisung gut aussieht, und so bleiben kann:
 	```ruby	
 	class AddUserIdToTasks < ActiveRecord::Migration
 	  def change
@@ -586,7 +586,7 @@
 	end
 	```	
 	
-	und wir ein Migration durchführen können:
+	und wir eine Migration durchführen können:
 	```bash
 	rake db:migrate
 	```
@@ -625,13 +625,13 @@
 	git commit -m "Task wird dem User zugeordnet, der diesen erstellt"
 	```	
 	
-9. Nur wenn man den Task erstellt hat, darf man den Task ändern oder löschen.
+9. Nur wenn man die Task erstellt hat, darf man die Task ändern oder löschen.
 
 	In der *set_task* Methode in *app/controllers/task_controller.rb* fügen wir nach
 	```ruby	
 	@task = Task.find(params[:id])
 	```		
-	folgendes ein  (wenn der Task nicht vom aktuellen User ist, darf der User diesen nicht ändern/löschen sondern wir redirected mit einem Alert-Nachricht) 
+	folgendes ein  (wenn die Task nicht vom aktuellen User ist, darf der User diese nicht ändern/löschen sondern wir redirected mit einem Alert-Nachricht) 
 	```ruby	
 	if @task.user_id != current_user.id
 	  redirect_to tasks_url, alert: 'You can edit only your own Tasks.'
@@ -671,9 +671,9 @@
 	git commit -m "Task kann nur geändert werden vom Ersteller"
 	```	
 
-	Aufgabe: Füge ein Functional-Test hinzu, der checkt, das der zweite User nicht die Tasks des ersten ändern kann.
+	Aufgabe: Füge ein Functional-Test hinzu, der checkt, dass der zweite User nicht die Tasks des ersten ändern kann.
 
-10. Ein User soll ein User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
+10. Ein User soll einen User-Namen haben. Dieser soll nicht doppelt vorkommen und darf nicht leer sein.
 
 	Auf der Konsole:
 	```bash
@@ -722,7 +722,7 @@
 	```html
 	<%= link_to "Logged in as " + current_user.username, edit_user_registration_path %> 
 	```
-	damit wir auch wissen, als was für ein User wir eingeloggt sind.
+	damit wir auch wissen, mit welchem User wir eingeloggt sind.
 	
 	
 	Die Fixtures der User ergänzen wir um den Usernamen. In *test/fixtures/users.yaml:
@@ -808,7 +808,7 @@
 
 12. Man kann eine Aufgabe einem anderen User delegieren.
 
-	Wir brauchen in der Task-Tabelle in der Datenbank ein weiteren Fremdschlüssel *delegated_id* . In der Konsole:
+	Wir brauchen in der Task-Tabelle in der Datenbank einen weiteren Fremdschlüssel *delegated_id* . In der Konsole:
 	```bash
 	rails generate migration AddDelegatedToTasks delegated_id:integer:index
 	```
@@ -841,7 +841,7 @@
 	user1.tasks.create(name: "Übung 1: FizzBuzz", deadline: Date.today - 26.days, duration: 4, done: true)
 	user2.tasks.create(name: "Übung 2: Ruby Konto", deadline: Date.today - 20.days, duration: 5, done: true, delegated_id: user1.id)
 	```
-	In *app/views/tasks/_form.html.erb* fügen wir in dem Formular ein Dropdown Menue der User hinzu, sodass wir auswählen können, an wen wir den Task delegieren:
+	In *app/views/tasks/_form.html.erb* fügen wir in dem Formular ein Dropdown Menü der User hinzu, sodass wir auswählen können, an wen wir die Task delegieren:
 	```ruby	
 	<div class="form-group">
 	  <%= f.label :delegated_id %><br>
@@ -849,16 +849,16 @@
 	</div>	
 	```
 	
-	```f.select``` erzeugt ein Drop-Down Menue im Formular für das Feld *delegated_id* (http://guides.rubyonrails.org/form_helpers.html#the-select-and-option-tags). ```f.select``` erwartet als zweiten Parameter ein Array für die Menu-Punkte. Es soll der *username* angezeigt werden aber die *id* in *delegated_id* gespeichert werden. Rails erlaubt das mit einem Array von Paaren, etwa so ```[['Alice', 1], ['Bob', 2], ...]``` . Da wir aber diese Array dynamisch aus der Tabelle generieren wollen, nutzen wir die Array-Methode *collect* (http://www.ruby-doc.org/core-2.0.0/Array.html#method-i-collect) um aus der User-Tabelle so ein Array von username, id Paaren zu generieren  (```User.all.collect {|u| [ u.username, u.id ] }```). Der dritte Parameter gibt an, dass es eine leere Auswahl gibt  (```:include_blank => true```)  und das der aktuelle Wert von *@task.delegated_id* im Drop-Down selektiert ist (```:selected => @task.delegated_id```).
+	```f.select``` erzeugt ein Drop-Down Menü im Formular für das Feld *delegated_id* (http://guides.rubyonrails.org/form_helpers.html#the-select-and-option-tags). ```f.select``` erwartet als zweiten Parameter ein Array für die Menü-Punkte. Es soll der *username* angezeigt werden aber die *id* in *delegated_id* gespeichert werden. Rails erlaubt das mit einem Array von Paaren, etwa so ```[['Alice', 1], ['Bob', 2], ...]``` . Da wir aber diese Array dynamisch aus der Tabelle generieren wollen, nutzen wir die Array-Methode *collect* (http://www.ruby-doc.org/core-2.0.0/Array.html#method-i-collect) um aus der User-Tabelle so ein Array von username, id Paaren zu generieren  (```User.all.collect {|u| [ u.username, u.id ] }```). Der dritte Parameter gibt an, dass es eine leere Auswahl gibt  (```:include_blank => true```)  und dass der aktuelle Wert von *@task.delegated_id* im Drop-Down selektiert ist (```:selected => @task.delegated_id```).
 	
-	Wir haben ein weiteres Attribut und müssen die Zuweisung dieses Attributes explizit erlauben. Warum? Die Massenzuweisung ist zwar bequem, aber kann, wenn man nicht aufpasst zu Sicherheitslöchern führen, sog. Mass assignment vulnerability http://en.wikipedia.org/wiki/Mass_assignment_vulnerability. Darum gibt es in Rails 4 die Strategie, alle mögliche (```permit```) bzw. erforderlichen (```permit```) Attribute in einer "White List"  explizit anzugebn. Das Konzept heißt *Strong Parameter*  (http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters)  In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
+	Wir haben ein weiteres Attribut und müssen die Zuweisung dieses Attributes explizit erlauben. Warum? Die Massenzuweisung ist zwar bequem, aber kann, wenn man nicht aufpasst zu Sicherheitslöchern führen, sog. Mass assignment vulnerability http://en.wikipedia.org/wiki/Mass_assignment_vulnerability. Darum gibt es in Rails 4 die Strategie, alle möglichen (```permit```) bzw. erforderlichen (```permit```) Attribute in einer "White List"  explizit anzugeben. Das Konzept heißt *Strong Parameter*  (http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters)  In *app/controllers/task_controller.rb* die Zeile in der *task_params* Methode wie folgt öndern:
 	```ruby
 	params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id)
 	```
 
-13. Im Index-Screen soll für jeden Task der User angezeigt werden, an den der Task delegiert wurde.
+13. Im Index-Screen soll für jede Task der User angezeigt werden, an den die Task delegiert wurde.
 	
-	In *app/views/tasks/_form.html.erb* statt ```<th>User</th>``` schreiben wir:
+	In *app/views/tasks/_table.html.erb* statt ```<th>User</th>``` schreiben wir:
 	```html
 	<th>Created</th>
 	<th>Delegated</th>
@@ -912,7 +912,7 @@
 	heroku run rake db:migrate
 	```
 	
-	Wenn man will kann man auch die Datenbank mit den seed.rb Daten füllen, durch rake db:setup 
+	Wenn man will, kann man auch die Datenbank mit den seed.rb Daten füllen, durch rake db:setup 
 	```bash
 	heroku run rake db:setup
 	```
@@ -922,7 +922,7 @@
 	heroku open
 	```
 	
-	Man kann sich sogar remote auf Heroku auf die Rails Konsole einloggen und Daten so sich anschauen und ändern:
+	Man kann sich sogar remote auf Heroku auf die Rails Konsole einloggen und sich die Daten auf diese Weise anschauen und ändern:
 	```bash
 	heroku run rails console
 	```	
