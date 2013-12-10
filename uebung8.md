@@ -19,7 +19,7 @@
 
 2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen (für Tests siehe auch http://guides.rubyonrails.org/testing.html und Slides)
 
-   Momentan ist der Unit-Test in *tests/models/task_test.rb* auskommentiert und wenn man auf der Konsole
+   Momentan ist der Unit-Test in *test/models/task_test.rb* auskommentiert und wenn man auf der Konsole
    
    ```bash
    rake test:units
@@ -28,7 +28,7 @@
    ```bash
    0 tests, 0 assertions, 0 failures, 0 errors, 0 skips
    ```
-   Unser erster Test in *app/tests/models/task_test.rb*. Wir fügen ein Test hinzu der prüft, dass man eine leere Aufgabe nicht speichern kann.
+   Unser erster Test in *test/models/task_test.rb*. Wir fügen ein Test hinzu der prüft, dass man eine leere Aufgabe nicht speichern kann.
    ```ruby
    test "task can not be saved without name" do
      task = Task.new
@@ -47,7 +47,7 @@
    1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
    ```	
    
-   Wir fügen ein zweiten Test in *app/tests/models/task_test.rb* ein, der testet, dass man ein vollständig ausgefülten Test speichern kann:
+   Wir fügen ein zweiten Test in *test/models/task_test.rb* ein, der testet, dass man ein vollständig ausgefülten Test speichern kann:
    ```ruby
    test "task can be saved with name, deadline and duraton" do
      task = Task.new
@@ -87,7 +87,7 @@
    Expected "http://test.host/tasks/980190963" to be === "http://test.host/tasks".
    ```
    
-   In *app/tests/controllers/task_controller_test.rb* im Test *test "should create task"* wird erwartet, dass wir auf  Show redirecten:
+   In *test/controllers/task_controller_test.rb* im Test *test "should create task"* wird erwartet, dass wir auf  Show redirecten:
 
    ```ruby  
    assert_redirected_to task_path(assigns(:task))
@@ -117,7 +117,7 @@
    Expected nil to not be nil.
    ```
    
-   In *app/tests/controllers/task_controller_test.rb* im Test *test "should get index"* wird erwartet, dass wir der Instanz-Variable *@tasks* einen Wert hinzuweisen (*assigns*) und diese Wert nicht *nil* ist (```assert_not_nil assigns(:tasks)```):
+   In *test/controllers/task_controller_test.rb* im Test *test "should get index"* wird erwartet, dass wir der Instanz-Variable *@tasks* einen Wert hinzuweisen (*assigns*) und diese Wert nicht *nil* ist (```assert_not_nil assigns(:tasks)```):
 
    ```ruby  
    test "should get index" do
@@ -216,7 +216,7 @@
     
 4. Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
 
-   Wir fügen erst ein paar Tests in *app/tests/models/task_test.rb* hinzu, die die Funktionalität testen, die wir danach entwickeln wollen (sog. Test-Driven Development (TDD)).
+   Wir fügen erst ein paar Tests in *test/models/task_test.rb* hinzu, die die Funktionalität testen, die wir danach entwickeln wollen (sog. Test-Driven Development (TDD)).
    ```ruby
    test "is delayed" do
      task = Task.new
@@ -280,7 +280,7 @@
     git commit -m "is_delayed? Methode in Task eingefügt "
     ```
 5.  Im Modell soll es eine Methode geben, die die Differenz in Tagen zu Heute zurückgibt.
-   Wir fÜgen ein paar Tests in *app/tests/models/task_test.rb* hinzu:
+   Wir fÜgen ein paar Tests in *test/models/task_test.rb* hinzu:
    	```ruby
 	test "destance in days from today" do
 	  task = Task.new
