@@ -216,7 +216,7 @@
     
 4. Im Modell soll es eine Methode geben, die angibt ob Deadline überschritten ist.
 
-   Wir fÜgen als ein paar Tests in *app/tests/models/task_test.rb* hinzu, die die Funktionalität testet, die wir danach entwickeln wollen (sog. Test-Driven Development (TDD)).
+   Wir fügen erst ein paar Tests in *app/tests/models/task_test.rb* hinzu, die die Funktionalität testen, die wir danach entwickeln wollen (sog. Test-Driven Development (TDD)).
    ```ruby
    test "is delayed" do
      task = Task.new
