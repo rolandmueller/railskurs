@@ -19,7 +19,7 @@
 
 2. Hinzufügen von Unit-Tests, die die Geschäfstlogik des Modells testen (für Tests siehe auch http://guides.rubyonrails.org/testing.html und Slides)
 
-   Momentan ist der Unit-Test in *app/tests/models/task_test.rb* auskommentiert und wenn man auf der Konsole
+   Momentan ist der Unit-Test in *tests/models/task_test.rb* auskommentiert und wenn man auf der Konsole
    
    ```bash
    rake test:units
