@@ -901,7 +901,7 @@
 	
 15. Deployment
 
-	Alles fertig. Zeit für ein Deployment. (Wenn Sie nicht Heroku eingerichtet haben, dann zu https://github.com/rolandmueller/railskurs/blob/master/deployment.md). Da wir schon alles grade  committed haben, können wir mit Git den Source-Code zu Heroku zu Heroku pushen.
+	Alles fertig. Zeit für ein Deployment. (Wenn Sie Heroku noch nie für dieses Projekt eingerichtet haben, dann zu https://github.com/rolandmueller/railskurs/blob/master/deployment.md). Da wir schon alles grade committed haben, können wir mit Git den Source-Code zu Heroku pushen.
 
 	```bash
 	git push heroku master
