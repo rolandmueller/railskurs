@@ -1,12 +1,11 @@
 # Todo-App Fortsetzung 2 (Javascript)
 
 1. Wir haben folgende neue Anforderungen:
-
-  * Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Tasks haben (has_many).
-  * Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode des Project-Controllers). 
-  * Auf der selben Seite soll man Projekte anlegen, umbennen und löschen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
-  * Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
-  * Es soll eine Filterung der Aufgaben geben, so dass nur Aufgaben angezeigt werden, die man selber erstellt hat oder die an einem delegiert worden sind.
+	* Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Tasks haben (has_many).
+	* Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode des Project-Controllers). 
+	* Auf der selben Seite soll man Projekte anlegen, umbennen und löschen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
+	* Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
+	* Es soll eine Filterung der Aufgaben geben, so dass nur Aufgaben angezeigt werden, die man selber erstellt hat oder die an einem delegiert worden sind.
 
 2. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Task haben (has_many).
 
@@ -67,11 +66,45 @@
   ```
   
   Alle Test funktionieren noch:
-  ```bash
-  rake test
+	```bash
+	rake test
 	...............
 	
 	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
 	```
   
-2. Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode).
+3. Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode).
+
+	Wir generieren ein Project-Controller mit einer Index-Methode:
+	```bash
+	rails generate controller Projects index
+	```
+	
+	Wir laden in der Index-Methoede des Controllers alle Projekte(in *app/controllers/project_controller.rb*:
+	```ruby
+	@projects = Project.all
+	```
+	
+	In *config/routes.rb* löschen wir
+	```ruby
+	get "projects/index"
+	```
+	und schreiben statt dessen
+	```ruby
+	resources :projects, except: [:show]
+	```
+	da wir alle Resourcen-Routes bis auf Show bald sowieso brauchen.
+	
+	In *app/views/projects/index.html.erb* löschen wir alles und schreiben statt dessen:
+	```html
+	<h1>Projects</h1>
+	<%= render @projects %>
+	```
+	
+	Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (ist ein Partial) und fügen folgendes in Datei:
+	```html
+	<div>
+	<%= project.name %> <%= link_to "Delete", project, :class => "btn btn-danger  btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+	</div>
+	```
+	
