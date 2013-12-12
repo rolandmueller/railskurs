@@ -1,4 +1,4 @@
-# Todo-App Fortsetzung 2 (Javascript)
+#  Übung 9: Todo-App Fortsetzung 2 (Javascript)
 
 1. Wir haben folgende neue Anforderungen:
 	* Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Tasks haben (has_many).
