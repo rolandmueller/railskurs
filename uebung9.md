@@ -97,7 +97,7 @@
 	
 	In *app/views/projects/index.html.erb* löschen wir alles und schreiben statt dessen:
 	```html
-	<%= link_to 'New Project', new_project_path, id: "new_link", remote: true %>
+	<%= link_to 'New Project', new_project_path, id: "new_link", remote: true, :class => "btn btn-success  btn-sm" %>
 	
 	<h2>Projects</h2>
 	
