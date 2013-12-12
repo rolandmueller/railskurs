@@ -3,7 +3,8 @@
 1. Wir haben folgende neue Anforderungen:
 	* Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Tasks haben (has_many).
 	* Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode des Project-Controllers). 
-	* Auf der selben Seite soll man Projekte anlegen, umbennen und löschen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
+	* Auf der selben Index-Seite soll man Projekte anlegen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
+	* Auf der selben Seite soll man Projekte umbennen und löschen können.
 	* Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
 	* Es soll eine Filterung der Aufgaben geben, so dass nur Aufgaben angezeigt werden, die man selber erstellt hat oder die an einem delegiert worden sind.
 
@@ -189,10 +190,18 @@
 	
 	16 tests, 21 assertions, 0 failures, 0 errors, 0 skips
 	```
-
+	
 	Zeit für ein Commit:
 	```bash
 	git add .
 	git commit -m "Index-Seite von Project"
 	```
 	
+4. Auf der selben Index-Seite soll man Projekte anlegen können.
+
+
+	In *app/views/project/new.js.erb*
+	```javascript
+	$('#new_link').hide().after('<%= j render("form") %>');
+	$('#project_name').focus();
+	```
