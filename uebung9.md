@@ -123,6 +123,52 @@
 	</tr>
 	```
 	
+	
+	Abschließend wollen wir die Navigations-Bar etwas verbessern. Erstens sollen Menu-Punkte für Tasks und Projects links in der Navigations-Bar erscheinen, die aktiv sind, wenn der jeweilige Controller genutzt wird (```<%= "active" if params[:controller] == "projects" %>"```). Dafür nutzen wir die Bootstrap Classe "active" (http://getbootstrap.com/components/#navbar). Ausserdem soll das Menu bei zu kleiner Breite des Browser bzw. bei Smartphones sich zusammenklappen ("collapse") und als Menu-Button oben rechts erscheinen. Wir ersetzten alles in der Datei *app/views/layouts/_navigation.html.erb* mit foglendem:
+	
+	```html
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<%= link_to "Todo-App", tasks_path, :class => "navbar-brand" %>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+		      <li class="<%= "active" if params[:controller] == "tasks" %>">
+		      	<%= link_to "Tasks", tasks_path %>
+		      </li>
+		      <li class="<%= "active" if params[:controller] == "projects" %>">
+		      	<%= link_to "Projects", projects_path %>
+		      </li>
+		    </ul>
+	
+				<ul class="nav navbar-nav navbar-right">
+					<% if user_signed_in? %>
+					<li>
+						<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+					</li>
+					<li>
+						<%= link_to 'Edit account', edit_user_registration_path %>
+					</li>
+					<% else %>
+					<li>
+						<%= link_to 'Login', new_user_session_path %>
+					</li>
+					<li>
+						<%= link_to 'Sign up', new_user_registration_path %>
+					</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+	```
 	Sieht gut aus:
 	![](https://dl.dropboxusercontent.com/u/10978171/projects.png)
 	
@@ -143,5 +189,6 @@
 	Zeit für ein Commit:
 	```bash
 	git add .
-	git commit -m "Index-Seite von Project "
+	git commit -m "Index-Seite von Project"
 	```
+	
