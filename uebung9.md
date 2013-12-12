@@ -172,6 +172,10 @@
 	Sieht gut aus:
 	![](https://dl.dropboxusercontent.com/u/10978171/projects.png)
 	
+	Wenn die Breite des Browsers zu klein ist klappt das Menu zusammen:
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/iphone.png)
+	
 	Damit der neue Controller-Test funktioniert, füge in *test/controllers/projects_controller_test.rb* den folgenden Code nach ```class ProjectsControllerTest < ActionController::TestCase``` ein :
 	
 	```ruby
