@@ -97,14 +97,51 @@
 	
 	In *app/views/projects/index.html.erb* löschen wir alles und schreiben statt dessen:
 	```html
-	<h1>Projects</h1>
-	<%= render @projects %>
+	<%= link_to 'New Project', new_project_path, id: "new_link", remote: true %>
+	
+	<h2>Projects</h2>
+	
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <%= render @projects %>
+	  </tbody>
+	</table>
 	```
 	
 	Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (ist ein Partial) und fügen folgendes in Datei:
 	```html
-	<div>
-	<%= project.name %> <%= link_to "Delete", project, :class => "btn btn-danger  btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
-	</div>
+	<tr id="project_<%= project.id %>"> 
+	  <td><%= link_to project.name, edit_project_path(project), remote: true %></td>
+	
+	  <td><%= link_to "Delete", project, :class => "btn btn-danger  btn-sm", remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	</tr>
 	```
 	
+	Sieht gut aus:
+	![](https://dl.dropboxusercontent.com/u/10978171/projects.png)
+	
+	Damit der neue Controller-Test funktioniert, füge in *test/controllers/projects_controller_test.rb* den folgenden Code nach ```class ProjectsControllerTest < ActionController::TestCase``` ein :
+	
+	```ruby
+	include Devise::TestHelpers
+	```
+	
+	Der neue Test für die Index-Funktion läuft:
+	```bash
+	rake test
+	................
+	
+	16 tests, 21 assertions, 0 failures, 0 errors, 0 skips
+	```
+
+	Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Index-Seite von Project "
+	```
