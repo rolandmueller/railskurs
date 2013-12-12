@@ -114,7 +114,7 @@
 	</table>
 	```
 	
-	Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (ist ein Partial) und fügen folgendes in Datei:
+	Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (ist ein Partial) und fügen folgendes in die Datei:
 	```html
 	<tr id="project_<%= project.id %>"> 
 	  <td><%= link_to project.name, edit_project_path(project), remote: true %></td>
