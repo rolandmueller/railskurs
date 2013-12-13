@@ -155,7 +155,7 @@
 						<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
 					</li>
 					<li>
-						<%= link_to 'Edit account', edit_user_registration_path %>
+						<%= link_to "Logged in as " + current_user.username, edit_user_registration_path %> 
 					</li>
 					<% else %>
 					<li>
