@@ -20,7 +20,7 @@ railskurs
 2. [Sublime Text 2](https://github.com/rolandmueller/railskurs/blob/master/sublime.md)
 3. [Git und Github](https://github.com/rolandmueller/railskurs/blob/master/git.md)
 
-## Anleitungen und Übungen
+## Übungen
 
 4. [Landing Page mit HTML / CSS / Bootstrap](https://github.com/rolandmueller/railskurs/blob/master/html_css_bootstrap.md)
 5. [Konto mit ActiveRecord](https://github.com/rolandmueller/railskurs/blob/master/uebung6.md)
