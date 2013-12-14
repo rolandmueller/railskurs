@@ -9,13 +9,13 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   Ist nur notwendig, wenn man auf dem Rechner/Server das Bild automatisch verändern will, z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Dies muss man nur einmal pro Computer machen.
     * Für Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
     
-    * Für Mac: Mit Homebrew installieren.
+    * Für Mac: Mit Homebrew installieren. Im Terminal:
     
       ```bash
       brew install imagemagick
       ```
     
-      Wenn Homebrew nicht installiert ist, muss man Homebrewauf dem Mac erst wie folgt installieren. Auf dem Terminal:
+      Wenn Homebrew nicht installiert ist, muss man Homebrewauf dem Mac erst wie folgt installieren. Im Terminal:
     
       ```bash
       ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
