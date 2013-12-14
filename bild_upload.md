@@ -142,4 +142,17 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   
   ![](https://dl.dropboxusercontent.com/u/10978171/thumbnails.png)
   
+  Man kann auch noch andere Varianten in definieren
+  ```ruby
+  version :normal do
+    process :resize_to_fit => [300, 300]
+  end
+  ```
+  
+  und dann z.B. das Bild in *app/views/paintings/show.html.erb* in der Normal-Skalierten Variante zeigen:
+    ```html
+  <td><%= image_tag painting.image_url(:normal) if painting.image? %></td>
+  ```
+  
+9. Um das auf Heroku zum laufen zu bringen, siehe https://github.com/carrierwaveuploader/carrierwave/wiki/How-to%3A-Make-Carrierwave-work-on-Heroku und mich fragen.
   
