@@ -81,7 +81,7 @@
 	rails generate controller Projects index
 	```
 	
-	Wir laden in der Index-Methoede des Controllers alle Projekte(in *app/controllers/project_controller.rb*:
+	Wir laden in der Index-Methode des Controllers alle Projekte (in *app/controllers/project_controller.rb*:
 	```ruby
 	@projects = Project.all
 	```
@@ -115,7 +115,9 @@
 	</table>
 	```
 	
-	Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (ist ein Partial) und fügen folgendes in die Datei:
+	Die Zeile ```<%= render @projects %>``` funktioniert wie folgt. ```@projects```ist ein Array von Projekten (haben wir grade im Controller aus der Datenbank geladen). Rails ist nun so clever, dass wenn eine Collection von Modell-Instanzen übergibt, dass dann 1. der Partial für jedes Element im Array extra aufgerufen wird und 2. der Partial-Name aus dem Modell-Name abgeleitet wird. Damit sparen wir uns eine Schleife. Alternativ zu ```<%= render @projects %>``` hätten wir auch länger ```<%= render partial: "project", collection: @projects %>``` schreiben können (exakt gleiche Wirkung).
+	
+	Den eigentlichen Partial müssen wir noch erstellen. Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (den Partial) und fügen folgendes in die Datei:
 	```html
 	<tr id="project_<%= project.id %>"> 
 	  <td><%= link_to project.name, edit_project_path(project), remote: true %></td>
@@ -123,7 +125,6 @@
 	  <td><%= link_to "Delete", project, :class => "btn btn-danger  btn-sm", remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	</tr>
 	```
-	
 	
 	Abschließend wollen wir die Navigations-Bar etwas verbessern. Erstens sollen Menu-Punkte für Tasks und Projects links in der Navigations-Bar erscheinen, die aktiv sind, wenn der jeweilige Controller genutzt wird (```<%= "active" if params[:controller] == "projects" %>"```). Dafür nutzen wir die Bootstrap Classe "active" (http://getbootstrap.com/components/#navbar). Ausserdem soll das Menu bei zu kleiner Breite des Browser bzw. bei Smartphones sich zusammenklappen ("collapse") und als Menu-Button oben rechts erscheinen. Wir ersetzten alles in der Datei *app/views/layouts/_navigation.html.erb* mit foglendem:
 	
@@ -197,11 +198,59 @@
 	git commit -m "Index-Seite von Project"
 	```
 	
-4. Auf der selben Index-Seite soll man Projekte anlegen können.
+4. Auf der selben Index-Seite soll man Projekte anlegen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
 
+	Als erstes müssen wir uns entscheiden, ob wir auch Browser mit ausgeschalteten Javascript unterstützen oder nicht. Rails erleichtert gleichzeitige Unterstützung von Javascript und Nur-HTML Verhalten ungemein mit dem ```respond_to``` Befehl im Controller. Wir entscheiden uns, dass der Nutzer Javascript aktiviert haben muss und unsere Anwendung mit ausgeschaltetem Javascript nicht funktionieren würde (kann man später auch noch ändern).
 
-	In *app/views/project/new.js.erb*
+	Als erstes soll wenn man auf den "New Project" Button drückt, der Button verschwinden und statt dessen ein Formular erscheinen. In *app/views/projects/index.html.erb* ist der "New Project" Button schon mit ```remote: true```als Remote-Link definiert ```<%= link_to 'New Project', new_project_path, id: "new_link", remote: true, :class => "btn btn-success  btn-sm" %>```so dass wir dort nichts ändern brauchen. Der Link ruft die New-Methode im Project-Controller per Javascript auf. Diese Methode müssen wir also erstellen:
+	
+	```ruby
+	def new
+	  @project = Project.new
+	end
+	```
+	
+	Sieht genau so aus wie im Task-Controller. Der Unterschied ist nun, dass wir kein HTML-View für diese Methode erstellen, sondern ein Javascript view. Wir erstellen eine neue Datei *app/views/project/new.js.erb* und schreiben darin folgendes:
 	```javascript
 	$('#new_link').hide().after('<%= j render("form") %>');
 	$('#project_name').focus();
+	$('#cancel_button').clickCancelButton();
 	```
+	
+	Die erste Zeile macht als erstes den "New-Button" mit der ID "new_link" unsichtbar (```$('#new_link').hide()```). Hinter dem Button wird das Formular *form* eingefügt (```.after('<%= j render("form") %>')```). Das ```j``` steht für ```escape_javascript``` und formt das HTML des Formulars so um, dass es per Javascript eingebaut werden kann. 
+	
+	Die zeite Zeile gibt dem Text-Input-Feld mit der ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). 
+	
+	Die dritte Zeile fügt dem Cancel-Button die Funktion *clickCancelButton()* hinzu.
+	
+	Damit dieses drei Zeilen Javascript funktionieren, brauchen wir als erstes das Formular in einem Partial "form". Wir erstellen eine Datei *_form* im Verzeichnis *app/views/project/* und fügen folgendes ein:
+	
+	```html
+	<%= form_for(@project, remote: true, :html => {id: "new_project"}) do |f| %>
+		<div class="row form-group">
+			<div class="col-xs-4">
+				<label class="control-label" for="project_name" id="error-message"></label>
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+			<div class="col-xs-3 button-group">	
+				<%= f.submit "Save", class: "btn btn-primary btn-sm" %>  
+				<%= link_to 'Cancel', "", id: "cancel_button", class: "btn btn-default btn-sm" %>
+			</div>
+		</div>
+	<% end %>
+	```
+	
+	Als zweites fügen wir in *app/asssets/javascripts/projects.js.coffee* folgenden Code ein:
+	```javascript
+	jQuery.fn.clickCancelButton = ->
+		@find('#cancel_button').click ->
+			$('#new_project').remove()
+			$('#new_link').show()
+	```
+	In der ersten Zeile wird eine neue Javascript-Funktion mit dem Namen *clickCancelButton* definiert (```jQuery.fn.clickCancelButton = ->```). In der zweiten Zeile wird für den HTML-Tag mit der ID "cancel_button" definiert, was beim Click-Ereignis passieren soll (```@find('#cancel_button').click ->```). In den letzen beiden Zeilen wird beschrieben, dass dann als erstes das Formular gelöscht werden soll (```$('#new_project').remove()```) und dann der "New Project" Button wieder erscheinen soll (```$('#new_project').remove()```).
+	
+
+
+
+
+
