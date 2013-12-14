@@ -2,11 +2,22 @@
 
 In vielen Applikationen kann der Nutzer ein Bild hochladen. Sei es das User-Bild oder das Bild eines Artikels. Wie geht das?
 
-Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Upload zu ermöglichen.
+Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
 
-1. ImageMagick installieren
+1. Rails Applikation
 
-  Ist nur notwendig, wenn man auf dem Server das Bild automatisch verändern will, also z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Muss man nur einmal für den Computer machen.
+  Wir erzeugeneine kleine Rails-Applikation die Bilder (Paintings) einer Galerie zeigen soll.
+  
+  ```bash
+  rails new fileuploadapp
+  cd fileuploadapp
+  rails generate scaffold painting name
+  rake db:migrate
+  ```
+  
+2. ImageMagick installieren
+
+  Ist nur notwendig, wenn man auf dem Rechner/Server das Bild automatisch verändern will, also z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Muss man nur einmal pro Computer machen.
   
   * Wenn Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
   * Wenn Mac: Wie Homebrew installieren.
@@ -20,7 +31,7 @@ Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Uplo
     
   * Für Linux ```sudo apt-get install imagemagick```
   
-2. Carrierwave (https://github.com/carrierwaveuploader/carrierwave) installieren
+3. Carrierwave (https://github.com/carrierwaveuploader/carrierwave) installieren
 
   Im *Gemfile* folgendes hinzufügen:
 
@@ -38,32 +49,21 @@ Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Uplo
   ```
   installieren.
   
-3. Uploader erzeugen
+4. Uploader erzeugen
 
   Auf der Konsole:
   ```bash
   rails generate uploader Image
   ```
   
-  Den Image-Uploader kann man auch anders nennen (z.B. Avatar). In *app/uploaders/image_uploader.rb* kann man den Uploader konfigurieren. Für Bilder sollte man bei diesem Abschnitt die Kommentare entfernen:
+  Den Image-Uploader kann man auch anders nennen (z.B. Avatar). In *app/uploaders/image_uploader.rb* kann man den Uploader konfigurieren. Wenn man nur Bilder hcohladen will, sollte man bei diesem Abschnitt die Kommentare entfernen und nur Bilder zulassen:
   ```ruby
   def extension_white_list
     %w(jpg jpeg gif png)
   end
   ```
-  
-4. Mini-Test Applikation
 
-  Zum vorführen erzeugen wir eine kleine Rails-Applikation die Bilder (Paintings) einer Galerie zeigen soll.
-  
-  ```bash
-  rails new fileuploadapp
-  cd fileuploadapp
-  rails generate scaffold painting name
-  rake db:migrate
-  ```
-  
-4. Im dem Modell, dass ein Bild haben soll, Uploader und Image-Name hinzufügen.
+5. Im dem Modell, dass ein Bild haben soll, Uploader und Image-Name hinzufügen.
 
   Wenn wir z.B. zum User ein Bild hinzufügen wollen. 
   
@@ -80,7 +80,7 @@ Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Uplo
   mount_uploader :image, ImageUploader
   ```
   
-5. Im Formular ein Datei-Upload einbauen.
+6. Im Formular ein Datei-Upload einbauen.
 
   Damit ein Datei-Upload mit einem Formular möglich ist, muss das Formular auf *Multipart* umgestellt werden. Wir fügen dafür ```:html => {:multipart => true}``` in die Parameter der *form_for* Funktion. Also z.B. für den User in *app/views/painting/_form.html.erb* ändern wir die erste Zeile, sodass diese so aussieht:
   ```html
@@ -98,9 +98,48 @@ Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Uplo
   </div>
   ```
   
+  Im Painting-Controller müssen wir noch *image* und *remote_image_url* erlauben.
+  ```ruby
+  def painting_params
+    params.require(:painting).permit(:name, :image, :remote_image_url)
+  end
+  ```
+  
   Wenn wir den Rails Server gestartet haben und auf http://localhost:3000/paintings/new gehen, sieht es so aus:
   
   ![](https://dl.dropboxusercontent.com/u/10978171/fileupload.png)
   
+  
+7. Bild darstellen
+
+  Z.B. in *app/views/paintings/show.html.erb* fügen das Image ein:
+  
+  ```html
+  <%= image_tag @painting.image_url if @painting.image? %>
+  ```
+
+    ![](https://dl.dropboxusercontent.com/u/10978171/mona_lisa.png)
+    
+8. Wenn man ImageMagick installiert hat, kann man automatisch die Bilder skallieren lassen.
+
+  In *app/uploaders/image_uploader.rb* kann man verschiedene Versionen erstellen. Z.B. Thumbnails in verschiedener Größe. Wir entfernen die Kommentare von 
+  
+  ```ruby
+  include CarrierWave::MiniMagick
+  ```
+  und fügen das ein
+  ```ruby
+  version :thumb do
+    process :resize_to_fit => [100, 100]
+  end
+  ```
+  Anstatt *resize_to_fit* hätte man auch *resize_to_fill* nehmen können. Dann wären die kompletten 100x100 pixel ausgefüllt worden, jedoch einiges vom Bild eventuell vom Bid abgeschnitten worden.
+  
+  In *app/views/paintings/index.html.erb* kann man das Bild hinter ```<td><%= painting.name %></td>```hinzufügen:
+  ```html
+  <td><%= image_tag painting.image_url(:thumb) if painting.image? %></td>
+  ```
+  
+  ![](https://dl.dropboxusercontent.com/u/10978171/thumbnails.png)
   
   
