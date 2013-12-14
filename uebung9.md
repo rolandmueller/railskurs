@@ -6,7 +6,6 @@
 	* Auf der selben Index-Seite soll man Projekte anlegen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
 	* Auf der selben Seite soll man Projekte umbennen und löschen können.
 	* Ein Task kann man einem Projekt zuordnen.
-	* Es soll eine Filterung der Aufgaben geben, so dass nur Aufgaben angezeigt werden, die man selber erstellt hat oder die an einem delegiert worden sind.
 
 2. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Task haben (has_many).
 
@@ -87,9 +86,16 @@
 	rails generate controller Projects index
 	```
 	
-	Wir laden in der Index-Methode des Controllers alle Projekte (in *app/controllers/project_controller.rb*:
+	Wir laden in der Index-Methode des Controllers alle Projekte (in *app/controllers/project_controller.rb*):
 	```ruby
-	@projects = Project.all
+	def index
+	  @projects = Project.all
+	end
+	```
+	
+	Nach ```class ProjectsController < ApplicationController``` fügen wir folgende Zeile hinzu: 
+	```ruby
+	before_action :authenticate_user!
 	```
 	
 	In *config/routes.rb* löschen wir
@@ -188,6 +194,20 @@
 	
 	```ruby
 	include Devise::TestHelpers
+	
+	setup do
+	  @project = tasks(:one)
+	  @user = users(:one)
+	end
+	```
+	
+	Im Index-Test fügen wir noch den User-Login (```sign_in @user```) zur Methode hinzu:
+	```ruby
+	test "should get index" do
+	  sign_in @user
+	  get :index
+	  assert_response :success
+	end
 	```
 	
 	Der neue Test für die Index-Funktion läuft:
@@ -258,6 +278,7 @@
 	
 	Probieren Sie aus, ob der "New Project" und der "Cancel" Button funktioniert:
 	![](https://dl.dropboxusercontent.com/u/10978171/project_form.png)
+	
 	
 	
 	Zeit für ein Commit:
@@ -481,4 +502,3 @@
 	git add .
 	git commit -m "Task kann Projekt zugeordnet werden + Task-Index mit Projekt"
 	```
-	
