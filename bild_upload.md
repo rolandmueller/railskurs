@@ -13,21 +13,25 @@ Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Uplo
     ```bash
     brew install imagemagick
     ```
-    Wenn Homebrew nicht installiert ist, kann man die wie folgt installieren. Auf der Konsole:
+    Wenn Homebrew nicht installiert ist, kann man es auf dem Max wie folgt installieren. Auf dem Terminal:
     ```bash
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
     ```
     
-    * Für Linux ```sudo apt-get install imagemagick```
+  * Für Linux ```sudo apt-get install imagemagick```
   
-
 2. Carrierwave (https://github.com/carrierwaveuploader/carrierwave) installieren
 
   Im *Gemfile* folgendes hinzufügen:
 
   ```ruby
-  gem "carrierwave"
+  gem 'carrierwave'
   ```
+  Wenn man *ImageMagick* nutzen will zusätzlich im Gemfile
+  ```ruby
+  gem 'mini_magick'
+  ```  
+  
   Und dann auf der Konsole mit
   ```bash
   bundle install
@@ -37,4 +41,21 @@ Um dies zu simulieren, fügen wir für Nutzer der Todo-Applikation ein Bild-Uplo
 3. Uploader erzeugen
 
   Auf der Konsole:
+  ```bash
+  rails generate uploader Image
+  ```
+  
+  Den Image-Uploader kann man auch anders nennen (z.B. Avatar). In *app/uploaders/image_uploader.rb* kann man den Uploader konfigurieren. Für Bilder sollte man bei diesem Abschnitt die Kommentare entfernen:
+  ```ruby
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+  ```
+  
+4. Im dem Modell, dass ein Bild haben soll, Uploader und Image-Name hinzufügen.
+
+  Wenn wir z.B. zum User ein Bild hinzufügen will:
+  ```bash
+  rails generate migration add_image_to_users image:string
+  ```
   
