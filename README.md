@@ -21,3 +21,7 @@ railskurs
 3. [Git und Github](https://github.com/rolandmueller/railskurs/blob/master/git.md)
 4. [Landing Page mit HTML / CSS / Bootstrap](https://github.com/rolandmueller/railskurs/blob/master/html_css_bootstrap.md)
 5. [Konto mit ActiveRecord](https://github.com/rolandmueller/railskurs/blob/master/uebung6.md)
+6. [Todo-App](https://github.com/rolandmueller/railskurs/blob/master/uebung7.md)
+7. [Todo-App Fortsetzung (Authentifizierung mit Devise)](https://github.com/rolandmueller/railskurs/edit/master/uebung8.md)
+8. [Todo-App Fortsetzung 2 (Javascript)](https://github.com/rolandmueller/railskurs/blob/master/uebung9.md)
+6. [Bild Upload](https://github.com/rolandmueller/railskurs/blob/master/bild_upload.md)
