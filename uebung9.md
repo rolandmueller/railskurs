@@ -381,9 +381,7 @@
 	```
 	Die erste Zeile löscht das Formular, wenn es eins gibt. Die zwiete Zeile macht als erstes den "New-Button" mit der ID "new_link" unsichtbar (```$('#new_link').hide()```). Hinter dem Button wird das Formular *form* eingefügt (```.after('<%= j render("form") %>')```). Das ```j``` steht für ```escape_javascript``` und formt das HTML des Formulars so um, dass es per Javascript eingebaut werden kann. 	Die dritte Zeile gibt dem Text-Input-Feld mit der ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). Die vierte Zeile fügt dem Cancel-Button die Funktion *clickCancelButton()* hinzu.
 	
-	Nun wollen wir dass man das Projekt auch aktualisieren kann.
-	
-	Im *app/controller/projects_controller.rb* fügen wir vor *private* die Update-Methode hinzu:
+	Nun wollen wir dass Änderungen vom Projekt auch in der Datenbank aktualisiert werdeb. Im *app/controller/projects_controller.rb* fügen wir vor *private* die Update-Methode hinzu:
 	
 	```ruby
 	def update
