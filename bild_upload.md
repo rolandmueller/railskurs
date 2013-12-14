@@ -19,12 +19,12 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
 
   Ist nur notwendig, wenn man auf dem Rechner/Server das Bild automatisch verändern will, also z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Muss man nur einmal pro Computer machen.
   
-  * Wenn Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
-  * Wenn Mac: Wie Homebrew installieren.
+  * Für Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
+  * Für Mac: Mit Homebrew installieren.
     ```bash
     brew install imagemagick
     ```
-    Wenn Homebrew nicht installiert ist, kann man es auf dem Max wie folgt installieren. Auf dem Terminal:
+    Wenn Homebrew nicht installiert ist, muss man Homebrewauf dem Mac erst wie folgt installieren. Auf dem Terminal:
     ```bash
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
     ```
@@ -65,7 +65,7 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
 
 5. Im dem Modell, dass ein Bild haben soll, Uploader und Image-Name hinzufügen.
 
-  Wenn wir z.B. zum User ein Bild hinzufügen wollen. 
+  Wenn wir z.B. zum Painting ein Bild hinzufügen wollen. 
   
   Als erstes in der *paintings* Tabelle ein *image* Feld hinzufügen:
   ```bash
@@ -75,19 +75,19 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   ```bash
   rake db:migrate
   ```
-  Dann im Users-Modell in *app/models/paintings.rb* angeben, welcher Uploader und welches Feld dazugehört:
+  Dann im Paintings-Modell in *app/models/paintings.rb* angeben, welcher Uploader und welches Feld dazugehört:
   ```ruby
   mount_uploader :image, ImageUploader
   ```
   
 6. Im Formular ein Datei-Upload einbauen.
 
-  Damit ein Datei-Upload mit einem Formular möglich ist, muss das Formular auf *Multipart* umgestellt werden. Wir fügen dafür ```:html => {:multipart => true}``` in die Parameter der *form_for* Funktion. Also z.B. für den User in *app/views/painting/_form.html.erb* ändern wir die erste Zeile, sodass diese so aussieht:
+  Damit ein Datei-Upload mit einem Formular möglich ist, muss das Formular auf *Multipart* umgestellt werden. Wir fügen dafür ```:html => {:multipart => true}``` in die Parameter der *form_for* Funktion. Also in *app/views/painting/_form.html.erb* ändern wir die erste Zeile, sodass diese so aussieht:
   ```html
   <%= form_for(@painting, :html => {:multipart => true}) do |f| %>
   ```
   
-  Vor ```<div class="actions">```fügen wir folgendes hinzu:
+  Vor ```<div class="actions">```fügen wir ein File-Upload Feld und ein Feld für eine Remote-URL hinzu:
   ```html
     <div class="field">
     <%= f.file_field :image %>
