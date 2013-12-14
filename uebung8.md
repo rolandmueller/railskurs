@@ -1,4 +1,4 @@
-# Übung 8: Fortsetzung der Todo-App (Authentifizierung mit Devise)
+# Übung 8: Todo-App Fortsetzung (Authentifizierung mit Devise)
 
 1. Zusätzliche Anforderungen
     * Hinzufügen von Unit-Tests, die die Geschäftslogik des Modells testen
