@@ -18,18 +18,25 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
 2. ImageMagick installieren
 
   Ist nur notwendig, wenn man auf dem Rechner/Server das Bild automatisch verändern will, also z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Muss man nur einmal pro Computer machen.
-  
-  * Für Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
-  * Für Mac: Mit Homebrew installieren.
-    ```bash
-    brew install imagemagick
-    ```
-    Wenn Homebrew nicht installiert ist, muss man Homebrewauf dem Mac erst wie folgt installieren. Auf dem Terminal:
-    ```bash
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
-    ```
+    * Für Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
     
-  * Für Linux ```sudo apt-get install imagemagick```
+    * Für Mac: Mit Homebrew installieren.
+    
+      ```bash
+      brew install imagemagick
+      ```
+    
+      Wenn Homebrew nicht installiert ist, muss man Homebrewauf dem Mac erst wie folgt installieren. Auf dem Terminal:
+    
+      ```bash
+      ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+      ```
+    
+    * Für Linux 
+    
+    ```bash
+    sudo apt-get install imagemagick
+    ```
   
 3. Carrierwave (https://github.com/carrierwaveuploader/carrierwave) installieren
 
