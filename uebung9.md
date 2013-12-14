@@ -73,6 +73,12 @@
 	
 	15 tests, 20 assertions, 0 failures, 0 errors, 0 skips
 	```
+	
+	Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Project-Modell erstellt"
+	```
   
 3. Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode).
 
@@ -219,7 +225,7 @@
 	
 	Die erste Zeile macht als erstes den "New-Button" mit der ID "new_link" unsichtbar (```$('#new_link').hide()```). Hinter dem Button wird das Formular *form* eingefügt (```.after('<%= j render("form") %>')```). Das ```j``` steht für ```escape_javascript``` und formt das HTML des Formulars so um, dass es per Javascript eingebaut werden kann. 
 	
-	Die zeite Zeile gibt dem Text-Input-Feld mit der ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). 
+	Die zweite Zeile gibt dem Text-Input-Feld mit der ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). 
 	
 	Die dritte Zeile fügt dem Cancel-Button die Funktion *clickCancelButton()* hinzu.
 	
@@ -249,8 +255,159 @@
 	```
 	In der ersten Zeile wird eine neue Javascript-Funktion mit dem Namen *clickCancelButton* definiert (```jQuery.fn.clickCancelButton = ->```). In der zweiten Zeile wird für den HTML-Tag mit der ID "cancel_button" definiert, was beim Click-Ereignis passieren soll (```@find('#cancel_button').click ->```). In den letzen beiden Zeilen wird beschrieben, dass dann als erstes das Formular gelöscht werden soll (```$('#new_project').remove()```) und dann der "New Project" Button wieder erscheinen soll (```$('#new_project').remove()```).
 	
+	
+	Probieren Sie aus, ob der "New Project" und der "Cancel" Button funktioniert:
+	![](https://dl.dropboxusercontent.com/u/10978171/project_form.png)
+	
+	
+	Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "New Project und Cancel Button"
+	```
+	
+5. Wenn man das Formular abschickt, wird ans Ende der Liste das neue Projekt hinzugefügt, das Formular verschwindet und statt dessen erscheint der "New Project" Button.
 
+	In *app/controllers/projects_controller.rb* fügen wir folgendes ein:
+	
+	```ruby
+	def create
+	  @project = Project.new(project_params)
+	  @project.save
+	end
+	```
+	
+	Ganz ans Ende des Controllers fügen wir noch dies hinzu:
+	```ruby
+	private
+		def project_params
+		  params.require(:project).permit(:name)
+		end 
+	```
 
+	Damit erlauben wir dass das Attribut *name* von Rails verarbeitet wird. *private* sagt, dass diese Methoden danach nur innerhalb des Controllers aufgerufen werden können, nicht von aussen. Das heißt wenn wir weitere Methoden zum Controller hinzufügen, müssen diese **oberhalb** von *private* sein. Ansonsten kann man diese nicht vom Internet aus aufrufen.
+	
+	Abschließend müssen wir noch ein View für die Controller-Methode *create* erstellen. Es soll jedoch nicht HTML dem Browser gesendet werden, sondern Javascript. Darum erstellen wir im Verzeichnis *app/views/projects/* die Datei *create.js.erb* und fügen ein:
+	
+	```javascript
+	$('#new_project').remove();
+	$('#new_link').show();
+	$('tbody').append('<%= j render(@project) %>');
+	```
+	Die erste Zeile entfernt das Formular mit der ID *new_project* (```$('#new_project').remove();```). Die zweite Zeile läßt den "New Project" Button mit der ID *new_link* wieder erscheinen (```$('#new_link').show();```). Die letzte Zeile fügt ans Ende der Tabelle (HTML-Tag ```tbody```) das grade neu erstellte Projekt mittels des Project-Partials ```$('tbody').append('<%= j render(@project) %>')```. 
+	
+	Probieren Sie das hinzufügen von Projekten aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Create Project"
+	```	
 
+6. Fehler-Meldung bei leerem oder schon vorhandenem Projekt.
 
+	Wenn man momentan ein Projekt ohne Name oder mit schon bestehendem Namen im Formular abschickt, erscheint dieses in der Liste und es gibt keine Fehlermeldung. Sobald man aber ein Refresh der Seite macht, sind diese falschen Eintröge weg. Das müssen wir ändern.
+	
+	In *app/controllers/projects_controller.rb* ändern wir die create-Methode wie folgt:
+	
+	```ruby
+	def create
+	  @project = Project.new(project_params)
+	  if !@project.save
+	    render action: 'error'
+	  end
+	end
+	```
+	D.h. wenn man das Projekt nicht speichern kann (save gibt Falsch zurück), dann soll der Error-View gerendert werden. 
+	
+	
+	In *app/views/projects/* fügen wir die Datei *error.js.erb* hinzu mit folgendem Inhalt:
+	```javascript
+	$(".form-group").addClass("has-error");
+	$("#error-message").html("<%= j @project.errors.full_messages[0] %>");
+	```
+	
+	Die erste Zeile fügt eine *has-error* CSS-Class zur *form-group* hinzu. *has-error* ist eine Bootstrap CSS-Klasse die das Eingabe-Feld Rot färbt (http://getbootstrap.com/css/#forms-control-states). In der zweiten Zeile wir im inneren des Tags mit der ID "error-message" (```$("#error-message").html()```, die die erste Fehlermeldung vom Project-Objekt ausgeben (```<%= j @project.errors.full_messages[0] %>```).
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/error_js.png) 
 
+	Probieren Sie es aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Fehler-Meldungen für Project"
+	```
+
+7. Ein Projekt kann man löschen.
+
+	Im *app/controller/projects_controller.rb* fügen wir über *private* die Destroy-Methode hinzu:
+	
+	```ruby
+	def destroy
+	  @project = Project.find(params[:id])
+	  @project.destroy
+	end
+	```
+	
+	Wir erzeugen eine neue Datei *destroy.js.erb* in *app/views/projects/* und fügen folgendes ein:
+	
+	```javascript
+	$('#new_project').remove();
+	$('#new_link').show();
+	$('#project_<%= @project.id %>').remove();
+	```
+	
+	Die ersten beiden Zeilen löschen das Formular und machen den "New Projekt" Button wieder sichtbar. Die dritte Zeile entfernt das Element mit der CSS-ID ```project_<%= @project.id %>```. 
+	
+	Probieren Sie es aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Löschen von Projekten"
+	```
+	
+8. Ein Projekt kann man editieren.
+
+	Im *app/controller/projects_controller.rb* fügen wir vor *private* die Edit-Methode hinzu:
+	
+	```ruby
+	def edit
+	  @project = Project.find(params[:id])
+	end
+	```
+	
+	Wir erzeugen eine neue Datei *edit.js.erb* in *app/views/projects/* und fügen folgendes ein: 
+	```javascript
+	$('#new_project').remove();
+	$('#new_link').hide().after('<%= j render("form") %>');
+	$('#project_name').focus();
+	$('#cancel_button').clickCancelButton();
+	```
+	Die erste Zeile löscht das Formular, wenn es eins gibt. Die zwiete Zeile macht als erstes den "New-Button" mit der ID "new_link" unsichtbar (```$('#new_link').hide()```). Hinter dem Button wird das Formular *form* eingefügt (```.after('<%= j render("form") %>')```). Das ```j``` steht für ```escape_javascript``` und formt das HTML des Formulars so um, dass es per Javascript eingebaut werden kann. 	Die dritte Zeile gibt dem Text-Input-Feld mit der ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). Die vierte Zeile fügt dem Cancel-Button die Funktion *clickCancelButton()* hinzu.
+	
+	Nun wollen wir dass man das Projekt auch aktualisieren kann.
+	
+	Im *app/controller/projects_controller.rb* fügen wir vor *private* die Update-Methode hinzu:
+	
+	```ruby
+	def update
+	  @project = Project.find(params[:id])
+	  if !@project.update(project_params)
+	    render action: 'error'
+	  end
+	end
+	```
+	Der Code funktioniert ziemlich ähnlich wie die Create-Methode. Wenn wir nicht updaten können wegen Validierungs-Fehlern, d.h. update falsch zurück gibt ```if !@project.update(project_params)```, wird der *error* View gerendert.
+	
+	Wir erzeugen eine neue Datei *update.js.erb* in *app/views/projects/* und fügen folgendes ein: 
+	```javascript
+	$('#new_project').remove();
+	$('#new_link').show();
+	$('#project_<%= @project.id %>').replaceWith('<%= j render(@project) %>');
+	```
+	Die ersten beiden Zeilen kennen wir schon. Die letzte ersetzt (```replace_with```) das aktualisierte Element mit der ID ```project_<%= @project.id %>```mit dem aktualisierten Wert des Projekts. Dabei wird der Partial "project" gerendert und "escaped" (```j```) (```<%= j render(@project) %>```). 
+	
+	
+	Probieren Sie es aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Edit und Update Projects"
+	```
+	
+	
