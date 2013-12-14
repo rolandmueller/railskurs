@@ -210,6 +210,15 @@
 	end
 	```
 	
+	Wir ändern auch die Fixtures in *test/fixtures/projects.yaml* mit folgendem:
+	```javascript
+	one:
+		name: "Project 1"
+	
+	two:
+		name: "Project 2"
+	```
+	
 	Der neue Test für die Index-Funktion läuft:
 	```bash
 	rake test
@@ -279,7 +288,23 @@
 	Probieren Sie aus, ob der "New Project" und der "Cancel" Button funktioniert:
 	![](https://dl.dropboxusercontent.com/u/10978171/project_form.png)
 	
+	Wir fügen in *test/controllers/projects_controller_test.rb* folgenden Test hinzu:
+	```rub
+	test "should get new" do
+	  sign_in @user
+	  xhr :get, :new
+	  assert_response :success
+	end
+	```
 	
+	```xhr :get, :new``` ist ein Ajax-Aufruf der New-Methode mttels *get*: 
+	Der neue Test  läuft:
+	```bash
+	rake test
+	.................
+	
+	17 tests, 22 assertions, 0 failures, 0 errors, 0 skips
+	```
 	
 	Zeit für ein Commit:
 	```bash
@@ -317,7 +342,27 @@
 	```
 	Die erste Zeile entfernt das Formular mit der ID *new_project* (```$('#new_project').remove();```). Die zweite Zeile läßt den "New Project" Button mit der ID *new_link* wieder erscheinen (```$('#new_link').show();```). Die letzte Zeile fügt ans Ende der Tabelle (HTML-Tag ```tbody```) das grade neu erstellte Projekt mittels des Project-Partials ```$('tbody').append('<%= j render(@project) %>')```. 
 	
-	Probieren Sie das hinzufügen von Projekten aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	Probieren Sie das hinzufügen von Projekten aus. 
+	
+	Wir fügen in *test/controllers/projects_controller_test.rb* folgenden Test hinzu:
+	```ruby
+	test "should create project" do
+	  sign_in @user
+	  assert_difference('Project.count') do
+	    xhr :post, :create, project: { name: "Project Name" }
+	  end
+	  assert_response :success
+	end
+	```
+	Der neue Test  läuft:
+	```bash
+	rake test
+	..................
+	
+	18 tests, 24 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Wenn alles funktioniert ist es Zeit für ein Commit:
 	```bash
 	git add .
 	git commit -m "Create Project"
@@ -350,6 +395,24 @@
 	
 	![](https://dl.dropboxusercontent.com/u/10978171/error_js.png) 
 
+	Wir fügen in *test/controllers/projects_controller_test.rb* folgenden Test hinzu:
+	```ruby
+	test "should not create project" do
+	  sign_in @user
+	  assert_no_difference('Project.count') do
+	    xhr :post, :create, project: { name: "" }
+	  end
+	  assert_response :success
+	end
+	```
+	Der neue Test  läuft:
+	```bash
+	rake test
+	...................
+	
+	19 tests, 26 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
 	Probieren Sie es aus. Wenn alles funktioniert ist es Zeit für ein Commit:
 	```bash
 	git add .
@@ -377,7 +440,27 @@
 	
 	Die ersten beiden Zeilen löschen das Formular und machen den "New Projekt" Button wieder sichtbar. Die dritte Zeile entfernt das Element mit der CSS-ID ```project_<%= @project.id %>```. 
 	
-	Probieren Sie es aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	Probieren Sie es aus. 
+	
+	Wir fügen in *test/controllers/projects_controller_test.rb* folgenden Test hinzu:
+	```ruby
+	test "should destroy project" do
+	  sign_in @user
+	  assert_difference('Project.count', -1) do
+	    xhr :delete, :destroy, id: @project
+	  end
+	  assert_response :success
+	end
+	```
+	Der neue Test  läuft:
+	```bash
+	rake test
+	....................
+	
+	20 tests, 28 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Wenn alles funktioniert ist es Zeit für ein Commit:
 	```bash
 	git add .
 	git commit -m "Löschen von Projekten"
@@ -423,7 +506,31 @@
 	Die ersten beiden Zeilen kennen wir schon. Die letzte ersetzt (```replace_with```) das aktualisierte Element mit der ID ```project_<%= @project.id %>```mit dem aktualisierten Wert des Projekts. Dabei wird der Partial "project" gerendert und "escaped" (```j```) (```<%= j render(@project) %>```). 
 	
 	
-	Probieren Sie es aus. Wenn alles funktioniert ist es Zeit für ein Commit:
+	Probieren Sie es aus. 
+	
+	Wir fügen in *test/controllers/projects_controller_test.rb* folgende Tests hinzu:
+	```ruby
+	test "should get edit" do
+	  sign_in @user
+	  xhr :get, :edit, id: @project
+	  assert_response :success
+	end
+	
+	test "should update project" do
+	  sign_in @user
+	  xhr :patch, :update, id: @project, project: { name: @project.name }
+	  assert_response :success
+	end
+	```
+	Der neue Test  läuft:
+	```bash
+	rake test
+	......................
+	
+	22 tests, 30 assertions, 0 failures, 0 errors, 0 skips
+	```
+	
+	Wenn alles funktioniert ist es Zeit für ein Commit:
 	```bash
 	git add .
 	git commit -m "Edit und Update Projects"
