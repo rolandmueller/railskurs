@@ -5,7 +5,7 @@
 	* Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode des Project-Controllers). 
 	* Auf der selben Index-Seite soll man Projekte anlegen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
 	* Auf der selben Seite soll man Projekte umbennen und löschen können.
-	* Ein Task kann man einem Projekt zuordnen. Ein Projekt kann mehrere Tasks haben.
+	* Ein Task kann man einem Projekt zuordnen.
 	* Es soll eine Filterung der Aufgaben geben, so dass nur Aufgaben angezeigt werden, die man selber erstellt hat oder die an einem delegiert worden sind.
 
 2. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Task haben (has_many).
@@ -408,4 +408,77 @@
 	git commit -m "Edit und Update Projects"
 	```
 	
+9. Wir wollen noch ein paar Javascript Effekte hinzufügen. Dafür nutzen wir jQuery UI (http://jqueryui.com/) eine Bibliothek, die auf jQuery aufbaut. 
+
+	Als erstes müssen wir diese intstallieren. In der Datei *Gemfile* fügen wir nach ```gem 'jquery-rails'```folgende Zeile hinzu: 
+	
+	```ruby
+	gem 'jquery-ui-rails'
+	```
+	
+	Annschließend installieren wir das Gem, in dem wir auf der Konsole folgendes ausführen:
+	```bash
+	bundle install
+	```
+	
+	Dann fügen wir in *app/assets/javascripts/application.js* nach ```//= require jquery```folgendes ein:
+	```javascript
+	//= require jquery.ui.effect.all
+	```
+	
+	Nun können wir die jQuery UI Effekte nutzen. Als erstes sollen eingefügte oder aktualisierte Porjekte gehighlightet werden. Wir fügen in *app/views/projects/create.js.erb* als letzte Zeile folgendes hinzu:
+	```javascript
+	$('#project_<%= @project.id %>').effect("highlight");
+	```
+	In *app/views/projects/update.js.erb* fügen wir als letzte Zeile  das selbe hinzu:
+	```javascript
+	$('#project_<%= @project.id %>').effect("highlight");
+	```
+
+	Einmal ausprobieren bitte.
+	
+	Dann fügen in *app/views/projects/error.js.erb* als letzte Zeile folgendes hinzu:
+	```javascript
+	$("#new_project").effect("shake");
+	```	
+	
+	Einmal ausprobieren, in dem man ein leeres Projekt zu speichern versucht. Wenn alles funktioniert ist es Zeit für ein Commit:
+	```bash
+	git add .
+	git commit -m "Effekte in Project für Create, Update und Error"
+	```
+	
+10. Ein Task kann man einem Projekt zuordnen.
+
+	Wir müssen das Formular für den Task um eine Drop-Down-Auswahl (*Select*) für das Projekt erweitern. Im View-Ordner von Task ändern wir das Form-Partial *app/views/tasks/_form.html.erb* und fügen vor ```<div class="actions">``` folgendes hinzu:
+	```html
+	<div class="form-group">
+		<%= f.label :project_id %><br>
+		<%= f.select :project_id, Project.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true, :selected => @task.project_id}, class: "form-control" %>
+	</div>
+	```
+	Der Code funktioniert genauso wie der für die Auswahl des Users zum delegieren.
+	
+	Im Tasks-Controller müssen wir *project_id* noch erlauben, in dem wir dieses zur Methode *task_params* hinzufügen:
+	```ruby
+	def task_params
+	  params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id, :project_id)
+	end
+	```
+	
+	Dann wollen wir das Projekt noch im Index-Tasks anzeigen. Dafür müssen wir das Partial *app/views/tasks/_table.html.erb* ändern. Vor ```<th>Created</th>```fügen wir einen weiteren Table-Header(```<th>```) hinzu:
+	```html
+	<th>Project</th>
+	```
+	Vor ```<td> <%= task.user.username %> </td>```geben wir dann den Projectnamen der Aufgabe aus, wenn es ein Projekt gibt:
+	```html
+	<td> <%= task.project.name if task.project %> </td>
+	```
+	
+	![](https://dl.dropboxusercontent.com/u/10978171/index-mit-project.png) 
+	
+	```bash
+	git add .
+	git commit -m "Task kann Projekt zugeordnet werden + Task-Index mit Projekt"
+	```
 	
