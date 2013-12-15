@@ -384,6 +384,10 @@
 	```
 	D.h. wenn man das Projekt nicht speichern kann (save gibt Falsch zurück), dann soll der Error-View gerendert werden. 
 	
+	Wir fügen in *app/assets/stylesheets/projects.css.scss* folgende Formatierung hinzu:
+	```css
+	.button-group {margin-top:24px;}
+	```
 	
 	In *app/views/projects/* fügen wir die Datei *error.js.erb* hinzu mit folgendem Inhalt:
 	```javascript
