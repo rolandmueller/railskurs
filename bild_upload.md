@@ -1,12 +1,10 @@
 # Übung 10: Bild-Upload
 
-In vielen Applikationen kann der Nutzer ein Bild hochladen. Sei es das User-Bild oder das Bild eines Artikels. Wie geht das?
-
-Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
+In vielen Applikationen kann der Nutzer ein Bild hochladen. Sei es das User-Bild oder das Bild eines Artikels. Wie geht mit Rails? Um das auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
 
 1. ImageMagick installieren
 
-  Ist nur notwendig, wenn man auf dem Rechner/Server das Bild automatisch verändern will, z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Dies muss man nur einmal pro Computer machen.
+  Ist nur notwendig, wenn man auf dem Rechner/Server das Bild automatisch verändern will, z.B. es verkleinern will. Wenn nicht, kann man diesen Schritt überspringen. Dies muss man nur einmal pro Computer durchführen.
     * Für Windows: Installer downloaden und installieren: http://www.imagemagick.org/script/binary-releases.php#windows 
     
     * Für Mac: Mit Homebrew installieren. Im Terminal:
@@ -15,7 +13,7 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
       brew install imagemagick
       ```
     
-      Wenn Homebrew nicht installiert ist, muss man Homebrewauf dem Mac erst wie folgt installieren. Im Terminal:
+      Wenn Homebrew nicht installiert ist, muss man Homebrew auf dem Mac erst wie folgt installieren. Im Terminal:
     
       ```bash
       ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
@@ -32,8 +30,8 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   Wir erzeugen eine kleine Rails-Applikation die Bilder (Paintings) einer Galerie zeigen soll.
   
   ```bash
-  rails new fileuploadapp
-  cd fileuploadapp
+  rails new galeryapp
+  cd galeryapp
   rails generate scaffold painting name
   rake db:migrate
   ```
@@ -63,26 +61,26 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   rails generate uploader Image
   ```
   
-  Den Image-Uploader kann man auch anders nennen (z.B. Avatar). In *app/uploaders/image_uploader.rb* kann man den Uploader konfigurieren. Wenn man nur Bilder hochladen will, sollte man bei diesem Abschnitt die Kommentare entfernen und nur Bilder zulassen:
+  Den Image-Uploader kann man auch anders nennen (z.B. Avatar). In *app/uploaders/image_uploader.rb* kann man den Uploader konfigurieren (z.B. maximale Größe der Dateien festlegen). Wenn man nur Bilder hochladen will, sollte man bei diesem Abschnitt die Kommentare entfernen und nur Bilder zulassen:
   ```ruby
   def extension_white_list
     %w(jpg jpeg gif png)
   end
   ```
 
-5. Im dem Modell, dass ein Bild haben soll, Uploader und Image-Name hinzufügen.
+5. Im dem Modell, welches ein Bild haben soll, Uploader und Image-Name hinzufügen.
 
-  Wenn wir z.B. zum Painting ein Bild hinzufügen wollen. 
+  Wenn wir z.B. zum Painting ein Bild hinzufügen wollen: 
   
   Als erstes in der *paintings* Tabelle ein *image* Feld hinzufügen:
   ```bash
-  rails generate migration add_image_to_paintings image:string
+  rails generate migration AddImageToPaintings image:string
   ```
   und die Datenbank aktualisieren:
   ```bash
   rake db:migrate
   ```
-  Dann im Paintings-Modell in *app/models/paintings.rb* angeben, welcher Uploader und welches Feld dazugehört:
+  Dann im Paintings-Modell in *app/models/painting.rb* angeben, welcher Uploader und welches Feld dazugehört:
   ```ruby
   mount_uploader :image, ImageUploader
   ```
@@ -149,7 +147,7 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   
   ![](https://dl.dropboxusercontent.com/u/10978171/thumbnails.png)
   
-  Man kann auch noch andere Varianten in *app/uploaders/image_uploader.rb* definieren
+  Man kann auch noch andere Größen-Varianten in *app/uploaders/image_uploader.rb* definieren
   ```ruby
   version :normal do
     process :resize_to_fit => [300, 300]
@@ -161,4 +159,4 @@ Um dies auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
   <td><%= image_tag painting.image_url(:normal) if painting.image? %></td>
   ```
   
-9. Wenn Sie ein Bild Upload in Ihrem Projekt einsetzen wollen, zeige ich Ihnen nächstes Jahr, wie man das auf Heroku zum laufen bringen kann (siehe auch https://github.com/carrierwaveuploader/carrierwave/wiki/How-to%3A-Make-Carrierwave-work-on-Heroku)
+9. Wenn Sie ein Bild-Upload in Ihrem Projekt einsetzen wollen, zeige ich Ihnen nächstes Jahr, wie man das auf Heroku zum laufen bringen kann (siehe auch https://github.com/carrierwaveuploader/carrierwave/wiki/How-to%3A-Make-Carrierwave-work-on-Heroku).
