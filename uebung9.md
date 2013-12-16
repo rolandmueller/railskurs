@@ -305,7 +305,8 @@
 	end
 	```
 	
-	```xhr :get, :new``` ist ein Ajax-Aufruf der New-Methode mittels *get*. *xhr* steht für [XMLHttpRequest](http://de.wikipedia.org/wiki/XMLHttpRequest) und ist ein anderer Name für AJAX. 
+	```xhr :get, :new``` ist ein Ajax-Aufruf der New-Methode mittels *get*. *xhr* steht für [XMLHttpRequest](http://de.wikipedia.org/wiki/XMLHttpRequest) und ist die Technologie die für AJAX-Applikationen genutzt wird.
+	
 	Der neue Test  läuft:
 	```bash
 	rake test
@@ -339,16 +340,16 @@
 		end 
 	```
 
-	Damit erlauben wir dass das Attribut *name* von Rails verarbeitet wird. *private* sagt, dass diese Methoden danach nur innerhalb des Controllers aufgerufen werden können, nicht von aussen. Das heißt wenn wir weitere Methoden zum Controller hinzufügen, müssen diese **oberhalb** von *private* sein. Ansonsten kann man diese nicht vom Internet aus aufrufen.
+	Damit erlauben wir dass das Attribut *name* von Rails verarbeitet wird. *private* sagt, dass diese Methoden danach nur innerhalb des Controllers aufgerufen werden können, nicht von aussen. Das heißt wenn wir weitere Methoden zum Controller hinzufügen, müssen diese **oberhalb** von *private* stehen. Ansonsten kann man diese nicht vom Internet aus aufrufen.
 	
-	Abschließend müssen wir noch ein View für die Controller-Methode *create* erstellen. Es soll jedoch nicht HTML dem Browser gesendet werden, sondern Javascript. Darum erstellen wir im Verzeichnis *app/views/projects/* die Datei *create.js.erb* und fügen ein:
+	Abschließend müssen wir noch ein View für die Controller-Methode *create* erstellen. Zum Browser soll jedoch nicht HTML gesendet werden, sondern Javascript. Darum erstellen wir im Verzeichnis *app/views/projects/* die Datei *create.js.erb* und fügen ein:
 	
 	```javascript
 	$('#new_project').remove();
 	$('#new_link').show();
 	$('tbody').append('<%= j render(@project) %>');
 	```
-	Die erste Zeile entfernt das Formular mit der ID *new_project* (```$('#new_project').remove();```). Die zweite Zeile läßt den "New Project" Button mit der ID *new_link* wieder erscheinen (```$('#new_link').show();```). Die letzte Zeile fügt ans Ende der Tabelle (HTML-Tag ```tbody```) das grade neu erstellte Projekt mittels des Project-Partials ```$('tbody').append('<%= j render(@project) %>')```. 
+	Die erste Zeile entfernt das Formular mit der ID *new_project* (```$('#new_project').remove();```). Die zweite Zeile läßt den "New Project" Button mit der ID *new_link* wieder erscheinen (```$('#new_link').show();```). Die letzte Zeile fügt ans Ende der Tabelle (HTML-Tag ```tbody```) das grade neu erstellte Projekt mittels des Project-Partials ```$('tbody').append('<%= j render(@project) %>')```. ```j``` steht für *escape_javascript* und *escaped* das HTML damit es im Javascript gesendet werden kann.
 	
 	Probieren Sie das hinzufügen von Projekten aus. 
 	
@@ -433,7 +434,7 @@
 
 7. Ein Projekt kann man löschen.
 
-	Im *app/controller/projects_controller.rb* fügen wir über *private* die Destroy-Methode hinzu:
+	In *app/controller/projects_controller.rb* fügen wir über *private* die Destroy-Methode hinzu:
 	
 	```ruby
 	def destroy
@@ -515,7 +516,7 @@
 	$('#new_link').show();
 	$('#project_<%= @project.id %>').replaceWith('<%= j render(@project) %>');
 	```
-	Die ersten beiden Zeilen kennen wir schon. Die letzte ersetzt (```replace_with```) das aktualisierte Element mit der ID ```project_<%= @project.id %>```mit dem aktualisierten Wert des Projekts. Dabei wird der Partial "project" gerendert und "escaped" (```j```) (```<%= j render(@project) %>```). 
+	Die ersten beiden Zeilen kennen wir schon. Die letzte ersetzt (```replace_with```) das zu aktualisierende Element mit der ID ```project_<%= @project.id %>```mit dem aktualisierten Wert des Projekts. Dabei wird der Partial "project" gerendert und "escaped" (```j```) (```<%= j render(@project) %>```). 
 	
 	
 	Probieren Sie es aus. 
@@ -566,11 +567,11 @@
 	//= require jquery.ui.effect.all
 	```
 	
-	Nun können wir die jQuery UI Effekte nutzen. Als erstes sollen eingefügte oder aktualisierte Porjekte gehighlightet werden. Wir fügen in *app/views/projects/create.js.erb* als letzte Zeile folgendes hinzu:
+	Nun können wir die jQuery UI Effekte nutzen. Als erstes sollen eingefügte oder aktualisierte Projekte aufleuchten (highlight). Wir fügen in *app/views/projects/create.js.erb* als letzte Zeile folgendes hinzu:
 	```javascript
 	$('#project_<%= @project.id %>').effect("highlight");
 	```
-	In *app/views/projects/update.js.erb* fügen wir als letzte Zeile  das selbe hinzu:
+	In *app/views/projects/update.js.erb* fügen wir als letzte Zeile das selbe hinzu:
 	```javascript
 	$('#project_<%= @project.id %>').effect("highlight");
 	```
@@ -597,9 +598,9 @@
 		<%= f.select :project_id, Project.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true, :selected => @task.project_id}, class: "form-control" %>
 	</div>
 	```
-	Der Code funktioniert genauso wie der für die Auswahl des Users zum delegieren.
+	Der Code funktioniert genauso wie der für die Auswahl des Users zum delegieren (in Aufgabe 8).
 	
-	Im Tasks-Controller müssen wir *project_id* noch erlauben, in dem wir dieses zur Methode *task_params* hinzufügen:
+	Im Tasks-Controller müssen wir die Zuweisung von *project_id* noch erlauben, in dem wir *project_id* in der Methode *task_params* wie folgt hinzufügen:
 	```ruby
 	def task_params
 	  params.require(:task).permit(:name, :deadline, :done, :duration, :delegated_id, :project_id)
@@ -610,7 +611,7 @@
 	```html
 	<th>Project</th>
 	```
-	Vor ```<td> <%= task.user.username %> </td>```geben wir dann den Projectnamen der Aufgabe aus, wenn es ein Projekt gibt:
+	Vor ```<td> <%= task.user.username %> </td>```geben wir dann den Projectnamen der Aufgabe aus, aber nur wenn es ein Projekt gibt:
 	```html
 	<td> <%= task.project.name if task.project %> </td>
 	```
@@ -634,7 +635,7 @@
 	heroku run rake db:migrate
 	```
 	
-	Wenn man will, kann man auch die Datenbank mit den seed.rb Daten füllen, durch rake db:setup 
+	Wenn man will, kann man auch die Datenbank auf Heroku mit den seed.rb Daten füllen (db:setup):
 	```bash
 	heroku run rake db:setup
 	```
