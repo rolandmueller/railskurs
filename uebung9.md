@@ -1,13 +1,13 @@
 #  Übung 9: Todo-App Fortsetzung 2 (Javascript)
 
 1. Wir haben folgende neue Anforderungen:
-	* Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Tasks haben (has_many).
+	* Es gibt Projekte. Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Tasks haben (has_many).
 	* Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode des Project-Controllers). 
 	* Auf der selben Index-Seite soll man Projekte anlegen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
 	* Auf der selben Seite soll man Projekte umbennen und löschen können.
 	* Ein Task kann man einem Projekt zuordnen.
 
-2. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Task haben (has_many).
+2. Es gibt Projekte. Projekte haben einen Namen. Ein Task soll maximal zu einem Projekt gehören (belongs_to). Ein Projekt kann mehrere Task haben (has_many).
 
   Diesmal gehen wir etwas anders vor als beim Task: wir nutzen kein Scaffolding, da wir die meisten dabei generierten Views diesmal nicht brauchen. Wir generieren statt dessen nur das Model und den Controller und fügen dann die Views und die Javascripts selber hinzu.
   
@@ -21,9 +21,9 @@
   ```bash
   rake db:migrate
   ``` 
-    In Project-Model  *app/models/project.rb* fügen wir eine Validation durch, dass der Name des Projects vorhanden seien muss:
+    In Project-Model  *app/models/project.rb* fügen wir eine Validation durch, dass der Name des Projects vorhanden und einzigartig seien muss:
   ```ruby
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   ```
   
   Project und Task sind durch ein Fremdschlüssel *project_id* in der Tasks-Tabelle verbunden. Diesen müssen wir zur Tasks-Tabelle hinzufügen:
@@ -31,6 +31,16 @@
   rails generate migration AddProjectIdToTasks project_id:integer:index
   ```
 
+  Die dabei generierte Migration-Datei *XXXXXXXXX_add_project_id_to_tasks.rb* im Ordner *db/migrations/* sieht gut aus und kann so bleiben:
+	```ruby
+	class AddProjectIdToTasks < ActiveRecord::Migration
+	  def change
+	    add_column :tasks, :project_id, :integer
+	    add_index :tasks, :project_id
+	  end
+	end
+	```
+	
   Die Datenbank muss noch aktualisiert werden:
   ```bash
   rake db:migrate
@@ -79,7 +89,7 @@
 	git commit -m "Project-Modell erstellt"
 	```
   
-3. Es soll eine Projekt-Seite geben, wo alle Projekte angezeigt werden (Index-Methode).
+3. Es soll eine Projekt-Seite geben, auf der alle Projekte angezeigt werden (Index-Methode).
 
 	Wir generieren ein Project-Controller mit einer Index-Methode:
 	```bash
@@ -93,7 +103,7 @@
 	end
 	```
 	
-	Nach ```class ProjectsController < ApplicationController``` fügen wir folgende Zeile hinzu: 
+	Nach ```class ProjectsController < ApplicationController``` fügen wir folgende Zeile für die Authentifiktion mittels Devise hinzu: 
 	```ruby
 	before_action :authenticate_user!
 	```
@@ -110,10 +120,8 @@
 	
 	In *app/views/projects/index.html.erb* löschen wir alles und schreiben statt dessen:
 	```html
-	<%= link_to 'New Project', new_project_path, id: "new_link", remote: true, :class => "btn btn-success  btn-sm" %>
-	
 	<h2>Projects</h2>
-	
+	<%= link_to 'New Project', new_project_path, id: "new_link", remote: true, :class => "btn btn-success  btn-sm" %>
 	<table class="table table-hover">
 	  <thead>
 	    <tr>
@@ -129,7 +137,7 @@
 	
 	Die Zeile ```<%= render @projects %>``` funktioniert wie folgt. ```@projects```ist ein Array von Projekten (haben wir grade im Controller aus der Datenbank geladen). Rails ist nun so clever, dass wenn eine Collection von Modell-Instanzen übergibt, dass dann 1. der Partial für jedes Element im Array extra aufgerufen wird und 2. der Partial-Name aus dem Modell-Name abgeleitet wird. Damit sparen wir uns eine Schleife. Alternativ zu ```<%= render @projects %>``` hätten wir auch länger ```<%= render partial: "project", collection: @projects %>``` schreiben können (exakt gleiche Wirkung).
 	
-	Den eigentlichen Partial müssen wir noch erstellen. Wir fügen im Ordner  *app/views/projects/* eine neue Date mit dem Namen *_project.html.erb* hinzu (den Partial) und fügen folgendes in die Datei:
+	Den eigentlichen Partial müssen wir noch erstellen. Wir fügen im Ordner  *app/views/projects/* eine neue Datei mit dem Namen *_project.html.erb* hinzu (den Partial) und fügen folgendes in die Datei:
 	```html
 	<tr id="project_<%= project.id %>"> 
 	  <td><%= link_to project.name, edit_project_path(project), remote: true %></td>
@@ -138,7 +146,7 @@
 	</tr>
 	```
 	
-	Abschließend wollen wir die Navigations-Bar etwas verbessern. Erstens sollen Menu-Punkte für Tasks und Projects links in der Navigations-Bar erscheinen, die aktiv sind, wenn der jeweilige Controller genutzt wird (```<%= "active" if params[:controller] == "projects" %>"```). Dafür nutzen wir die Bootstrap Classe "active" (http://getbootstrap.com/components/#navbar). Ausserdem soll das Menu bei zu kleiner Breite des Browser bzw. bei Smartphones sich zusammenklappen ("collapse") und als Menu-Button oben rechts erscheinen. Wir ersetzten alles in der Datei *app/views/layouts/_navigation.html.erb* mit foglendem:
+	Abschließend wollen wir die Navigations-Bar etwas verbessern. Erstens sollen Menu-Punkte für Tasks und Projects links in der Navigations-Bar erscheinen. Der Menu-Punkt soll aktiv seien, wenn der jeweilige Controller genutzt wird (```<%= "active" if params[:controller] == "projects" %>"```). Dafür nutzen wir die Bootstrap Classe "active" (http://getbootstrap.com/components/#navbar). Ausserdem soll das Menu bei zu kleiner Breite des Browser bzw. bei Smartphones sich zusammenklappen ("collapse") und als Menu-Button oben rechts erscheinen. Wir ersetzten alles in der Datei *app/views/layouts/_navigation.html.erb* mit foglendem:
 	
 	```html
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -235,9 +243,9 @@
 	
 4. Auf der selben Index-Seite soll man Projekte anlegen können. Projekte kann man nur erstellen, wenn man eingeloggt ist. Die Projekt-Seite soll per Javascript und [Ajax](http://de.wikipedia.org/wiki/Ajax_%28Programmierung%29) umgesetzt werden. 
 
-	Als erstes müssen wir uns entscheiden, ob wir auch Browser mit ausgeschalteten Javascript unterstützen oder nicht. Rails erleichtert gleichzeitige Unterstützung von Javascript und Nur-HTML Verhalten ungemein mit dem ```respond_to``` Befehl im Controller. Wir entscheiden uns, dass der Nutzer Javascript aktiviert haben muss und unsere Anwendung mit ausgeschaltetem Javascript nicht funktionieren würde (kann man später auch noch ändern).
+	Als erstes müssen wir uns entscheiden, ob wir auch Browser mit ausgeschalteten Javascript unterstützen oder nicht. Rails erleichtert die gleichzeitige Unterstützung von Javascript und Nur-HTML Verhalten mit dem ```respond_to``` Befehl im Controller. Wir entscheiden uns aber, dass der Nutzer Javascript aktiviert haben muss und unsere Anwendung mit ausgeschaltetem Javascript nicht funktionieren würde (kann man später auch noch ändern).
 
-	Als erstes soll wenn man auf den "New Project" Button drückt, der Button verschwinden und statt dessen ein Formular erscheinen. In *app/views/projects/index.html.erb* ist der "New Project" Button schon mit ```remote: true```als Remote-Link definiert ```<%= link_to 'New Project', new_project_path, id: "new_link", remote: true, :class => "btn btn-success  btn-sm" %>```so dass wir dort nichts ändern brauchen. Der Link ruft die New-Methode im Project-Controller per Javascript auf. Diese Methode müssen wir also erstellen:
+	Als erstes soll wenn man auf den "New Project" Button drückt, der Button verschwinden und statt dessen soll ein Formular erscheinen. In *app/views/projects/index.html.erb* ist der "New Project" Button schon mit ```remote: true```als Remote-Link definiert ```<%= link_to 'New Project', new_project_path, id: "new_link", remote: true, :class => "btn btn-success  btn-sm" %>```so dass wir dort nichts ändern brauchen. Der Link ruft die New-Methode im Project-Controller per Javascript auf. Diese Methode müssen wir also erstellen:
 	
 	```ruby
 	def new
@@ -252,13 +260,13 @@
 	$('#cancel_button').clickCancelButton();
 	```
 	
-	Die erste Zeile macht als erstes den "New-Button" mit der ID "new_link" unsichtbar (```$('#new_link').hide()```). Hinter dem Button wird das Formular *form* eingefügt (```.after('<%= j render("form") %>')```). Das ```j``` steht für ```escape_javascript``` und formt das HTML des Formulars so um, dass es per Javascript eingebaut werden kann. 
+	Die erste Zeile macht als erstes den "New-Button" mit der ID "new_link" unsichtbar (```$('#new_link').hide()```). Hinter dem Button wird das Formular *form* eingefügt (```.after('<%= j render("form") %>')```). Das ```j``` steht für ```escape_javascript``` und formt das HTML des Formulars so um, dass es per Javascript eingebaut werden kann. jQuery erlaubt das verketten der beiden Methoden, da sowohl ```hide``` als auch ```after``` auf das selbe Element angewendet wird.
 	
-	Die zweite Zeile gibt dem Text-Input-Feld mit der ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). 
+	Die zweite Zeile gibt dem Text-Input-Feld mit der CSS-ID "project_name" den Fokus, d.h. der Cursor ist dann im Text-Feld und der Nutzer muss nicht erst in das Feld klicken (```$('#project_name').focus();```). 
 	
 	Die dritte Zeile fügt dem Cancel-Button die Funktion *clickCancelButton()* hinzu.
 	
-	Damit dieses drei Zeilen Javascript funktionieren, brauchen wir als erstes das Formular in einem Partial "form". Wir erstellen eine Datei *_form* im Verzeichnis *app/views/project/* und fügen folgendes ein:
+	Damit diese drei Zeilen Javascript funktioniert, brauchen wir als erstes das Formular in einem Partial "form". Wir erstellen eine Datei *_form* im Verzeichnis *app/views/project/* und fügen folgendes ein:
 	
 	```html
 	<%= form_for(@project, remote: true, :html => {id: "new_project"}) do |f| %>
@@ -275,7 +283,7 @@
 	<% end %>
 	```
 	
-	Als zweites fügen wir in *app/asssets/javascripts/projects.js.coffee* folgenden Code ein:
+	Als zweites fügen wir in *app/asssets/javascripts/projects.js.coffee* folgenden Code ein um die Funktion *clickCancelButton* zu definieren:
 	```javascript
 	jQuery.fn.clickCancelButton = ->
 		@find('#cancel_button').click ->
@@ -297,7 +305,7 @@
 	end
 	```
 	
-	```xhr :get, :new``` ist ein Ajax-Aufruf der New-Methode mttels *get*: 
+	```xhr :get, :new``` ist ein Ajax-Aufruf der New-Methode mittels *get*. *xhr* steht für [XMLHttpRequest](http://de.wikipedia.org/wiki/XMLHttpRequest) und ist ein anderer Name für AJAX. 
 	Der neue Test  läuft:
 	```bash
 	rake test
