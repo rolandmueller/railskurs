@@ -266,7 +266,7 @@
 	
 	Die dritte Zeile fügt dem Cancel-Button die Funktion *clickCancelButton()* hinzu.
 	
-	Damit diese drei Zeilen Javascript funktioniert, brauchen wir als erstes das Formular in einem Partial "form". Wir erstellen eine Datei *_form* im Verzeichnis *app/views/project/* und fügen folgendes ein:
+	Damit diese drei Zeilen Javascript funktioniert, brauchen wir als erstes das Formular in einem Partial "form". Wir erstellen eine Datei *_form.html.erb* im Verzeichnis *app/views/project/* und fügen folgendes ein:
 	
 	```html
 	<%= form_for(@project, remote: true, :html => {id: "new_project"}) do |f| %>
