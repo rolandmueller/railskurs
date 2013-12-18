@@ -156,7 +156,7 @@ In vielen Applikationen kann der Nutzer ein Bild hochladen. Sei es das User-Bild
   
   und dann z.B. das Bild in *app/views/paintings/show.html.erb* in der Normal-skalierten Variante zeigen:
     ```html
-  <td><%= image_tag painting.image_url(:normal) if painting.image? %></td>
+  <td><%= image_tag @painting.image_url(:normal) if @painting.image? %></td>
   ```
   
 9. Wenn Sie ein Bild-Upload in Ihrem Projekt einsetzen wollen, zeige ich Ihnen nächstes Jahr, wie man das auf Heroku zum laufen bringen kann (siehe auch https://github.com/carrierwaveuploader/carrierwave/wiki/How-to%3A-Make-Carrierwave-work-on-Heroku).
