@@ -622,6 +622,11 @@
 	git add .
 	git commit -m "Task kann Projekt zugeordnet werden + Task-Index mit Projekt"
 	```
+	Und Github aktualisieren
+	```bash
+	git push origin master
+	```
+	
 	
 15. Deployment
 
