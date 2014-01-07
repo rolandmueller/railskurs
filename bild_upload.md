@@ -1,6 +1,6 @@
 # Übung 10: Bild-Upload
 
-In vielen Applikationen kann der Nutzer ein Bild hochladen. Sei es das User-Bild oder das Bild eines Artikels. Wie geht mit Rails? Um das auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
+In vielen Applikationen kann der Nutzer ein Bild hochladen. Sei es das User-Bild oder das Bild eines Artikels. Wie geht das mit Rails? Um das auszuprobieren, erzeugen wir eine kleine Rails-App für Bilder.
 
 1. ImageMagick installieren
 
