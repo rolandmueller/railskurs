@@ -12,7 +12,7 @@
 
 2. Funktionalität
 	
-3. Fehlerfreiheit (Applikation funktioniert)
+3. Fehlerfreiheit
 
 4. Code Qualität
 
