@@ -29,3 +29,6 @@ railskurs
 8. [Todo-App Fortsetzung 2 (Javascript)](https://github.com/rolandmueller/railskurs/blob/master/uebung9.md)
 6. [Bild Upload](https://github.com/rolandmueller/railskurs/blob/master/bild_upload.md)
 
+## Projekt
+
+* [Kriterien für das Rails Projekt](https://github.com/rolandmueller/railskurs/blob/master/projekt_kriterien.md)
