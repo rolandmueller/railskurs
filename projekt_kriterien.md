@@ -9,10 +9,10 @@
 		
 		* Beschreibung des Projekts
 		* Beschreibung der technischen Umsetzung
-	
-2. Fehlerfreiheit (Applikation funktioniert)
 
-3. Funktionalität
+2. Funktionalität
+	
+3. Fehlerfreiheit (Applikation funktioniert)
 
 4. Code Qualität
 
