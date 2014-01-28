@@ -4,7 +4,7 @@
 
 	1. Projekt-Name
 	2. Vor- und Nachnamen und Matrikel-Nummern der Team-Mitglieder
-	3. Link zur Heroku-Demo
+	3. Link zur Heroku-Demo (falls vorhanden)
 	4. Ausführliche Beschreibung:
 		
 		* Beschreibung des Projekts
