@@ -47,7 +47,7 @@
    1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
    ```	
    
-   Wir fügen einen zweiten Test in *test/models/task_test.rb* ein, der testet, ob man einen vollständig ausgefüllten Test speichern kann:
+   Wir fügen einen zweiten Test in *test/models/task_test.rb* ein, der testet, ob man einen vollständig ausgefüllten Task speichern kann:
    ```ruby
    test "task can be saved with name, deadline and duraton" do
      task = Task.new
