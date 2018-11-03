@@ -2,9 +2,9 @@
 
 Das heißt `rbenv install 2.3.3` hat ein Fehler ergeben.
 
-## Nur für Windows Subsystem für Linux und Linux Partition (Ubuntu)
+## Nur für Windows Subsystem für Linux bzw. Linux Partition (Ubuntu)
 
-Falls Sie mit Windows Subsystem für Linux oder mit ihrer Linux Partition Probleme haben Ruby mit dem rbenv zu installieren, hier einige mögliche Bug-Fixes:
+Falls Sie mit Windows Subsystem für Linux bzw. mit ihrer Linux Partition Probleme haben Ruby mit dem rbenv zu installieren, hier einige mögliche Bug-Fixes:
 
 1. Möglicher Fehler: Es sind keine Compiler und andere notwendige Packete installiert.
 
